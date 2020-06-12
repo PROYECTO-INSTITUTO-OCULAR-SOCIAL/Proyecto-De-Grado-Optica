@@ -1,0 +1,65 @@
+{
+  "name": "grupo5/Proyecto-De-Grado-Optica",
+  "version": "0.0.1",
+  "type": "Project",
+  "keywords":[ "console","tool "],
+  "homepage":"https://google.com",
+  "time": "2020-06-08",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Asly Araque",
+      "email": "asly.araque.07@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Diana Chaparro",
+      "email": "dianachaparro906@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Hamilton Fonseca",
+      "email": "hrfonseca3@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Julieth Sanchez",
+      "email": "juliethsanchez034@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Hildebrando Yunado",
+      "email": "hyunado@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^5.4||^7.0",
+    "almasaeed2010/adminlte": "^3.0",
+    "vlucas/phpdotenv": "^3.6"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+
+  },
+  "scripts": {
+    "post-install-cmd": [
+    ],
+    "post-update-cmd": [
+    ]
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+
+  }
+}
