@@ -337,7 +337,8 @@ class Formula extends BasicModel
                 $this->observaciones,
                 $this->bifocal,
                 $this->material,
-                $this->valor
+                $this->valor,
+                $this->id_formula
             )
         );
         $this->Disconnect();
