@@ -174,11 +174,5 @@ class Municipio extends BasicModel
         }else{
             return false;
         }
-    }git
-
-    public function __toString()
-    {
-        //
-        return $this->codigo_dane ;
     }
 }
