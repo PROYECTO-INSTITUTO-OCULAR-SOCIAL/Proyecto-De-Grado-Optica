@@ -16,7 +16,7 @@ class Municipio extends BasicModel
     private $departamento;
 
     /**
-     * Usuarios constructor.
+     *  Usuarios constructor.
      * @param $id_municipio
      * @param $nombre
      * @param $codigo_dane
