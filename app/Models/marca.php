@@ -67,7 +67,7 @@ class marca extends BasicModel
     /**
      * @return string
      */
-    public function getestado() : string
+    public function getestado(): string
     {
         return $this->estado;
     }
@@ -160,7 +160,6 @@ class marca extends BasicModel
             return false;
         }
     }
-
 }
 
 
