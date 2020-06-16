@@ -83,7 +83,6 @@ class marca extends BasicModel
 
 
 
-
     public function create() : bool
     {
         $result = $this->insertRow("INSERT INTO marca VALUES (NULL, ?, ?, ?)", array(
