@@ -77,7 +77,7 @@ class Departamento extends BasicModel
     }
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Departamento VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Departamento VALUES (NULL, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
                             )
