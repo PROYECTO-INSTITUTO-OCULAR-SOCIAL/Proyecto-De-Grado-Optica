@@ -224,30 +224,30 @@ class Formula extends BasicModel
         $this->color = $color;
     }
     /**
-     * @return mediumint
+     * @return int
      */
-    public function getnumero_montura() : mediumint
+    public function getnumero_montura() : int
     {
         return $this->numero_montura;
     }
     /**
-     * @param mediumint $numero_montura
+     * @param int $numero_montura
      */
-    public function setnumero_montura(mediumunt $numero_montura): void
+    public function setnumero_montura(int $numero_montura): void
     {
         $this->numero_montura = $numero_montura;
     }
     /**
-     * @return tinytext
+     * @return string
      */
-    public function getobservaciones() : tinytext
+    public function getobservaciones() :string
     {
         return $this->observaciones;
     }
     /**
-     * @param tinytext $observaciones
+     * @param string $observaciones
      */
-    public function setobservaciones(tinytext $observaciones): void
+    public function setobservaciones(string $observaciones): void
     {
         $this->observaciones = $observaciones;
     }
@@ -322,7 +322,7 @@ class Formula extends BasicModel
     public function update() : bool
     {
         $result = $this->updateRow("UPDATE Proyecto-De-Grado-Optica.Formula SET  =od_esfera ?, oi_esfera = ?, od_cilindro = ?, oi_cilindro = ?, od_eje = ?, oi_eje= ?, od_av = ?, oi_av = ?, dp = ?, color = ?, numero_montura = ?, observaciones = ?,bifocal = ?, material = ?, valor = ? WHERE id_formula = ?", array(
-                $this->id_formula,
+
                 $this->od_esfera,
                 $this->oi_esfera,
                 $this->od_cilindro,
