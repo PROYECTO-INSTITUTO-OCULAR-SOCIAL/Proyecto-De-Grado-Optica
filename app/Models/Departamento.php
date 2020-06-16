@@ -94,7 +94,7 @@ class Departamento extends BasicModel
 
         foreach ($getrows as $valor) {
             $Departamento = new Departamento();
-            $Departamento->id_departament = $valor['id_departamento'];
+            $Departamento->id_departamento = $valor['id_departamento'];
             $Departamento->nombre = $valor['nombre'];
             $Departamento->codigo_dane  = $valor['codigo_dane'];
             $Departamento->Disconnect();
@@ -112,7 +112,7 @@ class Departamento extends BasicModel
 
         public static function DepartamentoRegistrado ($nombre) : bool
     {
-        $result = Departamento::search("SELECT id FROM Proyecto-De-Grado-Optica.Departamento where nombre = ".$nombre);
+        $result = Departamento::search("SELECT id_departamento FROM Proyecto-De-Grado-Optica.Departamento where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
@@ -125,9 +125,9 @@ class Departamento extends BasicModel
     {
         $Departamento = null;
         if ($id > 0){
-            $Departamento= new Usuarios();
-            $getrow = $Departamento->getRow("SELECT * FROM Proyecto-De-Grado-Optica.Departamento WHERE id =?", array($id));
-            $Departamento->id_departamento = $getrow['id'];
+            $Departamento= new Departamento();
+            $getrow = $Departamento->getRow("SELECT * FROM Proyecto-De-Grado-Optica.Departamento WHERE id_departamento =?", array($id));
+            $Departamento->id_departamento = $getrow['id_departamento'];
             $Departamento->nombre = $getrow['nombre'];
             $Departamento->codigo_dane = $getrow['codigo_dane'];
 
