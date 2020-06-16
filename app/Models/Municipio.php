@@ -152,7 +152,7 @@ class Municipio extends BasicModel
         $Municipio = null;
         if ($id_municipio > 0){
             $Municipio = new Municipio();
-            $getrow = $Municipio->getRow("SELECT * FROM weber.Municipio WHERE id_municipio =?", array($id_municipio));
+            $getrow = $Municipio->getRow("SELECT * FROM weber.Municipio WHERE id_municipio = ?", array($id_municipio));
             $Municipio->id_municipio = $getrow['id_municipio'];
             $Municipio->nombre = $getrow['nombre'];
             $Municipio->codigo_dane = $getrow['codigo_dane'];
