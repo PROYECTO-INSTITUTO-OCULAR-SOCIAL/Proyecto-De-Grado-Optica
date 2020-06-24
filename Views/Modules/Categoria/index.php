@@ -1,8 +1,7 @@
-Asly Araque, [23.06.20 14:25]
 <?php require("../../partials/routes.php");
-require("../../../app/Controllers/UsuariosController.php");
+require("../../../app/Controllers/CategoriaController.php");
 
-use App\Controllers\UsuariosController; ?>
+use App\Controllers\CategoriaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +31,7 @@ use App\Controllers\UsuariosController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -60,7 +59,7 @@ use App\Controllers\UsuariosController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Usuarios</h3>
+                    <h3 class="card-title">Gestionar Categoria</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,52 +71,36 @@ use App\Controllers\UsuariosController; ?>
                     <div class="row">
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
-                            <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Usuario
+                            <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                <i class="fas fa-plus"></i> Crear Categoria
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblUsuarios" class="datatable table table-bordered table-striped">
+                            <table id="tblCategoria" class="datatable table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombres</th>
-
-                                    Asly Araque, [23.06.20 14:25]
-                                    <th>Apellidos</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
-                                    <th>Telefono</th>
-                                    <th>Direccion</th>
-                                    <th>Rol</th>
+                                <tr
+                                    <th>Nombre</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrUsuarios = UsuariosController::getAll();
-                                foreach ($arrUsuarios as $usuario){
+                                $arrCategoria = CategoriaController::getAll();
+                                foreach ($arrCategoria as $Categoria){
                                     ?>
                                     <tr>
-                                        <td><?php echo $usuario->getId(); ?></td>
-                                        <td><?php echo $usuario->getNombres(); ?></td>
-                                        <td><?php echo $usuario->getApellidos(); ?></td>
-                                        <td><?php echo $usuario->getTipoDocumento(); ?></td>
-                                        <td><?php echo $usuario->getDocumento(); ?></td>
-                                        <td><?php echo $usuario->getTelefono(); ?></td>
-                                        <td><?php echo $usuario->getDireccion(); ?></td>
-                                        <td><?php echo $usuario->getRol(); ?></td>
-                                        <td><?php echo $usuario->getEstado(); ?></td>
+                                        <td><?php echo $Categoria->getId_categoria(); ?></td>
+                                        <td><?php echo $Categoria->getNombre(); ?></td>
+                                        <td><?php echo $Categoria->getEstado(); ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?php echo $usuario->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $usuario->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($usuario->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/UsuariosController.php?action=activate&Id=<?php echo $usuario->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <a href="Edit.php?id=<?php echo $Categoria->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id=<?php echo $Categoria->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Categoria->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/CategoriaController.php?action=activate&Id=<?php echo $Categoria->getId_categoria(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/UsuariosController.php?action=inactivate&Id=<?php echo $usuario->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/CategoriaController.php?action=inactivate&Id=<?php echo $Categoria->getId_categoria(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -125,16 +108,10 @@ use App\Controllers\UsuariosController; ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
-                                    <th>Telefono</th>
-                                    <th>Direccion</th>
-                                    <th>Rol</th>
+
+                                    <th>Nombre</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -149,10 +126,7 @@ use App\Controllers\UsuariosController; ?>
             </div>
             <!-- /.card -->
         </section>
-        <!-
-
-        Asly Araque, [23.06.20 14:25]
-        - /.content -->
+        <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
@@ -198,3 +172,4 @@ use App\Controllers\UsuariosController; ?>
 
 </body>
 </html>
+
