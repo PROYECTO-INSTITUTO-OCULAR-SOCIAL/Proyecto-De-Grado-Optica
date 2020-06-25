@@ -47,7 +47,7 @@ use App\Controllers\MarcaController; ?>
                         Error al crear Marca: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id'])) { ?>
+            <?php } else if (empty($_GET['id_marca'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -58,7 +58,7 @@ use App\Controllers\MarcaController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h3 class="card-title">Registrar Marca</h3>
                 </div>
                 <!-- /.card-header -->
                 <?php if(!empty($_GET["id_marca"]) && isset($_GET["id_marca"])){ ?>

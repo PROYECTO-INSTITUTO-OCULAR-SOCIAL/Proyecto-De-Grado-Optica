@@ -131,7 +131,7 @@ class Marca extends BasicModel
         return $arrMarca;
     }
 
-    public static function searchForId($id_marca) : Marca
+    public static function searchForid_marca($id_marca) : Marca
     {
         $Marca = null;
         if ($id_marca > 0){
