@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Models;
+namespace app\Models;
 require('BasicModel.php');
 
 class Formula extends BasicModel
