@@ -14,7 +14,7 @@ class MunicipioController
     {
         if ($action == "Create") {
             MunicipioController::Create();
-        } else if ($action == "edit") {
+        } else if ($action == "Edit") {
             MunicipioController::Edit();
         } else if ($action == "searchForID") {
             MunicipioController::searchForID($_REQUEST['id_municipio']);
@@ -39,7 +39,7 @@ class MunicipioController
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
 
-            if (!Municipio::municipioRegistrado($arrayMunicipio['nombre'])) {
+            if (!Municipio::MunicipioRegistrado($arrayMunicipio['nombre'])) {
                 $Municipio = new Municipio ($arrayMunicipio);
                 if ($Municipio->create()) {
                     header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
@@ -58,7 +58,7 @@ class MunicipioController
             $arrayMunicipio = array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
-            $arrayUsuario['id_municipio'] = $_POST['id_municipio'];
+            $arrayMunicipio['id_municipio'] = $_POST['id_municipio'];
 
             $user = new Municipio($arrayMunicipio);
             $user->update();
