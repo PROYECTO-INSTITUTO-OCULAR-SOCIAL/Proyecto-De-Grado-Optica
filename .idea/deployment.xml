@@ -5,7 +5,7 @@
       <paths name="Pagina">
         <serverdata>
           <mappings>
-            <mapping deploy="\Proyecto-De-Grado-Optica" local="$PROJECT_DIR$" web="/Proyecto-De-Grado-Optica" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

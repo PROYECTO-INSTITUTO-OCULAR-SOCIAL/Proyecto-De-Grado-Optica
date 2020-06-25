@@ -13,7 +13,7 @@ abstract class BasicModel {
     public $isConnected;
     protected $datab;
     private $username = "root";
-    private $password = "";
+     private $password = "";
     private $host = "localhost";
     private $driver = "mysql";
     private $dbname = "mer_optica";
