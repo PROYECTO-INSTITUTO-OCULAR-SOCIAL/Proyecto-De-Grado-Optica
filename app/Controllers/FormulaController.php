@@ -17,11 +17,10 @@ class FormulaController{
         } else if ($action == "edit") {
             FormulaController::edit();
         } else if ($action == "searchForID") {
-            FormulaController::searchForID($_REQUEST['id_formula']);
+            FormulaController::searchForID($_REQUEST['idFormula']);
         } else if ($action == "searchAll") {
             FormulaController::getAll();
         }
-
     }
 
     static public function create()

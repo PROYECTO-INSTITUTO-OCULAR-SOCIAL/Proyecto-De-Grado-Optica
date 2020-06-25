@@ -2,12 +2,12 @@
 require("../../Partials/Routes.php");
 require("../../../app/Controllers/FormulaController.php");
 
-use app\Controllers\FormulaContrller; ?>
+use App\Controllers\FormulaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Datos de la Formula</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
@@ -15,7 +15,7 @@ use app\Controllers\FormulaContrller; ?>
 <div class="wrapper">
     <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Mmenu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -44,10 +44,10 @@ use app\Controllers\FormulaContrller; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar la formula: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar la Formula: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_formula'])) { ?>
+            <?php } else if (empty($_GET['id'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -59,69 +59,70 @@ use app\Controllers\FormulaContrller; ?>
             <div class="card card-info">
                 <?php if(!empty($_GET["id_formula"]) && isset($_GET["id_formula"])){
                     $DataFormula = FormulaController::searchForID($_GET["id_formula"]);
-                    if(!empty($DataFormula)){
+                    if(!empty($DataCategoria)){
                         ?>
-                        <div class="card-header">
+                <div class="card-header">
 
-                        <div class="card-body">
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od esfera</strong>
-                            <p class="text-muted"><?= $DataFormula->getod_esferan() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od esfera</strong>
-                            <p class="text-muted"><?= $DataFormula->getod_esfera() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> oi esfera</strong>
-                            <p class="text-muted"><?= $DataFormula->getoi_esfera() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od cilindro</strong>
-                            <p class="text-muted"><?= $DataFormula->getod_cilindro() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od eje</strong>
-                            <p class="text-muted"><?= $DataFormula->getoi_cilindro() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od eje</strong>
-                            <p class="text-muted"><?= $DataFormula->getod_eje() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> oi eje</strong>
-                            <p class="text-muted"><?= $DataFormula->getoi_eje() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> od av</strong>
-                            <p class="text-muted"><?= $DataFormula->getod_av() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> oi av</strong>
-                            <p class="text-muted"><?= $DataFormula->getoi_av() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> dp</strong>
-                            <p class="text-muted"><?= $DataFormula->getdp() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> color</strong>
-                            <p class="text-muted"><?= $DataFormula->getcolor() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> numero montura</strong>
-                            <p class="text-muted"><?= $DataFormula->getnumero_montura() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> observaciones</strong>
-                            <p class="text-muted"><?= $DataFormula->getobservaciones() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> bifocal</strong>
-                            <p class="text-muted"><?= $DataFormula->getbifocal() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> material</strong>
-                            <p class="text-muted"><?= $DataFormula->getmaterial() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> valor</strong>
-                            <p class="text-muted"><?= $DataFormula->getvalor() ?></p>
-                            <hr>
-                        </div>
-                        <div class="card-footer">
+                    <div class="card-body">
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od esfera</strong>
+                        <p class="text-muted"><?= $DataFormula->getod_esferan() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od esfera</strong>
+                        <p class="text-muted"><?= $DataFormula->getod_esfera() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> oi esfera</strong>
+                        <p class="text-muted"><?= $DataFormula->getoi_esfera() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od cilindro</strong>
+                        <p class="text-muted"><?= $DataFormula->getod_cilindro() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od eje</strong>
+                        <p class="text-muted"><?= $DataFormula->getoi_cilindro() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od eje</strong>
+                        <p class="text-muted"><?= $DataFormula->getod_eje() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> oi eje</strong>
+                        <p class="text-muted"><?= $DataFormula->getoi_eje() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> od av</strong>
+                        <p class="text-muted"><?= $DataFormula->getod_av() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> oi av</strong>
+                        <p class="text-muted"><?= $DataFormula->getoi_av() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> dp</strong>
+                        <p class="text-muted"><?= $DataFormula->getdp() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> color</strong>
+                        <p class="text-muted"><?= $DataFormula->getcolor() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> numero montura</strong>
+                        <p class="text-muted"><?= $DataFormula->getnumero_montura() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> observaciones</strong>
+                        <p class="text-muted"><?= $DataFormula->getobservaciones() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> bifocal</strong>
+                        <p class="text-muted"><?= $DataFormula->getbifocal() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> material</strong>
+                        <p class="text-muted"><?= $DataFormula->getmaterial() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> valor</strong>
+                        <p class="text-muted"><?= $DataFormula->getvalor() ?></p>
+                        <hr>
+                    </div>
+
+                    <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
                                     <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-tasks"></i> Gestionar Formula
+                                        <i class="fas fa-tasks"></i> Gestionar Fomula
                                     </a>
                                 </div>
                                 <div class="col-auto">
-                                    <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                    <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-plus"></i> Crear Formula
                                     </a>
                                 </div>

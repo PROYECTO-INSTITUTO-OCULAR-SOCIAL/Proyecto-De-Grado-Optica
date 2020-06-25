@@ -1,5 +1,5 @@
 <?php require("../../Partials/Routes.php");
-require("../../../App/Controllers/FormulaController.php");
+require("../../../app/Controllers/FormulaController.php");
 
 use App\Controllers\FormulaController; ?>
 <!DOCTYPE html>
@@ -48,9 +48,9 @@ use App\Controllers\FormulaController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                           La Formula Ha Sido Registrada Con Exito!
+                            La Formula ha sido creada con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los Datos De La Formula Han Sido Actualizados Correctamente!
+                            Los datos de la formula han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -78,10 +78,10 @@ use App\Controllers\FormulaController; ?>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id_formula="tblFormula" class="datatable table table-bordered table-striped">
+                            <table id="tblCategoria" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Id</th>
                                     <th>od esfera</th>
                                     <th>oi esfera</th>
                                     <th>od cilindro</th>
@@ -121,17 +121,13 @@ use App\Controllers\FormulaController; ?>
                                         <td><?php echo $Formula->getbifocal(); ?></td>
                                         <td><?php echo $Formula->getmaterial(); ?></td>
                                         <td><?php echo $Formula->getvalor(); ?></td>
-                                        <td>
-                                            <a href="edit.php?id=<?php echo $Formula->getidFormula(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $Formula->getidFormula(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
 
-                                        </td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Id</th>
                                     <th>od esfera</th>
                                     <th>oi esfera</th>
                                     <th>od cilindro</th>
@@ -147,7 +143,9 @@ use App\Controllers\FormulaController; ?>
                                     <th>bifocal</th>
                                     <th>material</th>
                                     <th>valor</th>
-                                  </tr>
+
+
+                                </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -165,10 +163,10 @@ use App\Controllers\FormulaController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../partials/footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../Partials/Scripts.php');?>
+<?php require ('../../partials/scripts.php');?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -200,10 +198,11 @@ use App\Controllers\FormulaController; ?>
             ],
             "pagingType": "full_numbers",
             "responsive": true,
-            "stateSave" : true, //Guardar la configuracion de la formula
-        });
+            "stateSave" : true, //Guardar la configuracion del Formula
     });
 </script>
 
 </body>
 </html>
+
+

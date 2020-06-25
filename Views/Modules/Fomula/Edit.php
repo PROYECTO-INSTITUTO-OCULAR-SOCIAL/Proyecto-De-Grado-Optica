@@ -1,5 +1,5 @@
 <?php
-require("../../partials/routes.php");
+require("../../Partials/Routes.php");
 require("../../../app/Controllers/FormulaController.php");
 
 use App\Controllers\FormulaController; ?>
@@ -44,10 +44,10 @@ use App\Controllers\FormulaController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear la formula: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al crear el Categoria: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id'])) { ?>
+            <?php } else if (empty($_GET['idCategoria'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -61,10 +61,10 @@ use App\Controllers\FormulaController; ?>
                     <h3 class="card-title">Horizontal Form</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if(!empty($_GET["id_formula"]) && isset($_GET["id_formula"])){ ?>
+                <?php if(!empty($_GET["idFormula"]) && isset($_GET["idFormula"])){ ?>
                     <p>
                     <?php
-                    $DataFormula = FormulaController::searchForID($_GET["id_formula"]);
+                    $DataFormula = \App\Controllers\FormulaController::searchForId($_GET["idFormula"]);
                     if(!empty($DataFormula)){
                         ?>
                         <!-- form start -->
@@ -178,6 +178,26 @@ use App\Controllers\FormulaController; ?>
                     <?php } ?>
                     </p>
                 <?php } ?>
+            </div>
+
+
+    </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info">Enviar</button>
+                                <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                            </div>
+                            <!-- /.card-footer -->
+                        </form>
+                    <else{
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                            No se encontro ningun registro con estos parametros de busqueda <?= ($_GET['mensaje']) ?? "" ?>
+                        </div>
+                     }
+                    </p>
+                 }
             </div>
             <!-- /.card -->
         </section>

@@ -296,7 +296,7 @@ class Formula extends BasicModel
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->id_formula,
                 $this->od_esfera,
                 $this->oi_esfera,
@@ -321,7 +321,7 @@ class Formula extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE Proyecto-De-Grado-Optica.Formula SET  =od_esfera ?, oi_esfera = ?, od_cilindro = ?, oi_cilindro = ?, od_eje = ?, oi_eje= ?, od_av = ?, oi_av = ?, dp = ?, color = ?, numero_montura = ?, observaciones = ?,bifocal = ?, material = ?, valor = ? WHERE id_formula = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Formula SET  =od_esfera ?, oi_esfera = ?, od_cilindro = ?, oi_cilindro = ?, od_eje = ?, oi_eje= ?, od_av = ?, oi_av = ?, dp = ?, color = ?, numero_montura = ?, observaciones = ?,bifocal = ?, material = ?, valor = ? WHERE id_formula = ?", array(
 
                 $this->od_esfera,
                 $this->oi_esfera,
@@ -381,12 +381,12 @@ class Formula extends BasicModel
     protected static function getAll()
     {
 
-        return Formula::search("SELECT * FROM Proyecto-De-Grado-Optica.Formula");
+        return Formula::search("SELECT * FROM mer_optica.Formula");
     }
 
     public static function FormulaRegistrada ($id_formula) : bool
     {
-        $result = Formula::search("SELECT id_formula FROM royecto-De-Grado-Optica.Formula where id_formula = " . $id_formula);
+        $result = Formula::search("SELECT id_formula FROM mer_optica.Formula  where id_formula = " . $id_formula);
         if (count($result) > 0) {
             return true;
         } else {
@@ -399,7 +399,7 @@ class Formula extends BasicModel
         $Formula = null;
         if ($id_formula> 0){
             $Formula = new Formula();
-            $getrow = $Formula->getRow("SELECT * FROM Proyecto-De-Grado-Optica.Formula WHERE id_formula =?", array($id_formula));
+            $getrow = $Formula->getRow("SELECT * FROM mer_optica.Formula WHERE id_formula =?", array($id_formula));
             $Formula->id_formula = $getrow['id_formula'];
             $Formula->od_esfera = $getrow['od_esfera '];
             $Formula->oi_esfera = $getrow['oi_esfera'];
