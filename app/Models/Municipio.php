@@ -45,7 +45,7 @@ class Municipio extends BasicModel
     /**
      * @param int $id_municipio
      */
-    public function setId(int $id_municipio): void
+    public function setid(int $id_municipio): void
     {
         $this->id_municipio = $id_municipio;
     }
