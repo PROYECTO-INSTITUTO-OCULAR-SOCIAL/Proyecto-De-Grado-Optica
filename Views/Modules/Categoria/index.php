@@ -80,9 +80,11 @@ use App\Controllers\CategoriaController; ?>
                         <div class="col">
                             <table id="tblCategoria" class="datatable table table-bordered table-striped">
                                 <thead>
-                                <tr
+                                <tr>
+                                    <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -91,16 +93,16 @@ use App\Controllers\CategoriaController; ?>
                                 foreach ($arrCategoria as $Categoria){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Categoria->getId_categoria(); ?></td>
+                                        <td><?php echo $Categoria->getIdCategoria(); ?></td>
                                         <td><?php echo $Categoria->getNombre(); ?></td>
                                         <td><?php echo $Categoria->getEstado(); ?></td>
                                         <td>
-                                            <a href="Edit.php?id=<?php echo $Categoria->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id=<?php echo $Categoria->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="Edit.php?idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
                                             <?php if ($Categoria->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/CategoriaController.php?action=activate&Id=<?php echo $Categoria->getId_categoria(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                                <a href="../../../app/Controllers/CategoriaController.php?action=activate&idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/CategoriaController.php?action=inactivate&Id=<?php echo $Categoria->getId_categoria(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/CategoriaController.php?action=inactivate&idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -108,9 +110,10 @@ use App\Controllers\CategoriaController; ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-
+                                    <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
 
                                 </tr>
                                 </tfoot>

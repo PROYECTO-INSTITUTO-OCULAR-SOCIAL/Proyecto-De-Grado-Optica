@@ -17,8 +17,8 @@ class CategoriaController
             CategoriaController::Create();
         } else if ($action == "Edit") {
             CategoriaController::Edit();
-        } else if ($action == "searchForid_categoria") {
-            CategoriaController::searchForid_categoria($_REQUEST['id_categoria']);
+        } else if ($action == "searchForId") {
+            CategoriaController::searchForId($_REQUEST['idCategoria']);
         } else if ($action == "searchAll") {
             CategoriaController::getAll();
         } else if ($action == "activate") {
@@ -57,7 +57,7 @@ class CategoriaController
     {
         try {
             $arrayCategoria = array();
-            $arrayUsuario['id_categoria'] = $_POST['id_categoria'];
+            $arrayCategoria['id_categoria'] = $_POST['id_categoria'];
             $arrayCategoria['nombre'] = $_POST['nombre'];
             $arrayCategoria['estado'] = $_POST['estado'];
 
@@ -75,7 +75,7 @@ class CategoriaController
     static public function activate()
     {
         try {
-            $ObjCategoria = Categoria::searchForid_categoria($_GET['id_categoria']);
+            $ObjCategoria = Categoria::searchForId($_GET['id_categoria']);
             $ObjCategoria->setestado("Activo");
             if ($ObjCategoria->update()) {
                 header("Location: ../../views/Modules/Categoria/index.php");
@@ -91,7 +91,7 @@ class CategoriaController
     static public function inactivate()
     {
         try {
-            $ObjCategoria = Categoria::searchForid_categoria($_GET['id_categoria']);
+            $ObjCategoria = Categoria::searchForId($_GET['idCategoria']);
             $ObjCategoria->setestado("Inactivo");
             if ($ObjCategoria->update()) {
                 header("Location: ../../views/modules/Categoria/index.php");
@@ -104,10 +104,10 @@ class CategoriaController
         }
     }
 
-    static public function searchForid_categoria($id_categoria)
+    static public function searchForId($id_categoria)
     {
         try {
-            return Categoria::searchForid_categoria($id_categoria);
+            return Categoria::searchForId($id_categoria);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../views/Modules/Categoria/manager.php?respuesta=error");

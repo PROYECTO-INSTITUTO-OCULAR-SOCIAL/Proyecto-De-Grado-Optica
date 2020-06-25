@@ -47,7 +47,7 @@ use App\Controllers\CategoriaController; ?>
                         Error al crear el Categoria: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id'])) { ?>
+            <?php } else if (empty($_GET['idCategoria'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -55,21 +55,21 @@ use App\Controllers\CategoriaController; ?>
                 </div>
             <?php } ?>
 
-            <!-- Horizontal Form -->ñ.-
+            <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Horizontal Form</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if(!empty($_GET["id_categoria"]) && isset($_GET["id_categoria"])){ ?>
+                <?php if(!empty($_GET["idCategoria"]) && isset($_GET["idCategoria"])){ ?>
                     <p>
                     <?php
-                    $DataCategoria = \App\Controllers\CategoriaController::searchForID($_GET["id_categoria"]);
+                    $DataCategoria = \App\Controllers\CategoriaController::searchForId($_GET["idCategoria"]);
                     if(!empty($DataCategoria)){
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditCategoria" name="frmEditCategoria" action="../../../app/Controllers/CategoriaController.php.?action=Edit">
-                            <input id="id" name="id" value="<?php echo $DataCategoria->getId_categoria(); ?>" hidden required="required" type="text">
+                            <input id="id" name="id" value="<?php echo $DataCategoria->getIdCategoria(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
