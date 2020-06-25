@@ -71,7 +71,7 @@ use App\Controllers\MunicipioController; ?>
                     <div class="row">
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
-                            <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
+                            <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
                                 <i class="fas fa-plus"></i> Crear Municipio
                             </a>
                         </div>
@@ -81,7 +81,7 @@ use App\Controllers\MunicipioController; ?>
                             <table id="tblMunicipio" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo_Dane</th>
                                     <th>Acciones</th>
@@ -97,8 +97,8 @@ use App\Controllers\MunicipioController; ?>
                                         <td><?php echo $Municipio->getNombre(); ?></td>
                                         <td><?php echo $Municipio->getCodigo_dane(); ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="Edit.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
                                             <?php if ($Municipio->getEstado() != "Activo"){ ?>
                                                 <a href="../../../app/Controllers/MunicipioController.php?action=activate&Id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
@@ -110,7 +110,7 @@ use App\Controllers\MunicipioController; ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo_Dane</th>
                                     <th>Acciones</th>
