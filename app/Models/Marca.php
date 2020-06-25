@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Models;
 
+namespace App\Models;
 require('BasicModel.php');
 
 class Marca extends BasicModel
@@ -158,6 +158,11 @@ class Marca extends BasicModel
         }else{
             return false;
         }
+    }
+
+    public static function searchForId($id)
+    {
+        // TODO: Implement searchForId() method.
     }
 }
 

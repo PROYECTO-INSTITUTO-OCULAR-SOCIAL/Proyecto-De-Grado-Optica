@@ -21,10 +21,10 @@ class MarcaController
             MarcaController::searchForid_marca($_REQUEST['id_marca']);
         } else if ($action == "searchAll") {
             MarcaController::getAll();
-        } else if ($action == "activo") {
-            MarcaController::activo();
-        } else if ($action == "inactivo") {
-            MarcaController::inactivo();
+        } else if ($action == "Activo") {
+            MarcaController::Activo();
+        } else if ($action == "Inactivo") {
+            MarcaController::Inactivo();
         }/*else if ($action == "login"){
             MarcaController::login();
         }else if($action == "cerrarSession"){
