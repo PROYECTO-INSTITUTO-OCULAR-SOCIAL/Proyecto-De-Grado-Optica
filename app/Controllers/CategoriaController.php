@@ -75,7 +75,7 @@ class CategoriaController
     static public function activate()
     {
         try {
-            $ObjCategoria = Categoria::searchForId($_GET['id_categoria']);
+            $ObjCategoria = Categoria::searchForId($_GET['idCategoria']);
             $ObjCategoria->setestado("Activo");
             if ($ObjCategoria->update()) {
                 header("Location: ../../views/Modules/Categoria/index.php");

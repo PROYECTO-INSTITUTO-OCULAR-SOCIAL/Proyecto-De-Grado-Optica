@@ -2,11 +2,12 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
+ Diana-Carolina-Chaparro-Perez
+        <img src="<?= $baseURL ?>/views/components/img/ojo.jpeg"
 
-        <img src="<?= $baseURL ?>/views/components/img/icono.jpg"
-             master
+
              alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3"
+             class="brand-image img-circle elevation-2"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Proyecto-De-Grado-Optica</span>
     </a>
@@ -16,12 +17,11 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-
-                <img src="<?= $baseURL ?>/views/components/img/user.jpg" class="img-circle elevation-2" alt="User Image">
+ Diana-Carolina-Chaparro-Perez
+                <img src="<?= $baseURL ?>/views/components/img/User.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Diana Chaparro</a>
-              master
+                <a href="#" class="d-block">Usuario</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
