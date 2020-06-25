@@ -4,7 +4,7 @@ namespace App\Models;
 
 require('BasicModel.php');
 
-class marca extends BasicModel
+class Marca extends BasicModel
 {
     private $id_marca;
     private $nombre;
@@ -17,7 +17,7 @@ class marca extends BasicModel
      * @param $nombre
      * @param $estado
      */
-    public function __construct($marca = array())
+    public function __construct($Marca = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
         $this->id_marca = $Marca['id_marca'] ?? null;
@@ -85,7 +85,7 @@ class marca extends BasicModel
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO marca VALUES (NULL, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO Marca VALUES (NULL, ?, ?, ?)", array(
                 $this->id_marca,
                 $this->nombre,
                 $this->estado
@@ -97,7 +97,7 @@ class marca extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE marca SET nombre = ? user = ?, password = ?, estado = ? WHERE id_marca = ?", array(
+        $result = $this->updateRow("UPDATE Marca SET nombre = ? user = ?, password = ?, estado = ? WHERE id_marca = ?", array(
             $this->id_marca,
             $this->nombre,
                 $this->estado
@@ -115,44 +115,44 @@ class marca extends BasicModel
 
     public static function search($query) : array
     {
-        $arrmarca = array();
+        $arrMarca = array();
         $tmp = new Marca();
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $marca = new marca();
-            $marca->id_marca = $valor['id_marca'];
-            $marca->nombre = $valor['nombre'];
-            $marca->estado = $valor['estado'];
-            $marca->Disconnect();
-            array_push($arrmarca, $marca);
+            $Marca = new marca();
+            $Marca->id_marca = $valor['id_marca'];
+            $Marca->nombre = $valor['nombre'];
+            $Marca->estado = $valor['estado'];
+            $Marca->Disconnect();
+            array_push($arrMarca, $Marca);
         }
         $tmp->Disconnect();
-        return $arrmarca;
+        return $arrMarca;
     }
 
-    public static function searchForId($id_marca) : marca
+    public static function searchForid_marca($id_marca) : Marca
     {
-        $marca = null;
+        $Marca = null;
         if ($id_marca > 0){
-            $marca = new marca();
-            $getrow = $marca->getRow("SELECT * FROM marca WHERE id_marca =?", array($id_marca));
-            $marca->id_marca = $getrow['id_marca'];
-            $marca->nombre = $getrow['nombre'];
-            $marca->estado = $getrow['estado'];
+            $Marca = new marca();
+            $getrow = $Marca->getRow("SELECT * FROM Marca WHERE id_marca =?", array($id_marca));
+            $Marca->id_marca = $getrow['id_marca'];
+            $Marca->nombre = $getrow['nombre'];
+            $Marca->estado = $getrow['estado'];
         }
-        $marca->Disconnect();
-        return $marca;
+        $Marca->Disconnect();
+        return $Marca;
     }
 
     public static function getAll() : array
     {
-        return marca::search("SELECT * FROM marca");
+        return Marca::search("SELECT * FROM Marca");
     }
 
-    public static function marca ($id_marca) : bool
+    public static function Marca ($id_marca) : bool
     {
-        $result = marca::search("SELECT id_marca FROM marca where id_marca = ".$id_marca);
+        $result = Marca::search("SELECT id_marca FROM Marca where id_marca = ".$id_marca);
         if (count($result) > 0){
             return true;
         }else{
