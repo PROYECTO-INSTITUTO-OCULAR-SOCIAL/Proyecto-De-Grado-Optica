@@ -82,7 +82,7 @@ class Categoria extends BasicModel
 
     public function create(): bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto-De-Grado-Optica.Categoria VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Categoria VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->estado,
 
@@ -94,7 +94,7 @@ class Categoria extends BasicModel
 
     public function update(): bool
     {
-        $result = $this->updateRow("UPDATE proyecto-De-Grado-Optica.Categoria SET  =nombre ?, estado = ? WHERE id_categoria = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Categoria SET  =nombre ?, estado = ? WHERE id_categoria = ?", array(
                 $this->id_categoria,
                 $this->nombre,
                 $this->estado,
@@ -105,7 +105,7 @@ class Categoria extends BasicModel
         return $result;
     }
 
-    protected static function search($query)
+    public static function search($query)
     {
 
         $arrCategoria = array();
@@ -125,37 +125,36 @@ class Categoria extends BasicModel
 
     }
 
-    protected static function getAll()
+    public static function getAll() : array
     {
-
-        return Categoria::search("SELECT * FROM proyecto-De-Grado-Optica.Formula");
+        return Categoria::search("SELECT * FROM mer_optica.Categoria");
     }
 
-    public static function CategoriaRegistrada($nombre): bool
+    public static function Categoria ($id_categoria) : bool
     {
-        $result = Categoria::search("SELECT id_categoria FROM proyecto-De-Grado-Optica.Categoria where nombre = " . $nombre);
-        if (count($result) > 0) {
+        $result = Categoria::search("SELECT id_categoria FROM mer_optica.Categoria where id_categoria = ".$id_categoria);
+        if (count($result) > 0){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
 
-    protected static function searchForId($id_categoria)
+    public static function searchForId($id_categoria) : Categoria
     {
         $Categoria = null;
         if ($id_categoria > 0) {
             $Categoria = new Categoria();
-            $getrow = $Categoria->getRow("SELECT * FROM proyecto-De-Grado-Optica.Categoria WHERE id_categoria =?", array($id_categoria));
-            $Categoria->id_formula = $getrow['id_categoria'];
-            $Categoria->od_esfera = $getrow['nombre '];
-            $Categoria->oi_esfera = $getrow['estado'];
+            $getrow = $Categoria->getRow("SELECT * FROM mer_optica.Categoria WHERE id_categoria =?", array($id_categoria));
+            $Categoria->id_categoria = $getrow['id_categoria'];
+            $Categoria->nombre = $getrow['nombre'];
+            $Categoria->estado = $getrow['estado'];
         }
         $Categoria->Disconnect();
         return $Categoria;
     }
 
-    protected function deleted($id)
+    public function deleted($id)
     {
         // TODO: Implement deleted() method.
     }
