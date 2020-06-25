@@ -68,8 +68,8 @@ require("../../partials/routes.php"); ?>
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
                                 <select id="estado" name="estado" class="custom-select">
-                                    <option value="C.C">Activo</option>
-                                    <option value="T.I">Inactivo</option>
+                                    <option value="">Activo</option>
+                                    <option value="">Inactivo</option>
 
                                 </select>
                             </div>
