@@ -39,7 +39,7 @@
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
-                            Categoria
+                            categoria
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
