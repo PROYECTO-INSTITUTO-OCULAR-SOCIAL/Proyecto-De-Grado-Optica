@@ -9,7 +9,7 @@
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-2"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Proyecto-De-Grado-Optica</span>
+        <span class="brand-text font-weight-light">Proyecto De Grado Optica</span>
     </a>
 
     <!-- Sidebar -->
@@ -22,6 +22,7 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">Usuario</a>
+ master
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -30,7 +31,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= $baseURL; ?>/views/" class="nav-link">
+                    <a href="<?= $baseURL; ?>/Views/" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Inicio
@@ -43,31 +44,33 @@
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
+
                             categoria
+ master
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/views/Modules/Categoria/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/views/Modules/Categoria/Edit.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Edit.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Editar</p>
                             </a>
                         </li>
                        <li class="nav-item">
-                            <a href="<?= $baseURL ?>/views/modules/usuarios/create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/views/modules/usuarios/create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Show.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show</p>
                             </a>
