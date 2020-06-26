@@ -47,7 +47,7 @@ use App\Controllers\CategoriaController; ?>
                         Error al consultar la Categoria: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id'])) { ?>
+            <?php } else if (empty($_GET['idCategoria'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -57,8 +57,8 @@ use App\Controllers\CategoriaController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <?php if(!empty($_GET["id_categoria"]) && isset($_GET["id_categoria"])){
-                    $DataCategoria = CategoriaController::searchForID($_GET["id_categoria"]);
+                <?php if(!empty($_GET["idCategoria"]) && isset($_GET["idCategoria"])){
+                    $DataCategoria = CategoriaController::searchForId($_GET["idCategoria"]);
                     if(!empty($DataCategoria)){
                         ?>
                         <div class="card-header">
