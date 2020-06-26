@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="4a5d0e1f-8e69-4c7d-9cd4-350b87ca5d49" name="Laragon" url="http://localhost:">
-        <fileTransfer mountedRoot="C:\laragon\www" accessType="MOUNT" port="0" />
+      <webServer id="de2ccf57-b3e8-4e12-9bc2-18d838564248" name="Laragon" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\laragon\www" accessType="MOUNT" />
       </webServer>
     </option>
   </component>
