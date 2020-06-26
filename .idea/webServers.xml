@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="404a491e-2823-4309-bf0f-28eaef091d5f" name="Laragon" url="http://localhost">
+      <webServer id="afb4e85f-ffe3-4944-914c-7f7c135c3716" name="Laragon" url="http://localhost">
         <fileTransfer mountedRoot="C:\laragon\www\Proyecto-De-Grado-Optica" accessType="MOUNT" port="0" />
       </webServer>
     </option>
