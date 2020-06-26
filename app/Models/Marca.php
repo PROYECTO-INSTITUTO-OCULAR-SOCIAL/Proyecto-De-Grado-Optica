@@ -1,7 +1,7 @@
 <?php
 
-
 namespace App\Models;
+
 require('BasicModel.php');
 
 class Marca extends BasicModel
@@ -136,7 +136,7 @@ class Marca extends BasicModel
         $Marca = null;
         if ($id_marca > 0){
             $Marca = new marca();
-            $getrow = $Marca->getRow("SELECT * FROM mer_optica.Marca WHERE id_marca =?", array($id_marca));
+            $getrow = $Marca->getRow("SELECT * FROM Marca WHERE id_marca =?", array($id_marca));
             $Marca->id_marca = $getrow['id_marca'];
             $Marca->nombre = $getrow['nombre'];
             $Marca->estado = $getrow['estado'];
@@ -147,12 +147,12 @@ class Marca extends BasicModel
 
     public static function getAll() : array
     {
-        return Marca::search("SELECT * FROM mer_optica.Marca");
+        return Marca::search("SELECT * FROM Marca");
     }
 
     public static function Marca ($id_marca) : bool
     {
-        $result = Marca::search("SELECT id_marca FROM mer_optica.Marca where id_marca = ".$id_marca);
+        $result = Marca::search("SELECT id_marca FROM Marca where id_marca = ".$id_marca);
         if (count($result) > 0){
             return true;
         }else{
@@ -160,7 +160,7 @@ class Marca extends BasicModel
         }
     }
 
-    public static function searchForId($id)
+    protected static function searchForId($id)
     {
         // TODO: Implement searchForId() method.
     }
