@@ -2,11 +2,12 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
+ Diana-Carolina-Chaparro-Perez
+        <img src="<?= $baseURL ?>/views/components/img/ojo.jpeg"
 
-        <img src="<?= $baseURL ?>/views/components/img/icono.jpg"
-             master
+
              alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3"
+             class="brand-image img-circle elevation-2"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Proyecto De Grado Optica</span>
     </a>
@@ -16,11 +17,12 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-
-                <img src="<?= $baseURL ?>/views/components/img/123.jpg" class="img-circle elevation-2" alt="User Image">
+ Diana-Carolina-Chaparro-Perez
+                <img src="<?= $baseURL ?>/views/components/img/User.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Hildebrando Yunado Vergara</a>
+                <a href="#" class="d-block">Usuario</a>
+ master
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -42,7 +44,9 @@
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
-                            Municipio
+
+                            categoria
+ master
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
