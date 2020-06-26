@@ -1,12 +1,12 @@
-<?php require("../../partials/routes.php");
-require("../../../app/Controllers/CategoriaController.php");
+<?php require("../../Partials/Routes.php");
+require("../../../app/Controllers/MarcaController.php");
 
-use App\Controllers\CategoriaController; ?>
+use App\Controllers\MarcaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Layout</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <?php require("../../Partials/Head_Imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -16,9 +16,9 @@ use App\Controllers\CategoriaController; ?>
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -27,7 +27,7 @@ use App\Controllers\CategoriaController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Pagina Principal</h1>
+                        <h1>Página Principal</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -59,7 +59,7 @@ use App\Controllers\CategoriaController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Categoria</h3>
+                    <h3 class="card-title">Gestionar Usuarios</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,16 +72,16 @@ use App\Controllers\CategoriaController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Categoria
+                                <i class="fas fa-plus"></i> Crear Usuario
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblCategoria" class="datatable table table-bordered table-striped">
+                            <table id="tblMarca" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
@@ -89,20 +89,20 @@ use App\Controllers\CategoriaController; ?>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrCategoria = CategoriaController::getAll();
-                                foreach ($arrCategoria as $Categoria){
+                                $arrMarca = MarcaController::getAll();
+                                foreach ($arrMarca as $Marca){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Categoria->getIdCategoria(); ?></td>
-                                        <td><?php echo $Categoria->getNombre(); ?></td>
-                                        <td><?php echo $Categoria->getEstado(); ?></td>
+                                        <td><?php echo $Marca->geti_marca(); ?></td>
+                                        <td><?php echo $Marca->getnombre(); ?></td>
+                                        <td><?php echo $Marca->getestado(); ?></td>
                                         <td>
-                                            <a href="Edit.php?idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($Categoria->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/CategoriaController.php?action=activate&idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <a href="Edit.php?id_marca=<?php echo $Marca->getid_marca(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id_marca=<?php echo $Marca->getid_marca(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Marca->getestado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/MarcaController.php?action=activo&id_marca=<?php echo $Marca->getid_marca(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/CategoriaController.php?action=inactivate&idCategoria=<?php echo $Categoria->getIdCategoria(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/MarcaController.php?action=inactivo&id_marca=<?php echo $Marca->getid_marca(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -110,14 +110,13 @@ use App\Controllers\CategoriaController; ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
-
                                 </tr>
                                 </tfoot>
-                            </table>
+                            </table>s
                         </div>
                     </div>
                 </div>
@@ -133,10 +132,10 @@ use App\Controllers\CategoriaController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../partials/footer.php');?>
+    <?php require ('../../Partials/Footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../partials/scripts.php');?>
+<?php require ('../../Partials/Scripts.php');?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
