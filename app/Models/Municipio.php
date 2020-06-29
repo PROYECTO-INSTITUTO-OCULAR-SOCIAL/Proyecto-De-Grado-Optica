@@ -87,21 +87,21 @@ class Municipio extends BasicModel
      */
     public function getDepartamento()
     {
-        return $this->Departamento;
+        return $this->departamento;
     }
 
     /**
-     * @param mixed $Departamento
+     * @param mixed $departamento
      */
-    public function setDepartamento($Departamento): void
+    public function setDepartamento($departamento): void
     {
-        $this->Departamento= $Departamento;
+        $this->departamento= $departamento;
     }
 
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO weber.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
             )
@@ -112,7 +112,7 @@ class Municipio extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE weber.Municipio SET nombre = ?, codigo_dane = ?,  WHERE id_municipio = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?,  WHERE id_municipio = ?", array(
                 $this->nombre,
                 $this->codigo_dane,
                 $this->id_municipio
@@ -122,12 +122,6 @@ class Municipio extends BasicModel
         return $result;
     }
 
-    public function deleted($id_municipio) : bool
-    {
-        $User = Municipio::searchForId($id_municipio); //Buscando un usuario por el ID
-        $User->setEstado("Inactivo"); //Cambia el estado del Usuario
-        return $User->update();                    //Guarda los cambios..
-    }
 
     public static function search($query) : array
     {
@@ -152,7 +146,7 @@ class Municipio extends BasicModel
         $Municipio = null;
         if ($id_municipio > 0){
             $Municipio = new Municipio();
-            $getrow = $Municipio->getRow("SELECT * FROM weber.Municipio WHERE id_municipio = ?", array($id_municipio));
+            $getrow = $Municipio->getRow("SELECT * FROM mer_optica.Municipio WHERE id_municipio = ?", array($id_municipio));
             $Municipio->id_municipio = $getrow['id_municipio'];
             $Municipio->nombre = $getrow['nombre'];
             $Municipio->codigo_dane = $getrow['codigo_dane'];
@@ -163,12 +157,12 @@ class Municipio extends BasicModel
 
     public static function getAll() : array
     {
-        return Municipio::search("SELECT * FROM weber.municipio");
+        return Municipio::search("SELECT * FROM mer_optica.Municipio");
     }
 
     public static function municipioRegistrado ($nombre) : bool
     {
-        $result = Municipio::search("SELECT id FROM weber.municipio where nombre = ".$nombre);
+        $result = Municipio::search("SELECT id_municipio FROM mer_optica.Municipio where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
