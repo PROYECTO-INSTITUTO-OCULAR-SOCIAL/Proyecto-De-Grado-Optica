@@ -1,19 +1,19 @@
 <?php
-require("../../../app/Controllers/CategoriaController.php");
+require("../../../app/Controllers/DepartamentoController.php");
 require("../../partials/routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Categoria</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Departamento</title>
+    <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -22,7 +22,7 @@ require("../../partials/routes.php"); ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear una Nueva Categoria</h1>
+                        <h1>Crear un Nuevo Departamento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,42 +42,35 @@ require("../../partials/routes.php"); ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear la categoria: <?= $_GET['mensaje'] ?>
+                        Error al crear el Municipio: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
-                </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateCategoria" name="frmCreateCategoria" action="../../../app/Controllers/CategoriaController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateDepartamento" name="frmCreateDepartamento" action="../../../app/Controllers/DepartamentoController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese Categoria">
+                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                            <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                             <div class="col-sm-10">
-                                <select id="estado" name="estado" class="custom-select">
-                                    <option value="">Activo</option>
-                                    <option value="">Inactivo</option>
-
-                                </select>
+                                <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" placeholder="Ingrese el Codigo Dane">
                             </div>
                         </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
-                        <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                    </div>
-                    <!-- /.card-footer -->
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enviar</button>
+                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                        </div>
+                        <!-- /.card-footer -->
                 </form>
             </div>
             <!-- /.card -->
@@ -86,10 +79,9 @@ require("../../partials/routes.php"); ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../partials/footer.php');?>
+    <?php require ('../../Partials/Footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../partials/scripts.php');?>
+<?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
-
