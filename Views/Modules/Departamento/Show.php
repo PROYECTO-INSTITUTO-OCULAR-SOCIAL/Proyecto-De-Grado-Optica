@@ -59,14 +59,14 @@ use App\Controllers\DepartamentoController; ?>
             <div class="card card-info">
                 <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){
                     $DataDepartamento = DepartamentoController::searchForId($_GET["id_departamento"]);
-                    if(!empty($DataMunicipio)){
+                    if(!empty($DataDepartamento)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataDepartamento->getNombre()  ?></h3>
+                            <h3 class="card-title"><?= $DataDepartamento->getnombre()  ?></h3>
                         </div>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
-                        <p class="text-muted"><?= $DataDepartamento->getCodigo_dane().": ".$DataDepartamento->getCodigo_dane() ?></p>
+                        <p class="text-muted"><?= $DataDepartamento->getcodigo_dane().": ".$DataDepartamento->getcodigo_dane() ?></p>
                         <hr>
                         <div class="card-footer">
                             <div class="row">

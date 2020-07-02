@@ -16,8 +16,8 @@ class DepartamentoController
             DepartamentoController::Create();
         } else if ($action == "Edit") {
             DepartamentoController::Edit();
-        } else if ($action == "searchForID") {
-            DepartamentoController::searchForID($_REQUEST['id_departamento']);
+        } else if ($action == "searchForId") {
+            DepartamentoController::searchForId($_REQUEST['id_departamento']);
         } else if ($action == "searchAll") {
             DepartamentoController::getAll();
         } else if ($action == "activate") {
@@ -32,7 +32,7 @@ class DepartamentoController
 
     }
 
-    static public function create()
+    static public function Create()
     {
         try {
             $arrayDepartamento = array();
@@ -52,7 +52,7 @@ class DepartamentoController
         }
     }
 
-    static public function edit()
+    static public function Edit()
     {
         try {
             $arrayDepartamento = array();
@@ -73,7 +73,7 @@ class DepartamentoController
     static public function activate()
     {
         try {
-            $ObjDepartamento = Departamento::searchForid($_GET['id_departamento']);
+            $ObjDepartamento = Departamento::searchForId($_GET['id_departamento']);
             $ObjDepartamento->setEstado("Activo");
             if ($ObjDepartamento->update()) {
                 header("Location: ../../Views/Modules/Departamento/index.php");
@@ -89,7 +89,7 @@ class DepartamentoController
     static public function inactivate()
     {
         try {
-            $ObjDepartamento = Departamento::searchForid($_GET['id_departamento']);
+            $ObjDepartamento = Departamento::searchForId($_GET['id_departamento']);
             $ObjDepartamento->setEstado("Inactivo");
             if ($ObjDepartamento->update()) {
                 header("Location: ../../Views/Modules/Departamento/index.php");
@@ -102,10 +102,10 @@ class DepartamentoController
         }
     }
 
-    static public function searchForID($id_departamento)
+    static public function searchForId($id_departamento)
     {
         try {
-            return Departamento::searchForid($id_departamento);
+            return Departamento::searchForId($id_departamento);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../Views/Modules/Departamento/manager.php?respuesta=error");

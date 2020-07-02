@@ -1,4 +1,4 @@
-<?php require("../../Partials/Routes.php");
+<?php require("../../partials/routes.php");
 require("../../../app/Controllers/DepartamentoController.php");
 
 use App\Controllers\DepartamentoController; ?>
@@ -6,7 +6,7 @@ use App\Controllers\DepartamentoController; ?>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Layout</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require("../../partials/head_imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -16,9 +16,9 @@ use App\Controllers\DepartamentoController; ?>
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -48,9 +48,9 @@ use App\Controllers\DepartamentoController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El usuario ha sido creado con exito!
+                            El Departamento ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del usuario han sido actualizados correctamente!
+                            Los datos del Departamento han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -83,22 +83,23 @@ use App\Controllers\DepartamentoController; ?>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
-                                    <th>Acciones</th>
+                                    <th>Codigo Dane</th>
+                                   
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrDepartamento= DepartamentoController::getAll();
+                                $arrDepartamento = DepartamentoController::getAll();
                                 foreach ($arrDepartamento as $Departamento){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Departamento->getId(); ?></td>
-                                        <td><?php echo $Departamento->getNombre(); ?></td>
-                                        <td><?php echo $Departamento->getCodigo_dane(); ?></td>
+                                        <td><?php echo $Departamento->getid_departamento(); ?></td>
+                                        <td><?php echo $Departamento->getnombre(); ?></td>
+                                        <td><?php echo $Departamento->getcodigo_dane(); ?></td>
                                         <td>
-                                            <a href="Edit.php?id_departamento=<?php echo $Departamento->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_departamento=<?php echo $Departamento->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="Edit.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -107,8 +108,9 @@ use App\Controllers\DepartamentoController; ?>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
-                                    <th>Acciones</th>
+                                    <th>Codigo Dane</th>
+
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -127,10 +129,10 @@ use App\Controllers\DepartamentoController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../partials/footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../Partials/Scripts.php');?>
+<?php require ('../../partials/scripts.php');?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -169,3 +171,4 @@ use App\Controllers\DepartamentoController; ?>
 
 </body>
 </html>
+

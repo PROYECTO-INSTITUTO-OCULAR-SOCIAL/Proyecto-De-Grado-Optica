@@ -64,23 +64,23 @@ use App\Controllers\DepartamentoController; ?>
                 <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){ ?>
                     <p>
                     <?php
-                    $DataDepartamento = DepartamentoController::searchForID($_GET["id_departamento"]);
+                    $DataDepartamento = \App\Controllers\DepartamentoController::searchForId($_GET["id_departamento"]);
                     if(!empty($DataDepartamento)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditDepartamento" name="frmEditDepartamento" action="../../../app/Controllers/$DataDepartamentoController.php?action=edit">
-                            <input id="id_departamento" name="id_departamento" value="<?php echo $DataDepartamento->getId(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditDepartamento" name="frmEditDepartamento" action="../../../app/Controllers/$DataDepartamentoController.php?action=Edit">
+                            <input id="id" name="id" value="<?php echo $DataDepartamento->getid_departamento(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataDepartamento->getNombre(); ?>" placeholder="Ingrese su nombre">
+                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataDepartamento->getnombre(); ?>" placeholder="Ingrese su nombre">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                                     <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataDepartamento->getCodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
+                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataDepartamento->getcodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
                                     </div>
                                 </div>
                             </div>

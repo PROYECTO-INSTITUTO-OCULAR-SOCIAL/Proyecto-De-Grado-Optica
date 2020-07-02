@@ -42,7 +42,7 @@ require("../../partials/routes.php"); ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el Municipio: <?= $_GET['mensaje'] ?>
+                        Error al crear el Departamento: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
@@ -51,7 +51,7 @@ require("../../partials/routes.php"); ?>
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateDepartamento" name="frmCreateDepartamento" action="../../../app/Controllers/DepartamentoController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateDepartamento" name="frmCreateDepartamento" action="../../../app/Controllers/DepartamentoController.php?action=Create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
