@@ -1,6 +1,4 @@
 <?php
-
-
 require("../../../app/Controllers/CategoriaController.php");
 require("../../partials/routes.php"); ?>
 <!DOCTYPE html>
