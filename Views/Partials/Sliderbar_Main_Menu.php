@@ -2,7 +2,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
- Diana-Carolina-Chaparro-Perez
         <img src="<?= $baseURL ?>/views/components/img/ojo.jpeg"
 
 
@@ -17,11 +16,10 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
- Diana-Carolina-Chaparro-Perez
-                <img src="<?= $baseURL ?>/views/components/img/User.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= $baseURL ?>/views/components/img/user.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Usuario</a>
+                <a href="#" class="d-block">Diana Chaparro</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
