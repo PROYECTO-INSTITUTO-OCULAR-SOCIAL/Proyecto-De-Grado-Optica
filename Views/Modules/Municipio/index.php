@@ -41,7 +41,6 @@ use App\Controllers\MunicipioController; ?>
 
         <!-- Main content -->
         <section class="content">
-
             <?php if(!empty($_GET['respuesta']) && !empty($_GET['action'])){ ?>
                 <?php if ($_GET['respuesta'] == "correcto"){ ?>
                     <div class="alert alert-success alert-dismissible">
