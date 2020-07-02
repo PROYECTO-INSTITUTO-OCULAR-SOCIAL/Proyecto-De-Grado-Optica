@@ -37,7 +37,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getId() : int
+    public function getid() : int
     {
         return $this->id_municipio;
     }
@@ -45,7 +45,7 @@ class Municipio extends BasicModel
     /**
      * @param int $id_municipio
      */
-    public function setId(int $id_municipio): void
+    public function setid(int $id_municipio): void
     {
         $this->id_municipio = $id_municipio;
     }
@@ -53,7 +53,7 @@ class Municipio extends BasicModel
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getnombre(): string
     {
         return $this->nombre;
     }
@@ -61,7 +61,7 @@ class Municipio extends BasicModel
     /**
      * @param string $nombre
      */
-    public function setNombre(string $nombre): void
+    public function setnombre(string $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -69,7 +69,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getCodigo_dane(): string
+    public function getcodigo_dane(): string
     {
         return $this->codigo_dane;
     }
@@ -77,7 +77,7 @@ class Municipio extends BasicModel
     /**
      * @param string $codigo_dane
      */
-    public function setCodigo_dane(string $codigo_dane): void
+    public function setcodigo_dane(string $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }
@@ -85,23 +85,23 @@ class Municipio extends BasicModel
     /**
      * @return mixed
      */
-    public function getDepartamento()
+    public function getdepartamento()
     {
-        return $this->Departamento;
+        return $this->departamento;
     }
 
     /**
-     * @param mixed $Departamento
+     * @param mixed $departamento
      */
-    public function setDepartamento($Departamento): void
+    public function setdepartamento($departamento): void
     {
-        $this->Departamento= $Departamento;
+        $this->departamento= $departamento;
     }
 
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO weber.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
             )
@@ -112,7 +112,7 @@ class Municipio extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE weber.Municipio SET nombre = ?, codigo_dane = ?,  WHERE id_municipio = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?,  WHERE id_municipio = ?", array(
                 $this->nombre,
                 $this->codigo_dane,
                 $this->id_municipio
@@ -152,7 +152,7 @@ class Municipio extends BasicModel
         $Municipio = null;
         if ($id_municipio > 0){
             $Municipio = new Municipio();
-            $getrow = $Municipio->getRow("SELECT * FROM weber.Municipio WHERE id_municipio = ?", array($id_municipio));
+            $getrow = $Municipio->getRow("SELECT * FROM mer_optica.Municipio WHERE id_municipio = ?", array($id_municipio));
             $Municipio->id_municipio = $getrow['id_municipio'];
             $Municipio->nombre = $getrow['nombre'];
             $Municipio->codigo_dane = $getrow['codigo_dane'];
@@ -163,12 +163,12 @@ class Municipio extends BasicModel
 
     public static function getAll() : array
     {
-        return Municipio::search("SELECT * FROM weber.municipio");
+        return Municipio::search("SELECT * FROM mer_optica.Municipio");
     }
 
     public static function municipioRegistrado ($nombre) : bool
     {
-        $result = Municipio::search("SELECT id FROM weber.municipio where nombre = ".$nombre);
+        $result = Municipio::search("SELECT id_municipio FROM mer_optica.Municipio where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
