@@ -18,8 +18,7 @@
             <div class="image">
 
                 <img src="<?= $baseURL ?>/views/components/img/goku.jpg" class="img-circle elevation-2" alt="User Image">
-                <hr>
-                <img src="<?= $baseURL ?>/views/components/img/goku.jpg" class="img-circle elevation-2" alt="User Image">
+
 
             </div>
             <div class="info">
@@ -43,16 +42,7 @@
                     </a>
                 </li>
 
-                <li class="nav-header">Modulos Principales</li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Categoria
 
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
 
 
                     <a href="#" class="nav-link active">
@@ -88,7 +78,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/views/modules/Marca/create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/views/modules/Marca/Show.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show</p>
                             </a>
