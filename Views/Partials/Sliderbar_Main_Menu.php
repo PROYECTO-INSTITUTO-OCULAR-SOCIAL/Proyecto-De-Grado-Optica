@@ -19,7 +19,7 @@
                 <img src="<?= $baseURL ?>/views/components/img/user.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Diana Chaparro</a>
+                <a href="#" class="d-block">Usuario</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
