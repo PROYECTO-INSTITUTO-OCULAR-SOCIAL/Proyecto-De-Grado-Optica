@@ -17,11 +17,10 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
 
-                <img src="<?= $baseURL ?>/Views/Components/Img/User.jpg" class="img-circle elevation-2" alt="User Image">
- master
+
             </div>
             <div class="info">
-                <a href="#" class="d-block">Usuario</a>
+                <a href="#" class="d-block">Julieth sanchez</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
