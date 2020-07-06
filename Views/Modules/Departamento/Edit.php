@@ -1,12 +1,12 @@
 <?php
 require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\MunicipioController; ?>
+use App\Controllers\DepartamentoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar Municipio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Editar Departamento</title>
     <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\MunicipioController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nuevo Municipio</h1>
+                        <h1>Editar Nuevo Departamento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,10 +44,10 @@ use App\Controllers\MunicipioController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear Municipio: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al crear Departamento: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_municipio'])) { ?>
+            <?php } else if (empty($_GET['id_departamento'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -61,26 +61,26 @@ use App\Controllers\MunicipioController; ?>
                     <h3 class="card-title">Horizontal Form</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){ ?>
+                <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){ ?>
                     <p>
                     <?php
-                    $DataMunicipio = MunicipioController::searchForID($_GET["id_municipio"]);
-                    if(!empty($DataMunicipio)){
+                    $DataDepartamento = \App\Controllers\DepartamentoController::searchForId($_GET["id_departamento"]);
+                    if(!empty($DataDepartamento)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditMunicipio" name="frmEditMunicipio" action="../../../app/Controllers/MunicipioController.php?action=edit">
-                            <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditDepartamento" name="frmEditDepartamento" action="../../../app/Controllers/$DataDepartamentoController.php?action=Edit">
+                            <input id="id" name="id" value="<?php echo $DataDepartamento->getid_departamento(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataMunicipio->getNombre(); ?>" placeholder="Ingrese su nombre">
+                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataDepartamento->getnombre(); ?>" placeholder="Ingrese su nombre">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                                     <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
+                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataDepartamento->getcodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
                                     </div>
                                 </div>
                             </div>
