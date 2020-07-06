@@ -53,22 +53,13 @@
                                 <p>Crear</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Edit.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Editar</p>
+                     
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= $baseURL ?>/Views/Modules/Municipio/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Show.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Show</p>
                             </a>
                         </li>
                     </ul>
@@ -90,21 +81,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $baseURL ?>/Views/Modules/Categoria/Edit.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Editar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="<?= $baseURL ?>/Views/Modules/Categoria/index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>index</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= $baseURL ?>/Views/Modules/Categoria/Show.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Show</p>
                                     </a>
                                 </li>
                             </ul>
@@ -126,21 +105,9 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="<?= $baseURL ?>/Views/Modules/Marca/Edit.php" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Editar</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a href="<?= $baseURL ?>/Views/Modules/Marca/index.php" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>index</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="<?= $baseURL ?>/Views/Modules/Marca/Show.php" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Show</p>
                                             </a>
                                         </li>
 
@@ -163,19 +130,13 @@
                                                         <p>Crear</p>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="<?= $baseURL ?>/Views/Modules/Formula/Edit.php" class="nav-link">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>Editar</p>
+
                                                     </a>
                                                 </li><li class="nav-item">
                                                     <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
                                                         <i class="far fa-circle nav-icon"></i>
                                                         <p>index</p></a>
-                                                </li><li class="nav-item">
-                                                    <a href="<?= $baseURL ?>/Views/Modules/Formula/Show.php" class="nav-link">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>Show</p></a>
+                                                </li>
                                             </ul>
                                                 </li><li class="nav-item has-treeview menu-close">
                                                     <a href="#" class="nav-link active">
@@ -190,17 +151,11 @@
                                                                 <p>Crear</p>
                                                             </a>
                                                         </li>
-                                                        <li class="nav-item">
-                                                            <a href="<?= $baseURL ?>/Views/Modules/Departamento/Edit.php" class="nav-link">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p>Editar</p></a>
                                                         </li><li class="nav-item">
                                                             <a href="<?= $baseURL ?>/Views/Modules/Departamento/index.php" class="nav-link">
                                                                 <i class="far fa-circle nav-icon"></i>
                                                                 <p>index</p></a></li><li class="nav-item">
-                                                            <a href="<?= $baseURL ?>/Views/Modules/Departamento/Show.php" class="nav-link">
-                                                                <i class="far fa-circle nav-icon"></i>
-                                                                <p>Show</p>
+
                                                             </a>
                                                         </li></li>
 
