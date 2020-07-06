@@ -1,6 +1,4 @@
 <?php
-
-
 require("../../../app/Controllers/CategoriaController.php");
 require("../../partials/routes.php"); ?>
 <!DOCTYPE html>
@@ -68,8 +66,8 @@ require("../../partials/routes.php"); ?>
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
                                 <select id="estado" name="estado" class="custom-select">
-                                    <option value="">Activo</option>
-                                    <option value="">Inactivo</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
 
                                 </select>
                             </div>

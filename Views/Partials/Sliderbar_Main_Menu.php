@@ -2,7 +2,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
- Diana-Carolina-Chaparro-Perez
         <img src="<?= $baseURL ?>/views/components/img/ojo.jpeg"
 
 
@@ -17,12 +16,10 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
- Diana-Carolina-Chaparro-Perez
-                <img src="<?= $baseURL ?>/views/components/img/User.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= $baseURL ?>/Views/Components/Img/User.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Usuario</a>
- master
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -40,13 +37,12 @@
                     </a>
                 </li>
                 <li class="nav-header">Modulos Principales</li>
-                <li class="nav-item has-treeview menu-open">
+                <li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
 
-                            categoria
- master
+                            Municipio
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -57,26 +53,113 @@
                                 <p>Crear</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Edit.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Editar</p>
+                     
                             </a>
                         </li>
-                       <li class="nav-item">
+                        <li class="nav-item">
                             <a href="<?= $baseURL ?>/Views/Modules/Municipio/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Municipio/Show.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Show</p>
-                            </a>
+                    </ul>
                         </li>
-                </li>
-            </ul>
+                        <li class="nav-item has-treeview menu-close">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+
+                                    Categoria
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL ?>/Views/Modules/Categoria/Create.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL ?>/Views/Modules/Categoria/index.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>index</p>
+                                    </a>
+                                </li>
+                            </ul>
+                                </li>
+                                <li class="nav-item has-treeview menu-close">
+                                    <a href="#" class="nav-link active">
+                                        <i class="nav-icon far fa-user"></i>
+                                        <p>
+
+                                            Marca
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="<?= $baseURL ?>/Views/Modules/Marca/Create.php" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Crear</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?= $baseURL ?>/Views/Modules/Marca/index.php" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>index</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                        </li>
+                                        <li class="nav-item has-treeview menu-close">
+                                            <a href="#" class="nav-link active">
+                                                <i class="nav-icon far fa-user"></i>
+                                                <p>
+
+                                                    Formula
+                                                    <i class="fas fa-angle-left right"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">
+                                                    <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                        <p>Crear</p>
+                                                    </a>
+                                                </li>
+
+                                                    </a>
+                                                </li><li class="nav-item">
+                                                    <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                        <p>index</p></a>
+                                                </li>
+                                            </ul>
+                                                </li><li class="nav-item has-treeview menu-close">
+                                                    <a href="#" class="nav-link active">
+                                                        <i class="nav-icon far fa-user"></i>
+                                                        <p>
+                                                            Departamento
+                                                            <i class="fas fa-angle-left right"></i></p></a>
+                                                    <ul class="nav nav-treeview">
+                                                        <li class="nav-item">
+                                                            <a href="<?= $baseURL ?>/Views/Modules/Departamento/Create.php" class="nav-link">
+                                                                <i class="far fa-circle nav-icon"></i>
+                                                                <p>Crear</p>
+                                                            </a>
+                                                        </li>
+                                                        </li><li class="nav-item">
+                                                            <a href="<?= $baseURL ?>/Views/Modules/Departamento/index.php" class="nav-link">
+                                                                <i class="far fa-circle nav-icon"></i>
+                                                                <p>index</p></a></li><li class="nav-item">
+
+                                                            </a>
+                                                        </li></li>
+
+                    </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

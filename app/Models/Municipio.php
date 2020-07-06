@@ -93,7 +93,11 @@ class Municipio extends BasicModel
     /**
      * @param mixed $departamento
      */
+<<<<<<< HEAD
     public function setdepartamento($departamento): void
+=======
+    public function setDepartamento($departamento): void
+>>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
     {
         $this->departamento= $departamento;
     }
@@ -122,12 +126,6 @@ class Municipio extends BasicModel
         return $result;
     }
 
-    public function deleted($id_municipio) : bool
-    {
-        $User = Municipio::searchForId($id_municipio); //Buscando un usuario por el ID
-        $User->setEstado("Inactivo"); //Cambia el estado del Usuario
-        return $User->update();                    //Guarda los cambios..
-    }
 
     public static function search($query) : array
     {

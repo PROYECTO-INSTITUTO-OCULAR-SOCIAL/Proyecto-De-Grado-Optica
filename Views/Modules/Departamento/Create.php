@@ -1,8 +1,10 @@
-<?php require("../../Partials/Routes.php"); ?>
+<?php
+require("../../../app/Controllers/DepartamentoController.php");
+require("../../partials/routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Municipio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Departamento</title>
     <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,7 +22,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo Municipio</h1>
+                        <h1>Crear un Nuevo Departamento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,7 +42,7 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el Municipio: <?= $_GET['mensaje'] ?>
+                        Error al crear el Departamento: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
@@ -49,7 +51,7 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateMunicipio" name="frmCreateMunicipio" action="../../../app/Controllers/MunicipioController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateDepartamento" name="frmCreateDepartamento" action="../../../app/Controllers/DepartamentoController.php?action=Create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -61,14 +63,14 @@
                             <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                             <div class="col-sm-10">
                                 <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" placeholder="Ingrese el Codigo Dane">
-                            </div>git staus
+                            </div>
                         </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
-                        <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                    </div>
-                    <!-- /.card-footer -->
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enviar</button>
+                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                        </div>
+                        <!-- /.card-footer -->
                 </form>
             </div>
             <!-- /.card -->

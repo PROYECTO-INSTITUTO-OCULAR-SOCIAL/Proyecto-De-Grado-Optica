@@ -82,7 +82,7 @@ class Categoria extends BasicModel
 
     public function create(): bool
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Categoria VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Categoria VALUES (NULL, ?, ?)", array(
                 $this->nombre,
                 $this->estado,
 
@@ -130,9 +130,9 @@ class Categoria extends BasicModel
         return Categoria::search("SELECT * FROM mer_optica.Categoria");
     }
 
-    public static function Categoria ($id_categoria) : bool
+    public static function CategoriaRegistrado ($nombre) : bool
     {
-        $result = Categoria::search("SELECT id_categoria FROM mer_optica.Categoria where id_categoria = ".$id_categoria);
+        $result = Categoria::search("SELECT nombre FROM mer_optica.Categoria where nombre = '".$nombre."'");
         if (count($result) > 0){
             return true;
         }else{
