@@ -37,7 +37,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getid() : int
+    public function getId() : int
     {
         return $this->id_municipio;
     }
@@ -45,7 +45,7 @@ class Municipio extends BasicModel
     /**
      * @param int $id_municipio
      */
-    public function setid(int $id_municipio): void
+    public function setId(int $id_municipio): void
     {
         $this->id_municipio = $id_municipio;
     }
@@ -53,7 +53,7 @@ class Municipio extends BasicModel
     /**
      * @return string
      */
-    public function getnombre(): string
+    public function getNombre(): string
     {
         return $this->nombre;
     }
@@ -61,7 +61,7 @@ class Municipio extends BasicModel
     /**
      * @param string $nombre
      */
-    public function setnombre(string $nombre): void
+    public function setNombre(string $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -69,7 +69,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getcodigo_dane(): string
+    public function getCodigo_dane(): string
     {
         return $this->codigo_dane;
     }
@@ -77,7 +77,7 @@ class Municipio extends BasicModel
     /**
      * @param string $codigo_dane
      */
-    public function setcodigo_dane(string $codigo_dane): void
+    public function setCodigo_dane(string $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }
@@ -85,7 +85,7 @@ class Municipio extends BasicModel
     /**
      * @return mixed
      */
-    public function getdepartamento()
+    public function getDepartamento()
     {
         return $this->departamento;
     }
@@ -93,7 +93,7 @@ class Municipio extends BasicModel
     /**
      * @param mixed $departamento
      */
-    public function setdepartamento($departamento): void
+    public function setDepartamento($departamento): void
     {
         $this->departamento= $departamento;
     }
@@ -122,12 +122,6 @@ class Municipio extends BasicModel
         return $result;
     }
 
-    public function deleted($id_municipio) : bool
-    {
-        $User = Municipio::searchForId($id_municipio); //Buscando un usuario por el ID
-        $User->setEstado("Inactivo"); //Cambia el estado del Usuario
-        return $User->update();                    //Guarda los cambios..
-    }
 
     public static function search($query) : array
     {

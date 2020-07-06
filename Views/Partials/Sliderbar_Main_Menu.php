@@ -16,13 +16,10 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?= $baseURL ?>/views/components/img/user.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= $baseURL ?>/Views/Components/Img/User.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-
                 <a href="#" class="d-block">Usuario</a>
- master
-
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -45,8 +42,7 @@
                         <i class="nav-icon far fa-user"></i>
                         <p>
 
-                            categoria
- master
+                            Municipio
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
