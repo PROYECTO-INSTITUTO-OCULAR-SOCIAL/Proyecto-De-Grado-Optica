@@ -1,12 +1,12 @@
 <?php
 require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\MunicipioController; ?>
+use App\Controllers\DepartamentoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar Municipio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Datos del Departamento</title>
     <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\MunicipioController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nuevo Municipio</h1>
+                        <h1>Informacion del Departamento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,10 +44,10 @@ use App\Controllers\MunicipioController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear Municipio: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar el Departamento: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_municipio'])) { ?>
+            <?php } else if (empty($_GET['id_departamento'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -57,49 +57,39 @@ use App\Controllers\MunicipioController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
-                </div>
-                <!-- /.card-header -->
-                <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){ ?>
-                    <p>
-                    <?php
-                    $DataMunicipio = MunicipioController::searchForID($_GET["id_municipio"]);
-                    if(!empty($DataMunicipio)){
+                <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){
+                    $DataDepartamento = DepartamentoController::searchForId($_GET["id_departamento"]);
+                    if(!empty($DataDepartamento)){
                         ?>
-                        <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditMunicipio" name="frmEditMunicipio" action="../../../app/Controllers/MunicipioController.php?action=edit">
-                            <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataMunicipio->getNombre(); ?>" placeholder="Ingrese su nombre">
-                                    </div>
+                        <div class="card-header">
+                            <h3 class="card-title"><?= $DataDepartamento->getnombre()  ?></h3>
+                        </div>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
+                        <p class="text-muted"><?= $DataDepartamento->getcodigo_dane().": ".$DataDepartamento->getcodigo_dane() ?></p>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-auto mr-auto">
+                                    <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-tasks"></i> Gestionar Departamento
+                                    </a>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
-                                    <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
-                                    </div>
+                                <div class="col-auto">
+                                    <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-plus"></i> Crear Departamento
+                                    </a>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Enviar</button>
-                                <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                            </div>
-                            <!-- /.card-footer -->
-                        </form>
+                        </div>
                     <?php }else{ ?>
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h5><i class="icon fas fa-ban"></i> Error!</h5>
                             No se encontro ningun registro con estos parametros de busqueda <?= ($_GET['mensaje']) ?? "" ?>
                         </div>
-                    <?php } ?>
-                    </p>
-                <?php } ?>
+                    <?php }
+                } ?>
             </div>
             <!-- /.card -->
         </section>
