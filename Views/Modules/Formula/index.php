@@ -1,7 +1,7 @@
 <?php require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require("../../../app/Controllers/FormulaController.php");
 
-use App\Controllers\MunicipioController; ?>
+use App\Controllers\FormulaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,15 +41,16 @@ use App\Controllers\MunicipioController; ?>
 
         <!-- Main content -->
         <section class="content">
+
             <?php if(!empty($_GET['respuesta']) && !empty($_GET['action'])){ ?>
                 <?php if ($_GET['respuesta'] == "correcto"){ ?>
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El usuario ha sido creado con exito!
+                            La Formula ha sido creada con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del usuario han sido actualizados correctamente!
+                            Los datos de la formula han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -58,7 +59,7 @@ use App\Controllers\MunicipioController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Municipio</h3>
+                    <h3 class="card-title">Gestionar Formula</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -71,43 +72,79 @@ use App\Controllers\MunicipioController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Municipio
+                                <i class="fas fa-plus"></i> Crear Formula
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblMunicipio" class="datatable table table-bordered table-striped">
+                            <table id="tblCategoria" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
-                                    <th>Acciones</th>
+                                    <th>od esfera</th>
+                                    <th>oi esfera</th>
+                                    <th>od cilindro</th>
+                                    <th>oi cilindro</th>
+                                    <th>od eje</th>
+                                    <th>oi eje</th>
+                                    <th>od av</th>
+                                    <th>oi ad</th>
+                                    <th>dp</th>
+                                    <th>color</th>
+                                    <th>numero de montura</th>
+                                    <th>observaciones</th>
+                                    <th>bifocal</th>
+                                    <th>material</th>
+                                    <th>valor</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrMunicipio = MunicipioController::getAll();
-                                foreach ($arrMunicipio as $Municipio){
+                                $arrFormula = FormulaController::getAll();
+                                foreach ($arrFormula as $Formula){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Municipio->getId(); ?></td>
-                                        <td><?php echo $Municipio->getNombre(); ?></td>
-                                        <td><?php echo $Municipio->getCodigo_dane(); ?></td>
-                                        <td>
-                                            <a href="Edit.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                        </td>
+                                        <td><?php echo $Formula->getid_formula(); ?></td>
+                                        <td><?php echo $Formula->getod_esferea(); ?></td>
+                                        <td><?php echo $Formula->getoi_esfera(); ?></td>
+                                        <td><?php echo $Formula->getod_cilindro(); ?></td>
+                                        <td><?php echo $Formula->getoi_cilindro(); ?></td>
+                                        <td><?php echo $Formula->getod_eje(); ?></td>
+                                        <td><?php echo $Formula->getoi_eje(); ?></td>
+                                        <td><?php echo $Formula->getod_av(); ?></td>
+                                        <td><?php echo $Formula->getoi_av(); ?></td>
+                                        <td><?php echo $Formula->getdp(); ?></td>
+                                        <td><?php echo $Formula->getcolor(); ?></td>
+                                        <td><?php echo $Formula->getnumero_montura(); ?></td>
+                                        <td><?php echo $Formula->getobservaciones(); ?></td>
+                                        <td><?php echo $Formula->getbifocal(); ?></td>
+                                        <td><?php echo $Formula->getmaterial(); ?></td>
+                                        <td><?php echo $Formula->getvalor(); ?></td>
+
                                     </tr>
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
-                                    <th>Acciones</th>
+                                    <th>od esfera</th>
+                                    <th>oi esfera</th>
+                                    <th>od cilindro</th>
+                                    <th>oi cilindro</th>
+                                    <th>od eje</th>
+                                    <th>oi eje</th>
+                                    <th>od av</th>
+                                    <th>oi ad</th>
+                                    <th>dp</th>
+                                    <th>color</th>
+                                    <th>numero de montura</th>
+                                    <th>observaciones</th>
+                                    <th>bifocal</th>
+                                    <th>material</th>
+                                    <th>valor</th>
+
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -126,10 +163,10 @@ use App\Controllers\MunicipioController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../partials/footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../Partials/Scripts.php');?>
+<?php require ('../../partials/scripts.php');?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -154,17 +191,17 @@ use App\Controllers\MunicipioController; ?>
             "info": true,
             "autoWidth": true,
             "language": {
-                "url": "../../components/Spanish.json" //Idioma
+                "url": "../../Components/Spanish.json" //Idioma
             },
             "buttons": [
                 'copy', 'print', 'excel', 'pdf'
             ],
             "pagingType": "full_numbers",
             "responsive": true,
-            "stateSave" : true, //Guardar la configuracion del usuario
+            "stateSave" : true, //Guardar la configuracion del Formula
         });
-    });
 </script>
 
 </body>
 </html>
+
