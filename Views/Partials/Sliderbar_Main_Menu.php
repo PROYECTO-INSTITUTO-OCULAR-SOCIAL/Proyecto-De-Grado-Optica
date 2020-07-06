@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
-        <img src="<?= $baseURL ?>/views/components/img/ojo.jpeg"
+        <img src="<?= $baseURL ?>/Views/Components/Img/ojo.jpeg"
 
 
              alt="AdminLTE Logo"
@@ -37,11 +37,10 @@
                     </a>
                 </li>
                 <li class="nav-header">Modulos Principales</li>
-                <li class="nav-item has-treeview menu-open">
+                <li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
-
                             Municipio
                             <i class="fas fa-angle-left right"></i>
                         </p>

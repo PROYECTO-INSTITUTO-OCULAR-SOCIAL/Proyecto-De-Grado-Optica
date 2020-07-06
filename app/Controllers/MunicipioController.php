@@ -12,9 +12,9 @@ class MunicipioController
 
     static function main($action)
     {
-        if ($action == "Create") {
+        if ($action == "create") {
             MunicipioController::Create();
-        } else if ($action == "Edit") {
+        } else if ($action == "edit") {
             MunicipioController::Edit();
         } else if ($action == "searchForID") {
             MunicipioController::searchForID($_REQUEST['id_municipio']);
@@ -43,6 +43,8 @@ class MunicipioController
                 $Municipio = new Municipio ($arrayMunicipio);
                 if ($Municipio->create()) {
                     header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
+                }else{
+                    echo "Error";
                 }
             } else {
                 header("Location: ../../Views/Modules/Municipio/Create.php?respuesta=error&mensaje=Municipio ya registrado");
@@ -74,7 +76,6 @@ class MunicipioController
     {
         try {
             $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
-            $ObjMunicipio->setEstado("Activo");
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
@@ -90,7 +91,6 @@ class MunicipioController
     {
         try {
             $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
-            $ObjMunicipio->setEstado("Inactivo");
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
