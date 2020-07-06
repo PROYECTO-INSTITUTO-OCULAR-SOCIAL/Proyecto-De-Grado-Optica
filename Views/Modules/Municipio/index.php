@@ -41,6 +41,10 @@ use App\Controllers\MunicipioController; ?>
 
         <!-- Main content -->
         <section class="content">
+<<<<<<< HEAD
+
+=======
+>>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
             <?php if(!empty($_GET['respuesta']) && !empty($_GET['action'])){ ?>
                 <?php if ($_GET['respuesta'] == "correcto"){ ?>
                     <div class="alert alert-success alert-dismissible">
@@ -96,8 +100,18 @@ use App\Controllers\MunicipioController; ?>
                                         <td><?php echo $Municipio->getNombre(); ?></td>
                                         <td><?php echo $Municipio->getCodigo_dane(); ?></td>
                                         <td>
+<<<<<<< HEAD
+                                            <a href="Edit.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Municipio->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/MunicipioController.php?action=activate&Id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <?php }else{ ?>
+                                                <a type="button" href="../../../app/Controllers/MunicipioController.php?action=inactivate&Id=<?php echo $Municipio->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                            <?php } ?>
+=======
                                             <a href="Edit.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="Show.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+>>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                                         </td>
                                     </tr>
                                 <?php } ?>

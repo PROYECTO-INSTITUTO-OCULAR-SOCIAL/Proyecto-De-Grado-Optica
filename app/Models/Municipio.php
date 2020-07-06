@@ -37,7 +37,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getId() : int
+    public function getid() : int
     {
         return $this->id_municipio;
     }
@@ -45,7 +45,7 @@ class Municipio extends BasicModel
     /**
      * @param int $id_municipio
      */
-    public function setId(int $id_municipio): void
+    public function setid(int $id_municipio): void
     {
         $this->id_municipio = $id_municipio;
     }
@@ -53,7 +53,7 @@ class Municipio extends BasicModel
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getnombre(): string
     {
         return $this->nombre;
     }
@@ -61,7 +61,7 @@ class Municipio extends BasicModel
     /**
      * @param string $nombre
      */
-    public function setNombre(string $nombre): void
+    public function setnombre(string $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -69,7 +69,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getCodigo_dane(): string
+    public function getcodigo_dane(): string
     {
         return $this->codigo_dane;
     }
@@ -77,7 +77,7 @@ class Municipio extends BasicModel
     /**
      * @param string $codigo_dane
      */
-    public function setCodigo_dane(string $codigo_dane): void
+    public function setcodigo_dane(string $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }
@@ -85,7 +85,7 @@ class Municipio extends BasicModel
     /**
      * @return mixed
      */
-    public function getDepartamento()
+    public function getdepartamento()
     {
         return $this->departamento;
     }
@@ -93,7 +93,11 @@ class Municipio extends BasicModel
     /**
      * @param mixed $departamento
      */
+<<<<<<< HEAD
+    public function setdepartamento($departamento): void
+=======
     public function setDepartamento($departamento): void
+>>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
     {
         $this->departamento= $departamento;
     }
