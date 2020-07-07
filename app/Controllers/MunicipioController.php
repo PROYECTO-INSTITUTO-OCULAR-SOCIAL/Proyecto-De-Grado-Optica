@@ -65,7 +65,7 @@ class MunicipioController
             $user = new Municipio($arrayMunicipio);
             $user->update();
 
-            header("Location: ../../Views/Modules/Municipio/Show.php?id_municipio=" . $user->getId() . "&respuesta=correcto");
+            header("Location: ../../Views/Modules/Municipio/Show.php?id_municipio=" . $user->getIdMunicipio() . "&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
             header("Location: ../../Views/Modules/Municipio/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
@@ -75,7 +75,7 @@ class MunicipioController
     static public function activate()
     {
         try {
-            $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
+            $ObjMunicipio = Municipio::searchForId($_GET['id_municipio']);
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
@@ -90,7 +90,7 @@ class MunicipioController
     static public function inactivate()
     {
         try {
-            $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
+            $ObjMunicipio = Municipio::searchForId($_GET['id_municipio']);
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
@@ -105,7 +105,7 @@ class MunicipioController
     static public function searchForID($id_municipio)
     {
         try {
-            return Municipio::searchForid($id_municipio);
+            return Municipio::searchForId($id_municipio);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../Views/Modules/Municipio/manager.php?respuesta=error");
@@ -118,11 +118,7 @@ class MunicipioController
             return Municipio::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-<<<<<<< HEAD
-            //header("Location: ../Vista/Modules/Municipio/manager.php?respuesta=error");
-=======
             //header("Location: ../Views/Modules/Municipio/manager.php?respuesta=error");
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
         }
     }
 }

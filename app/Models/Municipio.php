@@ -2,8 +2,7 @@
 
 
 namespace App\Models;
-
-require('BasicModel.php');
+require ('BasicModel.php');
 
 class Municipio extends BasicModel
 {
@@ -37,7 +36,7 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getid() : int
+    public function getIdMunicipio(): int
     {
         return $this->id_municipio;
     }
@@ -45,7 +44,7 @@ class Municipio extends BasicModel
     /**
      * @param int $id_municipio
      */
-    public function setid(int $id_municipio): void
+    public function setIdMunicipio(int $id_municipio): void
     {
         $this->id_municipio = $id_municipio;
     }
@@ -53,7 +52,7 @@ class Municipio extends BasicModel
     /**
      * @return string
      */
-    public function getnombre(): string
+    public function getNombre(): string
     {
         return $this->nombre;
     }
@@ -61,7 +60,7 @@ class Municipio extends BasicModel
     /**
      * @param string $nombre
      */
-    public function setnombre(string $nombre): void
+    public function setNombre(string $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -69,15 +68,15 @@ class Municipio extends BasicModel
     /**
      * @return int
      */
-    public function getcodigo_dane(): string
+    public function getCodigoDane(): int
     {
         return $this->codigo_dane;
     }
 
     /**
-     * @param string $codigo_dane
+     * @param int $codigo_dane
      */
-    public function setcodigo_dane(string $codigo_dane): void
+    public function setCodigoDane(int $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }
@@ -85,7 +84,7 @@ class Municipio extends BasicModel
     /**
      * @return mixed
      */
-    public function getdepartamento()
+    public function getDepartamento()
     {
         return $this->departamento;
     }
@@ -93,19 +92,20 @@ class Municipio extends BasicModel
     /**
      * @param mixed $departamento
      */
-<<<<<<< HEAD
-    public function setdepartamento($departamento): void
-=======
     public function setDepartamento($departamento): void
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
     {
-        $this->departamento= $departamento;
+        $this->departamento = $departamento;
     }
+
+
+    /**
+     * @return mixed
+     */
 
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
             )

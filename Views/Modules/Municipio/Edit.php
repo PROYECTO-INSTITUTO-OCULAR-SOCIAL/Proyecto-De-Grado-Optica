@@ -47,11 +47,6 @@ use App\Controllers\MunicipioController; ?>
                         Error al crear Municipio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-<<<<<<< HEAD
-            <?php } else if (empty($_GET['id'])) { ?>
-=======
-            <?php } else if (empty($_GET['id_municipio'])) { ?>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -73,11 +68,7 @@ use App\Controllers\MunicipioController; ?>
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditMunicipio" name="frmEditMunicipio" action="../../../app/Controllers/MunicipioController.php?action=edit">
-<<<<<<< HEAD
-                            <input id="id" name="id" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
-=======
-                            <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
+
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -88,7 +79,7 @@ use App\Controllers\MunicipioController; ?>
                                 <div class="form-group row">
                                     <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                                     <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
+                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigoDane(); ?>" placeholder="Ingrese el Codigo Dane">
                                     </div>
                                 </div>
                             </div>

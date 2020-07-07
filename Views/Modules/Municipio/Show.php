@@ -47,11 +47,7 @@ use App\Controllers\MunicipioController; ?>
                         Error al consultar el Municipio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-<<<<<<< HEAD
-            <?php } else if (empty($_GET['id'])) { ?>
-=======
             <?php } else if (empty($_GET['id_municipio'])) { ?>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -62,20 +58,16 @@ use App\Controllers\MunicipioController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){
-<<<<<<< HEAD
-                    $DataMunicipio = MunicipioController::searchForID($_GET["id_municipio"]);
-=======
                     $DataMunicipio = MunicipioController::searchForId($_GET["id_municipio"]);
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                     if(!empty($DataMunicipio)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataMunicipio->getNombre()  ?></h3>
+                            <h3 class="card-title"><?= $DataMunicipio->getNombre() ?></h3>
                         </div>
-                            <hr>
-                            <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
-                            <p class="text-muted"><?= $DataMunicipio->getCodigo_dane().": ".$DataMunicipio->getCodigo_dane() ?></p>
-                            <hr>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
+                        <p class="text-muted"><?= $DataMunicipio->getCodigoDane().": ".$DataMunicipio->getCodigoDane() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
@@ -111,4 +103,3 @@ use App\Controllers\MunicipioController; ?>
 <?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
-
