@@ -93,7 +93,7 @@ use App\Controllers\MarcaController; ?>
                                 foreach ($arrMarca as $Marca){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Marca->geti_marca(); ?></td>
+                                        <td><?php echo $Marca->getid_marca(); ?></td>
                                         <td><?php echo $Marca->getnombre(); ?></td>
                                         <td><?php echo $Marca->getestado(); ?></td>
                                         <td>
