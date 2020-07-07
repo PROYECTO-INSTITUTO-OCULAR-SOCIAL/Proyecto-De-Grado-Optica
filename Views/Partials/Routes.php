@@ -4,7 +4,7 @@
 
 //Carga las librerias importadas del composer
 require(__DIR__ .'/../../vendor/autoload.php');
-//__DIR__ => D:\laragon\www\WebER\views\partials
+//__DIR__ => D:\laragon\www\Proyecto-De-Grado-Optica\views\partials
 ?>
 <?php
 $dotenv = Dotenv\Dotenv::create(__DIR__ ."../../../"); //Cargamos el archivo .env de la raiz del sitio
