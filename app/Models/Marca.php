@@ -85,8 +85,7 @@ class Marca extends BasicModel
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Marca VALUES (NULL, ?, ?, ?)", array(
-                $this->id_marca,
+        $result = $this->insertRow("INSERT INTO mer_optica.Marca VALUES (NULL, ?, ?)", array(
                 $this->nombre,
                 $this->estado
             )
@@ -150,9 +149,9 @@ class Marca extends BasicModel
         return Marca::search("SELECT * FROM mer_optica.Marca");
     }
 
-    public static function Marca ($id_marca) : bool
+    public static function MarcaRegistrada ($nombre) : bool
     {
-        $result = Marca::search("SELECT id_marca FROM mer_optica.Marca where id_marca = ".$id_marca);
+        $result = Marca::search("SELECT nombre FROM mer_optica.Marca where nombre = '".$nombre."'");
         if (count($result) > 0){
             return true;
         }else{
