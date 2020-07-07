@@ -2,6 +2,7 @@
 
 
 namespace App\Models;
+require('BasicModel.php');
 
 
 class Departamento extends BasicModel
@@ -61,9 +62,9 @@ class Departamento extends BasicModel
     }
 
     /**
-     * @return mediumint
+     * @return string
      */
-    public function getcodigo_dane() : mediumint
+    public function getcodigo_dane() : string
     {
         return $this->codigo_dane;
     }
@@ -71,13 +72,13 @@ class Departamento extends BasicModel
     /**
      * @param string $codigo_dane
      */
-    public function setcodigo_dane(mediumint $codigo_dane): void
+    public function setcodigo_dane(string $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }
-    public function create() : bool
+    public function Create() : bool
     {
-        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Departamento VALUES (NULL, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Departamento VALUES (NULL, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
                             )
@@ -85,7 +86,7 @@ class Departamento extends BasicModel
         $this->Disconnect();
         return $result;
     }
-    protected static function search($query): array
+    public static function search($query): array
     {
 
         $arrDepartamento = array();
@@ -104,15 +105,15 @@ class Departamento extends BasicModel
         return $arrDepartamento;
     }
 
-    protected static function getAll()
+  public static function getAll()
 
         {
-            return Departamento::search("SELECT * FROM Proyecto-De-Grado-Optica.Departamento");
+            return Departamento::search("SELECT * FROM mer_optica.Departamento");
         }
 
         public static function DepartamentoRegistrado ($nombre) : bool
     {
-        $result = Departamento::search("SELECT id_departamento FROM Proyecto-De-Grado-Optica.Departamento where nombre = ".$nombre);
+        $result = Departamento::search("SELECT id_departamento FROM mer_optica.Departamento where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
@@ -121,12 +122,12 @@ class Departamento extends BasicModel
 
     }
 
-    protected static function searchForId($id):Departamento
+    public static function searchForId($id):Departamento
     {
         $Departamento = null;
         if ($id > 0){
             $Departamento= new Departamento();
-            $getrow = $Departamento->getRow("SELECT * FROM Proyecto-De-Grado-Optica.Departamento WHERE id_departamento =?", array($id));
+            $getrow = $Departamento->getRow("SELECT * FROM mer_optica.Departamento WHERE id_departamento =?", array($id));
             $Departamento->id_departamento = $getrow['id_departamento'];
             $Departamento->nombre = $getrow['nombre'];
             $Departamento->codigo_dane = $getrow['codigo_dane'];
@@ -137,9 +138,9 @@ class Departamento extends BasicModel
     }
 
 
-    protected function update()
+    public function update()
     {
-        $result = $this->updateRow("UPDATE Proyecto-De-Grado-Optica.Departamento SET nombre = ?, codigo_dane = ? WHERE id_departamento = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Departamento SET nombre = ?, codigo_dane = ? WHERE id_departamento = ?", array(
                 $this->nombre,
                 $this->codigo_dane,
                 $this->id_departamento
@@ -149,7 +150,7 @@ class Departamento extends BasicModel
         return $result;
     }
 
-    protected function deleted($id)
+    public function deleted($id)
     {
         // TODO: Implement deleted() method.
     }

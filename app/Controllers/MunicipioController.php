@@ -118,7 +118,11 @@ class MunicipioController
             return Municipio::getAll();
         } catch (\Exception $e) {
             var_dump($e);
+<<<<<<< HEAD
+            //header("Location: ../Vista/Modules/Municipio/manager.php?respuesta=error");
+=======
             //header("Location: ../Views/Modules/Municipio/manager.php?respuesta=error");
+>>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
         }
     }
 }

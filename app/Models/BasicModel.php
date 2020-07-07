@@ -4,7 +4,7 @@ namespace App\Models;
 
 /**
  * Created by PhpStorm.
- * User: Hildebrando Yunado
+ * User: julieth sanchez
  * Date: 26/06/2020
  * Time: 9:17
  */
@@ -21,7 +21,7 @@ abstract class BasicModel {
     # métodos abstractos para ABM de clases que hereden
     abstract protected static function search($query);
     abstract protected static function getAll();
-    abstract protected static function searchForId($id_municipio);
+    abstract protected static function searchForId($id_departamento);
     abstract protected function create();
     abstract protected function update();
 

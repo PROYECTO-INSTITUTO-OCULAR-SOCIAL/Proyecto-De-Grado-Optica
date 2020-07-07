@@ -13,9 +13,9 @@ class CategoriaController
 
     static function main($action)
     {
-        if ($action == "Create") {
+        if ($action == "create") {
             CategoriaController::Create();
-        } else if ($action == "Edit") {
+        } else if ($action == "edit") {
             CategoriaController::Edit();
         } else if ($action == "searchForId") {
             CategoriaController::searchForId($_REQUEST['idCategoria']);
@@ -37,13 +37,14 @@ class CategoriaController
     {
         try {
             $arrayCategoria = array();
-            $arrayCategoria['id_categoria'] = $_POST['id_categoria'];
             $arrayCategoria['nombre'] = $_POST['nombre'];
             $arrayCategoria['estado'] = $_POST['estado'];
-            if (!Categoria::CategoriaRegistrado($arrayCategoria['id_categoria'])) {
+            if (!Categoria::CategoriaRegistrado($arrayCategoria['nombre'])) {
                 $Categoria = new Categoria ($arrayCategoria);
                 if ($Categoria->create()) {
                     header("Location: ../../views/Modules/Categoria/index.php?respuesta=correcto");
+                }else{
+                    echo "error";
                 }
             } else {
                 header("Location: ../../views/Modules/Categoria/Create.php?respuesta=error&mensaje=Categoria ya registrada");
