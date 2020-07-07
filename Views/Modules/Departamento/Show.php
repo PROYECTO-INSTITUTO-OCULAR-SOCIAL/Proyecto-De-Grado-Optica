@@ -1,12 +1,12 @@
 <?php
 require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\MunicipioController; ?>
+use App\Controllers\DepartamentoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Datos del Municipio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Datos del Departamento</title>
     <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\MunicipioController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Informacion del Municipio</h1>
+                        <h1>Informacion del Departamento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,14 +44,10 @@ use App\Controllers\MunicipioController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar el Municipio: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar el Departamento: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-<<<<<<< HEAD
-            <?php } else if (empty($_GET['id'])) { ?>
-=======
-            <?php } else if (empty($_GET['id_municipio'])) { ?>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
+            <?php } else if (empty($_GET['id_departamento'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -61,31 +57,27 @@ use App\Controllers\MunicipioController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){
-<<<<<<< HEAD
-                    $DataMunicipio = MunicipioController::searchForID($_GET["id_municipio"]);
-=======
-                    $DataMunicipio = MunicipioController::searchForId($_GET["id_municipio"]);
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
-                    if(!empty($DataMunicipio)){
+                <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){
+                    $DataDepartamento = DepartamentoController::searchForId($_GET["id_departamento"]);
+                    if(!empty($DataDepartamento)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataMunicipio->getNombre()  ?></h3>
+                            <h3 class="card-title"><?= $DataDepartamento->getnombre()  ?></h3>
                         </div>
-                            <hr>
-                            <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
-                            <p class="text-muted"><?= $DataMunicipio->getCodigo_dane().": ".$DataMunicipio->getCodigo_dane() ?></p>
-                            <hr>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
+                        <p class="text-muted"><?= $DataDepartamento->getcodigo_dane().": ".$DataDepartamento->getcodigo_dane() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
                                     <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-tasks"></i> Gestionar Municipio
+                                        <i class="fas fa-tasks"></i> Gestionar Departamento
                                     </a>
                                 </div>
                                 <div class="col-auto">
                                     <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-plus"></i> Crear Municipio
+                                        <i class="fas fa-plus"></i> Crear Departamento
                                     </a>
                                 </div>
                             </div>
