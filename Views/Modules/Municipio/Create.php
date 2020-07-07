@@ -61,7 +61,7 @@
                             <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                             <div class="col-sm-10">
                                 <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" placeholder="Ingrese el Codigo Dane">
-                            </div>git staus
+                            </div>
                         </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
