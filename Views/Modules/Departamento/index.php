@@ -84,6 +84,8 @@ use App\Controllers\DepartamentoController; ?>
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo Dane</th>
+                                    <th>Acciones</th>
+
                                    
                                 </tr>
                                 </thead>
@@ -109,6 +111,7 @@ use App\Controllers\DepartamentoController; ?>
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo Dane</th>
+                                    <th>Acciones</th>
 
 
                                 </tr>
