@@ -1,21 +1,21 @@
 <?php
-require("../../partials/routes.php");
+require("../../Partials/Routes.php");
 require("../../../app/Controllers/CategoriaController.php");
 
 use App\Controllers\CategoriaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Datosde la Categoria</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <title><?= getenv('TITLE_SITE') ?> | Datos del Departamento</title>
+    <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -62,26 +62,17 @@ use App\Controllers\CategoriaController; ?>
                     if(!empty($DataCategoria)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataCategoria->getNombre()  ?></h3>
+                            <h3 class="card-title"><?= $DataCategoria->getnombre()  ?></h3>
                         </div>
-                        <div class="card-body">
-                            <p>
-
-                                <strong><i class="fas fa-book mr-1"></i> Nombre </strong>
-                            <p class="text-muted">
-                                <?= $DataCategoria->getNombre() ?>
-                            </p>
-                            <hr>
-                            <strong><i class="far fa-file-alt mr-1"></i> Estado </strong>
-                            <p class="text-muted"><?= $DataCategoria->getEstado()." - ".$DataCategoria->getRol() ?></p>
-                            </p>
-
-                        </div>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Estado</strong>
+                        <p class="text-muted"><?= $DataCategoria->getEstado().": ".$DataCategoria->getEstado() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
                                     <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-tasks"></i> Gestionar Categorias
+                                        <i class="fas fa-tasks"></i> Gestionar Categoria
                                     </a>
                                 </div>
                                 <div class="col-auto">
@@ -106,10 +97,10 @@ use App\Controllers\CategoriaController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../partials/footer.php');?>
+    <?php require ('../../Partials/Footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../partials/scripts.php');?>
+<?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
 
