@@ -14,7 +14,7 @@ class DepartamentoController
     {
         if ($action == "Create") {
             DepartamentoController::Create();
-        } else if ($action == "Edit") {
+        } else if ($action == "edit") {
             DepartamentoController::Edit();
         } else if ($action == "searchForId") {
             DepartamentoController::searchForId($_REQUEST['id_departamento']);
@@ -43,7 +43,7 @@ class DepartamentoController
                 $Departamento = new Departamento ($arrayDepartamento);
                 if ($Departamento->create()) {
                     header("Location: ../../Views/Modules/Departamento/index.php?respuesta=correcto");
-                }
+                } else{echo "Error";}
             } else {
                 header("Location: ../../Views/Modules/Departamento/Create.php?respuesta=error&mensaje=Departamento ya registrado");
             }
@@ -63,44 +63,15 @@ class DepartamentoController
             $user = new Departamento($arrayDepartamento);
             $user->update();
 
-            header("Location: ../../Views/Modules/Departamento/Show.php?id_departamento=" . $user->getId() . "&respuesta=correcto");
+            header("Location: ../../Views/Modules/Departamento/Show.php?id_departamento=" . $user->getid_departamento() . "&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
             header("Location: ../../Views/Modules/Departamento/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function activate()
-    {
-        try {
-            $ObjDepartamento = Departamento::searchForId($_GET['id_departamento']);
-            $ObjDepartamento->setEstado("Activo");
-            if ($ObjDepartamento->update()) {
-                header("Location: ../../Views/Modules/Departamento/index.php");
-            } else {
-                header("Location: ../../Views/Modules/Departamento/index.php?respuesta=error&mensaje=Error al guardar");
-            }
-        } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../Views/Modules/Departamento/index.php?respuesta=error&mensaje=" . $e->getMessage());
-        }
-    }
 
-    static public function inactivate()
-    {
-        try {
-            $ObjDepartamento = Departamento::searchForId($_GET['id_departamento']);
-            $ObjDepartamento->setEstado("Inactivo");
-            if ($ObjDepartamento->update()) {
-                header("Location: ../../Views/Modules/Departamento/index.php");
-            } else {
-                header("Location: ../../Views/modules/Departamento/index.php?respuesta=error&mensaje=Error al guardar");
-            }
-        } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../Views/Modules/Departamento/index.php?respuesta=error");
-        }
-    }
+
 
     static public function searchForId($id_departamento)
     {

@@ -78,7 +78,7 @@ class Departamento extends BasicModel
     }
     public function Create() : bool
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Departamento VALUES (NULL, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Departamento VALUES (NULL, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
                             )
@@ -113,7 +113,7 @@ class Departamento extends BasicModel
 
         public static function DepartamentoRegistrado ($nombre) : bool
     {
-        $result = Departamento::search("SELECT id_departamento FROM mer_optica.Departamento where nombre = ".$nombre);
+        $result = Departamento::search("SELECT nombre FROM mer_optica.Departamento where nombre = '".$nombre."'");
         if (count($result) > 0){
             return true;
         }else{
