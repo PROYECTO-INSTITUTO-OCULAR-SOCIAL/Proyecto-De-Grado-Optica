@@ -164,9 +164,9 @@ class Municipio extends BasicModel
         return Municipio::search("SELECT * FROM mer_optica.Municipio");
     }
 
-    public static function municipioRegistrado ($nombre) : bool
+    public static function MunicipioRegistrado ($nombre) : bool
     {
-        $result = Municipio::search("SELECT id_municipio FROM mer_optica.Municipio where nombre = ".$nombre);
+        $result = Municipio::search("SELECT nombre FROM mer_optica.Municipio where nombre = '".$nombre."'");
         if (count($result) > 0){
             return true;
         }else{
