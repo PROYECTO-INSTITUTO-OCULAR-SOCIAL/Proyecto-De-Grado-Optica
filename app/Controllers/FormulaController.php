@@ -43,7 +43,7 @@ class FormulaController{
             $arrayFormula['material'] = $_POST['material'];
             $arrayFormula['valor'] = $_POST['valor'];
 
-            if(!Formula::FormulaRegistrado($arrayFormula['id_formula'])){
+            if(!Formula::FormulaRegistrada($arrayFormula['id_formula'])){
                 $Formula = new Formula ($arrayFormula);
                 if($Formula->create()){
                     header("Location: ../../Views/Modules/Formula/index.php?respuesta=correcto");
