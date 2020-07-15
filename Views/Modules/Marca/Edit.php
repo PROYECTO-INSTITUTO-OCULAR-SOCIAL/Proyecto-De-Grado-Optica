@@ -80,17 +80,6 @@ use App\Controllers\MarcaController; ?>
 
 
 
-                                <div class="form-group row">
-                                    <label for="estado" class="col-sm-2 col-form-label">estado</label>
-                                    <div class="col-sm-10">
-                                        <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataMarca->getestado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataMarca->getestado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
 
                                 <div class="form-group row">
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
