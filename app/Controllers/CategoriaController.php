@@ -77,7 +77,7 @@ class CategoriaController
     {
         try {
             $ObjCategoria = Categoria::searchForId($_GET['idCategoria']);
-            $ObjCategoria->setestado("Activo");
+            $ObjCategoria->setEstado("Activo");
             if ($ObjCategoria->update()) {
                 header("Location: ../../views/Modules/Categoria/index.php");
             } else {

@@ -85,6 +85,7 @@ use App\Controllers\CategoriaController; ?>
                                     <th>Nombre</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
