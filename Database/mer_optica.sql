@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 01-07-2020 a las 19:26:18
+-- Tiempo de generación: 16-07-2020 a las 21:19:17
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
 CREATE TABLE IF NOT EXISTS `producto` (
   `id_producto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
-  `descrpcion` tinytext NOT NULL,
+  `descripcion` tinytext NOT NULL,
   `iva` double NOT NULL,
   `stock` int(11) NOT NULL,
   `marca` int(10) UNSIGNED NOT NULL,

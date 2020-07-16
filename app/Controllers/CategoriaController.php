@@ -2,20 +2,24 @@
 
 namespace App\Controllers;
 require(__DIR__.'/../Models/Categoria.php');
+require_once(__DIR__.'/../Models/GeneralFunctions.php');
+
+use App\Models\GeneralFunctions;
+use App\Models\Usuarios;
 use App\Models\Categoria;
+
 
 if(!empty($_GET['action'])){
     CategoriaController::main($_GET['action']);
 }
 
-class CategoriaController
-{
+class CategoriaController{
 
     static function main($action)
     {
         if ($action == "create") {
             CategoriaController::Create();
-        } else if ($action == "edit") {
+        } else if ($action == "Edit") {
             CategoriaController::Edit();
         } else if ($action == "searchForId") {
             CategoriaController::searchForId($_REQUEST['idCategoria']);
@@ -57,19 +61,18 @@ class CategoriaController
     static public function Edit()
     {
         try {
-            $arrayCategoria = array();
-            $arrayCategoria['id_categoria'] = $_POST['id_categoria'];
+            $arrayCategoria= array();
             $arrayCategoria['nombre'] = $_POST['nombre'];
             $arrayCategoria['estado'] = $_POST['estado'];
+            $arrayCategoria['id_categoria'] = $_POST['id_categoria'];
 
+            $Categoria = new Categoria($arrayCategoria);
+            $Categoria->update();
 
-            $user = new Categoria($arrayCategoria);
-            $user->update();
-
-            header("Location: ../../views/Modules/Categoria/Show.php?id=" . $user->getIdCategoria() . "&respuesta=correcto");
+            header("Location: ../../views/modules/Categoria/Show.php?idCategoria=".$Categoria->getIdCategoria()."&respuesta=correcto");
         } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../views/Modules/Categoria/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
+            var_dump($e);
+            //header("Location: ../../views/modules/Categoria/Edit.php?respuesta=error&mensaje" . $e->getMessage());
         }
     }
 
