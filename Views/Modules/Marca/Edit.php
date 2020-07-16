@@ -69,7 +69,7 @@ use App\Controllers\MarcaController; ?>
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditMarca" name="frmEditMarca" action="../../../app/Controllers/MarcaController.php?action=Edit">
-                            <input id="id" name="id" value="<?php echo $DataMarca->getid_marca(); ?>" hidden required="required" type="text">
+                            <input id="id_marca" name="id_marca" value="<?php echo $DataMarca->getid_marca(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
