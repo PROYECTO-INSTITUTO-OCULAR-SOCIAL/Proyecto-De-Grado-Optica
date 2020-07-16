@@ -96,10 +96,11 @@ class Marca extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE mer_optica.Marca SET nombre = ? user = ?, password = ?, estado = ? WHERE id_marca = ?", array(
-            $this->id_marca,
+        $result = $this->updateRow("UPDATE mer_optica.Marca SET nombre = ? , estado = ? WHERE id_marca = ?", array(
+
             $this->nombre,
-                $this->estado
+                $this->estado,
+                $this->id_marca,
 
             )
         );

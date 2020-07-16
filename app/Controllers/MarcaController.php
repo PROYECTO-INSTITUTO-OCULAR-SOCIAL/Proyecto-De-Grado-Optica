@@ -59,43 +59,43 @@ class MarcaController
             $arrayMarca['estado'] = $_POST['estado'];
             $arrayMarca['id_marca'] = $_POST['id_marca'];
 
-            $user = new Marca($arrayMarca);
-            $user->update();
+            $Marca = new Marca($arrayMarca);
+            $Marca->update();
 
-            header("Location: ../../views/Modules/Marca/Show.php?id=".$user->getid_marca()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Marca/Show.php?id_marca=".$Marca->getid_marca()."&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/Modules/Marca/Edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../Views/Modules/Marca/Edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
-    static public function activo(){
+    static public function Activo(){
         try {
             $ObjMarca = Marca::searchForid_marca($_GET['id_marca']);
             $ObjMarca->setestado("Activo");
             if($ObjMarca->update()){
-                header("Location: ../../views/Modules/Marca/index.php");
+                header("Location: ../../Views/Modules/Marca/index.php");
             }else{
-                header("Location: ../../views/Modules/Marca/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../Views/Modules/Marca/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/Modules/Marca/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../Views/Modules/Marca/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
-    static public function inactivo (){
+    static public function Inactivo (){
         try {
             $ObjMarca = Marca::searchForid_marca($_GET['id_marca']);
             $ObjMarca->setestado("Inactivo");
             if($ObjMarca->update()){
-                header("Location: ../../views/Modules/Marca/index.php");
+                header("Location: ../../Views/Modules/Marca/index.php");
             }else{
-                header("Location: ../../views/Modules/Marca/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../Views/Modules/Marca/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/Modules/Marca/index.php?respuesta=error");
+            header("Location: ../../Views/Modules/Marca/index.php?respuesta=error");
         }
     }
 
@@ -104,7 +104,7 @@ class MarcaController
             return Marca::searchForid_marca($id_marca);
         } catch (\Exception $e) {
             var_dump($e);
-            //header("Location: ../../views/Modules/Marca/Marca.php?respuesta=error");
+            //header("Location: ../../Views/Modules/Marca/Marca.php?respuesta=error");
         }
     }
 
@@ -113,7 +113,7 @@ class MarcaController
             return Marca::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            //header("Location: ../Vista/Modules/Marca/Marca.php?respuesta=error");
+            //header("Location: ../Views/Modules/Marca/Marca.php?respuesta=error");
         }
     }
 
