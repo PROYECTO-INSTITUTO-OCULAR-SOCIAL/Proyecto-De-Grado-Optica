@@ -38,13 +38,12 @@ use App\Controllers\CategoriaController; ?>
 
         <!-- Main content -->
         <section class="content">
-
             <?php if(!empty($_GET['respuesta'])){ ?>
                 <?php if ($_GET['respuesta'] == "error"){ ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar la Categoria: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar la categoria: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['idCategoria'])) { ?>
@@ -61,13 +60,18 @@ use App\Controllers\CategoriaController; ?>
                     $DataCategoria = CategoriaController::searchForId($_GET["idCategoria"]);
                     if(!empty($DataCategoria)){
                         ?>
-                        <div class="card-header">
-                            <h3 class="card-title"><?= $DataCategoria->getnombre()  ?></h3>
-                        </div>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Estado</strong>
-                        <p class="text-muted"><?= $DataCategoria->getEstado().": ".$DataCategoria->getEstado() ?></p>
-                        <hr>
+                        <div class="card-body">
+                            <p>
+                            <strong><i class="fas fa-book mr-1"></i>Nombre</strong>
+                <p class="text-muted">
+                    <?= $DataCategoria->getNombre()?>
+                </p>
+                <hr>
+                <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
+                <p class="text-muted"><?= $DataCategoria->getEstado() ?></p>
+                </p>
+
+            </div>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">

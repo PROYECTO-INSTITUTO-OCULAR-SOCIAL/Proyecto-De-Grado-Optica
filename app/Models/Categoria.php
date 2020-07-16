@@ -35,7 +35,7 @@ class Categoria extends BasicModel
     /**
      * @return int
      */
-    public function getIdCategoria(): int
+    public function getIdCategoria(): ? int
     {
         return $this->id_categoria;
     }
@@ -43,7 +43,7 @@ class Categoria extends BasicModel
     /**
      * @param int $id_categoria
      */
-    public function setIdCategoria(int $id_categoria): void
+    public function setIdCategoria(?int $id_categoria): void
     {
         $this->id_categoria = $id_categoria;
     }
@@ -51,7 +51,7 @@ class Categoria extends BasicModel
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getNombre(): ? string
     {
         return $this->nombre;
     }
@@ -59,7 +59,7 @@ class Categoria extends BasicModel
     /**
      * @param string $nombre
      */
-    public function setNombre(string $nombre): void
+    public function setNombre(?string $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -67,7 +67,7 @@ class Categoria extends BasicModel
     /**
      * @return string
      */
-    public function getEstado(): string
+    public function getEstado(): ?string
     {
         return $this->estado;
     }
@@ -75,10 +75,15 @@ class Categoria extends BasicModel
     /**
      * @param string $estado
      */
-    public function setEstado(string $estado): void
+    public function setEstado(?string $estado): void
     {
         $this->estado = $estado;
     }
+
+
+
+
+
 
     public function create(): bool
     {
@@ -94,11 +99,11 @@ class Categoria extends BasicModel
 
     public function update(): bool
     {
-        $result = $this->updateRow("UPDATE mer_optica.Categoria SET  =nombre ?, estado = ? WHERE id_categoria = ?", array(
-                $this->id_categoria,
+        $result = $this->updateRow("UPDATE mer_optica.Categoria SET  nombre = ?, estado = ? WHERE id_categoria = ?", array(
+
                 $this->nombre,
                 $this->estado,
-
+                $this->id_categoria,
             )
         );
         $this->Disconnect();
