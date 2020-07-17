@@ -1,9 +1,25 @@
-<?php require("../../partials/routes.php"); ?>
+<?php
+require_once("../../../app/Controllers/MarcaController.php");
+require_once("../../../app/Controllers/CategoriaController.php");
+require_once("../../../app/Controllers/ProductoController.php");
+require("../../partials/routes.php");
+
+use App\Controllers\ProductosController;
+use App\Controllers\UsuariosController;
+use App\Controllers\VentasController;
+use App\Models\DetalleVentas;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Crear Producto</title>
     <?php require("../../partials/head_imports.php"); ?>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-buttons/css/buttons.bootstrap4.css">
 </head>
 <body class="hold-transition sidebar-mini">
 
@@ -15,12 +31,23 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+
+        <?php if (!empty($_GET['respuesta'])) { ?>
+            <?php if ($_GET['respuesta'] != "correcto") { ?>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                    Error al crear el Producto: <?= $_GET['mensaje'] ?>
+                </div>
+            <?php } ?>
+        <?php } ?>
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo Producto</h1>
+                        <h1>Crear un Producto</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -33,6 +60,9 @@
         </section>
 
         <!-- Main content -->
+
+
+        <!-- Main content -->
         <section class="content">
 
             <?php if(!empty($_GET['respuesta'])){ ?>
@@ -40,7 +70,7 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el producto: <?= $_GET['mensaje'] ?>
+                        Error al crear la categoria: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
@@ -50,53 +80,118 @@
                 <div class="card-header">
                     <h3 class="card-title">Horizontal Form</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateProductoController.php" name="frmCreateProductoController.php" action="../../../app/Controllers/ProductoController.php?action=create">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                            <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre del producto">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
-                            <div class="col-sm-10">
-                                <input required type="number" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese el descripcion">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="iva" class="col-sm-2 col-form-label">Iva</label>
-                            <div class="col-sm-10">
-                                <input required type="number" class="form-control" id="iva" name="iva" placeholder="Ingrese el iva">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="stock" class="col-sm-2 col-form-label">Stock</label>
-                            <div class="col-sm-10">
-                                <input required type="number" minlength="6" class="form-control" id="stock" name="stock" placeholder="Ingrese el stock">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
-                        <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                    </div>
-                    <!-- /.card-footer -->
-                </form>
-            </div>
-            <!-- /.card -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
-    <?php require ('../../partials/footer.php');?>
+                            <div class="card-body">
+                                <form class="form-horizontal" method="post" id="frmCreateProducto" name="frmCreateProducto"
+                                      action="../../../app/Controllers/ProductoController.php?action=create">
+
+                                    <?php
+                                    $dataProducto = null;
+                                    if (!empty($_GET['idProducto'])) {
+                                        $dataProducto = ProductoController::searchForID($_GET['idProducto']);
+                                    }
+                                    ?>
+
+                                    <div class="form-group row">
+                                        <label for="id_categoria" class="col-sm-4 col-form-label">Categoria</label>
+                                        <div class="col-sm-8">
+                                            <?= \App\Controllers\CategoriaController::selectCategoria(false,
+                                                true,
+                                                'id_categoria',
+                                                'id_categoria',
+                                                (!empty($dataProducto)) ? $dataProducto->getIdCategoria()->getId() : '',
+                                                'form-control select2bs4 select2-info',
+                                                " 'Categoria' and estado = 'Activo'")
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="id_marca" class="col-sm-4 col-form-label">Marca</label>
+                                        <div class="col-sm-8">
+                                            <?= MarcaController::selectMarca(false,
+                                                true,
+                                                'id_marca',
+                                                'id_marca',
+                                                (!empty($dataProducto)) ? $dataProducto->getIdMarca()->getIdProducto() : '',
+                                                'form-control select2bs4 select2-info',
+                                                "rol = 'Marca' and estado = 'Activo'")
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    if (!empty($dataProducto)) {
+                                        ?>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-4 col-form-label">Nmbre</label>
+                                            <div class="col-sm-8">
+                                                <?= $dataProducto->getNombre() ?>-<?= $dataProducto->Producto() ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="descripcion" class="col-sm-4 col-form-label">Descripcion</label>
+                                            <div class="col-sm-8">
+                                                <?= $dataProducto->getDescripcion() ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="iva" class="col-sm-4 col-form-label">Iva</label>
+                                            <div class="col-sm-8">
+                                                <?= $dataProducto->getIva() ?>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <hr>
+                                    <button type="submit" class="btn btn-info">Enviar</button>
+                                    <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+
+    <!-- /.content-wrapper -->
+    </div>
+
+    <?php require('../../partials/footer.php'); ?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../partials/scripts.php');?>
+<?php require('../../partials/scripts.php'); ?>
+<!-- DataTables -->
+<script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-buttons/js/dataTables.buttons.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-buttons/js/buttons.bootstrap4.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/jszip/jszip.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/pdfmake/pdfmake.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-buttons/js/buttons.html5.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-buttons/js/buttons.print.js"></script>
+<script src="<?= $adminlteURL ?>/plugins/datatables-buttons/js/buttons.colVis.js"></script>
+
+<script>
+    $(function () {
+        $('.datatable').DataTable({
+            "dom": 'Bfrtip',
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "language": {
+                "url": "../../components/Spanish.json" //Idioma
+            },
+            "buttons": [
+                'copy', 'print', 'excel', 'pdf'
+            ],
+            "pagingType": "full_numbers",
+            "responsive": true,
+            "stateSave": true, //Guardar la configuracion del usuario
+        });
+    });
+</script>
+
+
 </body>
 </html>
-

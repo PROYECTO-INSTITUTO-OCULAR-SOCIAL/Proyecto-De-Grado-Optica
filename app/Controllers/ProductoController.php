@@ -19,7 +19,7 @@ class ProductoController{
         if ($action == "create") {
             ProductoController::create();
         } else if ($action == "edit") {
-            ProductosController::edit();
+            ProductoController::edit();
         } else if ($action == "searchForID") {
             ProductoController::searchForID($_REQUEST['idProducto']);
         } else if ($action == "searchAll") {

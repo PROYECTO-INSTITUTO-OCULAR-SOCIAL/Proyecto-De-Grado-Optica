@@ -170,7 +170,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Producto/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -178,7 +178,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Producto/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
