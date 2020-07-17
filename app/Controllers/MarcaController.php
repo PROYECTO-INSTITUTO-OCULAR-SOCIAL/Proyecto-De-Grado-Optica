@@ -118,4 +118,32 @@ class MarcaController
     }
 
 
+    static public function selectMarca ($isMultiple=false,
+                                           $isRequired=true,
+                                           $id="idMarca",
+                                           $nombre="idMarca",
+                                           $defaultValue="",
+                                           $class="",
+                                           $where="",
+                                           $arrExcluir = array())
+    {
+        $arrMarca = array();
+        if ($where != "") {
+            $base = "SELECT * FROM Marca WHERE ";
+            $arrMarca = Marca::search($base . $where);
+        } else {
+            $arrMarca = Marca::getAll();
+        }
+
+        $htmlSelect = "<select " . (($isMultiple) ? "multiple" : "") . " " . (($isRequired) ? "required" : "") . " id= '" . $id . "' name='" . $nombre . "' class='" . $class . "'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if (count($arrMarca) > 0) {
+            foreach ($arrMarca as $Marca)
+                if (!MarcaControllers::MarcaIsInArray($Marca->getid_marca(), $arrExcluir))
+                    $htmlSelect .= "<option " . (($Marca != "") ? (($defaultValue == $Marca->getid_marca()) ? "selected" : "") : "") . " value='" . $Marca->getId() . "'>" . $Marca->getStock() . " - " . $Marca->getNombres() . " - " . $Marca->getPrecio() . "</option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
+    }
+
 }

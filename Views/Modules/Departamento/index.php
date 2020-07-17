@@ -95,9 +95,9 @@ use App\Controllers\DepartamentoController; ?>
                                 foreach ($arrDepartamento as $Departamento){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Departamento->getid_departamento(); ?></td>
-                                        <td><?php echo $Departamento->getnombre(); ?></td>
-                                        <td><?php echo $Departamento->getcodigo_dane(); ?></td>
+                                        <td><?php echo $Departamento->getid_departamento();?></td>
+                                        <td><?php echo $Departamento->getnombre();?></td>
+                                        <td><?php echo $Departamento->getcodigo_dane();?></td>
                                         <td>
                                             <a href="Edit.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="Show.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
