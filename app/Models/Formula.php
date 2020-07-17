@@ -296,8 +296,8 @@ class Formula extends BasicModel
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
-                $this->id_formula,
+        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)", array(
+
                 $this->od_esfera,
                 $this->oi_esfera,
                 $this->od_cilindro,
@@ -386,7 +386,7 @@ class Formula extends BasicModel
 
     public static function FormulaRegistrada ($id_formula) : bool
     {
-        $result = Formula::search("SELECT id_formula FROM royecto-De-Grado-Optica.Formula where id_formula = " . $id_formula);
+        $result = Formula::search("SELECT id_formula FROM royecto-De-Grado-Optica.Formula where id_formula = '" . $id_formula."'");
         if (count($result) > 0) {
             return true;
         } else {
