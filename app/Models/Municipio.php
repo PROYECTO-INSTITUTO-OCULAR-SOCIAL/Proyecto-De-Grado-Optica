@@ -10,15 +10,15 @@ class Municipio extends BasicModel
     private $id_municipio;
     private $nombre;
     private $codigo_dane;
-
     /* Relaciones */
-    private $departamento;
+    private $id_departamento;
 
     /**
      *  Usuarios constructor.
      * @param $id_municipio
      * @param $nombre
      * @param $codigo_dane
+     * @param $id_departamento
      */
     public function __construct($Municipio = array())
     {
@@ -26,6 +26,7 @@ class Municipio extends BasicModel
         $this->id_municipio = $Municipio['id_municipio'] ?? null;
         $this->nombre = $Municipio['nombre'] ?? null;
         $this->codigo_dane = $Municipio['codigo_dane'] ?? null;
+        $this->id_departamento = $Municipio['id_departamento'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -82,84 +83,43 @@ class Municipio extends BasicModel
     }
 
     /**
-     * @return mixed
+     * @param mixed $id_departamento
      */
-    public function getDepartamento()
+    public function setid_departamento(Departamento $id_departamento): void
     {
-        return $this->departamento;
-    }
-
-    /**
-     * @param mixed $departamento
-     */
-    public function setDepartamento($departamento): void
-    {
-        $this->departamento = $departamento;
+        $this->id_departamento = $id_departamento;
     }
 
 
-    /**
-     * @return mixed
-     */
 
-
-    public function create() : bool
+    public function create()
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
+                $this->id_departamento->getid_departamento(),
+
+            )
+        );
+        $this->setIdMunicipio(($result) ? $this->getLastId() : null);
+        $this->Disconnect();
+        return $result;
+    }
+
+    public function update()
+    {
+        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?, id_departamento = ? WHERE id_municipio = ?", array(
+                $this->nombre,
+                $this->codigo_dane,
+                $this->id_departamento->getid_departamento(),
             )
         );
         $this->Disconnect();
         return $result;
     }
 
-    public function update() : bool
-    {
-        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?,  WHERE id_municipio = ?", array(
-                $this->nombre,
-                $this->codigo_dane,
-                $this->id_municipio
-            )
-        );
-        $this->Disconnect();
-        return $result;
-    }
+    public static function getAll()
 
-
-    public static function search($query) : array
-    {
-        $arrMunicipio = array();
-        $tmp = new Municipio();
-        $getrows = $tmp->getRows($query);
-
-        foreach ($getrows as $valor) {
-            $Municipio = new Municipio();
-            $Municipio->id_municipio = $valor['id_municipio'];
-            $Municipio->nombre = $valor['nombre'];
-            $Municipio->codigo_dane = $valor['codigo_dane'];
-            $Municipio->Disconnect();
-            array_push($arrMunicipio, $Municipio);
-        }
-        $tmp->Disconnect();
-        return $arrMunicipio;
-    }
-
-    public static function searchForId($id_municipio) : Municipio
-    {
-        $Municipio = null;
-        if ($id_municipio > 0){
-            $Municipio = new Municipio();
-            $getrow = $Municipio->getRow("SELECT * FROM mer_optica.Municipio WHERE id_municipio = ?", array($id_municipio));
-            $Municipio->id_municipio = $getrow['id_municipio'];
-            $Municipio->nombre = $getrow['nombre'];
-            $Municipio->codigo_dane = $getrow['codigo_dane'];
-        }
-        $Municipio->Disconnect();
-        return $Municipio;
-    }
-
-    public static function getAll() : array
     {
         return Municipio::search("SELECT * FROM mer_optica.Municipio");
     }
@@ -172,5 +132,53 @@ class Municipio extends BasicModel
         }else{
             return false;
         }
+
+    }
+
+    public static function search($query)
+    {
+
+        $arrMunicipio = array();
+        $tmp = new Municipio();
+        $getrows = $tmp->getRows($query);
+
+        foreach ($getrows as $valor) {
+            $Municipio = new Municipio();
+            $Municipio->id_municipio = $valor['id_municipio'];
+            $Municipio->nombre = $valor['nombre'];
+            $Municipio->codigo_dane = $valor['codigo_dane'];
+            $Municipio->id_departamento = Departamento::searchForId($valor['id_departamento']);
+            $Municipio->Disconnect();
+            array_push($arrMunicipio, $Municipio);
+        }
+        $tmp->Disconnect();
+        return $arrMunicipio;
+    }
+
+    public static function searchForId($id)
+    {
+        $Municipio = null;
+        if ($id > 0) {
+            $Municipio = new Municipio();
+            $getrow = $Municipio->getRow("SELECT * FROM mer_optica.Municipio WHERE id_municipio =?", array($id));
+            $Municipio->id_municipio = $getrow['id_municipio'];
+            $Municipio->nombre = $getrow['nombre'];
+            $Municipio->codigo_dane = $getrow['codigo_dane'];
+            $Municipio->id_departamento = Departamento::searchForId($getrow['id_departamento']);
+        }
+        $Municipio->Disconnect();
+        return $Municipio;
+    }
+
+    public function deleted($id)
+    {
+        $Municipio = Municipio::searchForId($id); //Buscando un usuario por el ID
+        $Municipio->setEstado("Inactivo"); //Cambia el estado del Usuario
+        return $Municipio->update();                    //Guarda los cambios..
+    }
+
+    public function __toString()
+    {
+        return "Nombre: $this->nombre, Departamento: $this->id_departamento->nombresCompletos(), codigo_dane: $this->codigo_dane";
     }
 }

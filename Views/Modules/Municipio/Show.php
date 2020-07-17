@@ -68,6 +68,10 @@ use App\Controllers\MunicipioController; ?>
                         <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
                         <p class="text-muted"><?= $DataMunicipio->getCodigoDane().": ".$DataMunicipio->getCodigoDane() ?></p>
                         <hr>
+                        <hr>
+                        <strong><i class="fas fa-user-ninja mr-1"></i> Departamento</strong>
+                        <p class="text-muted"><?= $DataMunicipio->getid_departamento()->getNombre() . ": " . $DataMunicipio->getid_departamento()->getcodigo_dae() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">

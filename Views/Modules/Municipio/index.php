@@ -97,6 +97,7 @@ use App\Controllers\MunicipioController; ?>
                                         <td><?php echo $Municipio->getIdMunicipio(); ?></td>
                                         <td><?php echo $Municipio->getNombre(); ?></td>
                                         <td><?php echo $Municipio->getCodigoDane(); ?></td>
+                                        <td><?= $Municipio->getid_departamennto()->getNombre(); ?> <?= $Municipio->getid_departamento()->getcodigo_dane(); ?></td>
                                         <td>
                                             <a href="Edit.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="Show.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>

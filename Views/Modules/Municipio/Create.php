@@ -1,4 +1,6 @@
-<?php require("../../Partials/Routes.php"); ?>
+<?php
+require_once("../../../app/Controllers/DepartamentoController.php");
+require("../../Partials/Routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +63,20 @@
                             <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                             <div class="col-sm-10">
                                 <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" placeholder="Ingrese el Codigo Dane">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="id_departamento" class="col-sm-4 col-form-label">Departamento</label>
+                            <div class="col-sm-8">
+                                <?= \App\Controllers\DepartamentoController::selectDepartamento(false,
+                                    true,
+                                    'id_departamento',
+                                    'id_departamento',
+                                    (!empty($dataMunicipio)) ? $dataMunicipio->getid_departamento()->getId() : '',
+                                    'form-control select2bs4 select2-info'
+                                    )
+                                ?>
                             </div>
                         </div>
                     <!-- /.card-body -->
