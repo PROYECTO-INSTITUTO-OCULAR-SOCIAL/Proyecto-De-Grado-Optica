@@ -40,7 +40,7 @@ class Departamento extends BasicModel
     /**
      * @param int $id_departamento
      */
-    public function setId(int $id_departamento): void
+    public function setid_departamento(int $id_departamento): void
     {
         $this->id_departamento = $id_departamento;
     }
