@@ -2,7 +2,7 @@
 require("../../Partials/Routes.php");
 require("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\DepartamentoController; ?>
+use App\Controllers\DepartamentoController;?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@ use App\Controllers\DepartamentoController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
+                            <li class="breadcrumb-item"><a href="<?=$baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -64,17 +64,17 @@ use App\Controllers\DepartamentoController; ?>
                 <?php if(!empty($_GET["id_departamento"]) && isset($_GET["id_departamento"])){ ?>
                     <p>
                     <?php
-                    $DataDepartamento = \App\Controllers\DepartamentoController::searchForId($_GET["id_departamento"]);
+                    $DataDepartamento =DepartamentoController::searchForId($_GET["id_departamento"]);
                     if(!empty($DataDepartamento)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditDepartamento" name="frmEditDepartamento" action="../../../app/Controllers/$DataDepartamentoController.php?action=Edit">
-                            <input id="id" name="id" value="<?php echo $DataDepartamento->getid_departamento(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditDepartamento" name="frmEditDepartamento" action="../../../app/Controllers/DepartamentoController.php?action=edit">
+                            <input id="id_departamento" name="id_departamento" value="<?php echo $DataDepartamento->getid_departamento(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataDepartamento->getnombre(); ?>" placeholder="Ingrese su nombre">
+                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?=$DataDepartamento->getnombre(); ?>" placeholder="Ingrese su nombre">
                                     </div>
                                 </div>
                                 <div class="form-group row">
