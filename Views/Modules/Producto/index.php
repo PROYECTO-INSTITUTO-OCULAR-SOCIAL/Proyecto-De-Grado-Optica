@@ -1,7 +1,11 @@
-<?php require("../../partials/routes.php");
-require("../../../app/Controllers/DepartamentoController.php");
+<?php
+require_once("../../../app/Controllers/ProductoController.php");
+require_once("../../partials/routes.php");
 
-use App\Controllers\DepartamentoController; ?>
+
+use App\Controllers\ProductoController;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +20,9 @@ use App\Controllers\DepartamentoController; ?>
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require_once("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -48,9 +52,9 @@ use App\Controllers\DepartamentoController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El Departamento ha sido creado con exito!
+                            El producto ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del Departamento han sido actualizados correctamente!
+                            Los datos del producto han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -59,7 +63,7 @@ use App\Controllers\DepartamentoController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Departamento</h3>
+                    <h3 class="card-title">Gestionar Productos</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,48 +76,58 @@ use App\Controllers\DepartamentoController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Departamento
+                                <i class="fas fa-plus"></i> Crear Producto
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblDepartamento" class="datatable table table-bordered table-striped">
+                            <table id="tblProducto" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Codigo Dane</th>
+                                    <th>Descripcion</th>
+                                    <th>Iva</th>
+                                    <th>Stock</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
-
-                                   
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrDepartamento = DepartamentoController::getAll();
-                                foreach ($arrDepartamento as $Departamento){
+                                $arrProducto = ProductoController::getAll();
+                                foreach ($arrProducto as $Producto){
                                     ?>
                                     <tr>
-                                        <td><?php echo $Departamento->getid_departamento();?></td>
-                                        <td><?php echo $Departamento->getnombre();?></td>
-                                        <td><?php echo $Departamento->getcodigo_dane();?></td>
+                                        <td><?php echo $Producto->getIdProducto(); ?></td>
+                                        <td><?php echo $Producto->getNombre(); ?></td>
+                                        <td><?php echo $Producto->getDescripcion(); ?></td>
+                                        <td><?php echo $Producto->getIva(); ?></td>
+                                        <td><?php echo $Producto->getStock(); ?></td>
+                                        <td><?php echo $Producto->getEstado(); ?></td>
                                         <td>
-                                            <a href="Edit.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_departamento=<?php echo $Departamento->getid_departamento(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-
+                                            <a href="Edit.php?id=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Producto->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/ProductoController.php?action=activate&Id=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <?php }else{ ?>
+                                                <a type="button" href="../../../app/Controllers/ProductoController.php?action=inactivate&Id=<?php echo $Producto->getIdProducto(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
+
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Codigo Dane</th>
+                                    <th>Descripcion</th>
+                                    <th>Iva</th>
+                                    <th>Stock</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
-
-
                                 </tr>
                                 </tfoot>
                             </table>
