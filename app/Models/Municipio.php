@@ -2,7 +2,8 @@
 
 
 namespace App\Models;
-require ('BasicModel.php');
+require_once ('BasicModel.php');
+require_once ('Departamento.php');
 
 class Municipio extends BasicModel
 {
@@ -11,14 +12,14 @@ class Municipio extends BasicModel
     private $nombre;
     private $codigo_dane;
     /* Relaciones */
-    private $id_departamento;
+    private $departamento;
 
     /**
      *  Usuarios constructor.
      * @param $id_municipio
      * @param $nombre
      * @param $codigo_dane
-     * @param $id_departamento
+     * @param $departamento
      */
     public function __construct($Municipio = array())
     {
@@ -26,11 +27,12 @@ class Municipio extends BasicModel
         $this->id_municipio = $Municipio['id_municipio'] ?? null;
         $this->nombre = $Municipio['nombre'] ?? null;
         $this->codigo_dane = $Municipio['codigo_dane'] ?? null;
-        $this->id_departamento = $Municipio['id_departamento'] ?? null;
+        $this->departamento = $Municipio['departamento'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
-    function __destruct() {
+    function __destruct()
+    {
         $this->Disconnect();
     }
 
@@ -82,22 +84,26 @@ class Municipio extends BasicModel
         $this->codigo_dane = $codigo_dane;
     }
 
-    /**
-     * @param mixed $id_departamento
-     */
-    public function setid_departamento(Departamento $id_departamento): void
+    public function getDepartamento(): Departamento
     {
-        $this->id_departamento = $id_departamento;
+        return $this->departamento;
     }
 
+    /**
+     * @param mixed $departamento
+     */
+    public function setDepartamento(Departamento $departamento): void
+    {
+        $this->departamento = $departamento;
+    }
 
 
     public function create()
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Municipio VALUES (NULL, ?, ?, ?)", array(
                 $this->nombre,
                 $this->codigo_dane,
-                $this->id_departamento->getid_departamento(),
+                $this->departamento->getid_departamento(),
 
             )
         );
@@ -108,10 +114,11 @@ class Municipio extends BasicModel
 
     public function update()
     {
-        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?, id_departamento = ? WHERE id_municipio = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Municipio SET nombre = ?, codigo_dane = ?, departamento = ? WHERE id_municipio = ?", array(
                 $this->nombre,
                 $this->codigo_dane,
-                $this->id_departamento->getid_departamento(),
+                $this->departamento->getid_departamento(),
+                $this->id_municipio,
             )
         );
         $this->Disconnect();
@@ -124,12 +131,12 @@ class Municipio extends BasicModel
         return Municipio::search("SELECT * FROM mer_optica.Municipio");
     }
 
-    public static function MunicipioRegistrado ($nombre) : bool
+    public static function MunicipioRegistrado($nombre): bool
     {
-        $result = Municipio::search("SELECT nombre FROM mer_optica.Municipio where nombre = '".$nombre."'");
-        if (count($result) > 0){
+        $result = Municipio::search("SELECT nombre FROM mer_optica.Municipio where nombre = '" . $nombre . "'");
+        if (count($result) > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -147,7 +154,7 @@ class Municipio extends BasicModel
             $Municipio->id_municipio = $valor['id_municipio'];
             $Municipio->nombre = $valor['nombre'];
             $Municipio->codigo_dane = $valor['codigo_dane'];
-            $Municipio->id_departamento = Departamento::searchForId($valor['id_departamento']);
+            $Municipio->departamento = Departamento::searchForId($valor['departamento']);
             $Municipio->Disconnect();
             array_push($arrMunicipio, $Municipio);
         }
@@ -164,7 +171,7 @@ class Municipio extends BasicModel
             $Municipio->id_municipio = $getrow['id_municipio'];
             $Municipio->nombre = $getrow['nombre'];
             $Municipio->codigo_dane = $getrow['codigo_dane'];
-            $Municipio->id_departamento = Departamento::searchForId($getrow['id_departamento']);
+            $Municipio->departamento = Departamento::searchForId($getrow['departamento']);
         }
         $Municipio->Disconnect();
         return $Municipio;
@@ -176,9 +183,9 @@ class Municipio extends BasicModel
         $Municipio->setEstado("Inactivo"); //Cambia el estado del Usuario
         return $Municipio->update();                    //Guarda los cambios..
     }
-
-    public function __toString()
+    public function nombresCompletos()
     {
-        return "Nombre: $this->nombre, Departamento: $this->id_departamento->nombresCompletos(), codigo_dane: $this->codigo_dane";
+        return $this->nombre . " ";
     }
 }
+

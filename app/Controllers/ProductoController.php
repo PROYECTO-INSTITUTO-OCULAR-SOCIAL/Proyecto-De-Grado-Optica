@@ -1,133 +1,131 @@
 <?php
 
 namespace App\Controllers;
-require(__DIR__.'/../Models/Categoria.php');
+require(__DIR__.'/../Models/Producto.php');
 require_once(__DIR__.'/../Models/GeneralFunctions.php');
 
 use App\Models\GeneralFunctions;
-use App\Models\Usuarios;
-use App\Models\Categoria;
-
+use App\Models\Producto;
+use App\Models\Productos;
 
 if(!empty($_GET['action'])){
-    CategoriaController::main($_GET['action']);
+    ProductoController::main($_GET['action']);
 }
 
-class CategoriaController{
+class ProductoController{
 
     static function main($action)
     {
         if ($action == "create") {
-            CategoriaController::Create();
-        } else if ($action == "Edit") {
-            CategoriaController::Edit();
-        } else if ($action == "searchForId") {
-            CategoriaController::searchForId($_REQUEST['idCategoria']);
+            ProductoController::create();
+        } else if ($action == "edit") {
+            ProductosController::edit();
+        } else if ($action == "searchForID") {
+            ProductoController::searchForID($_REQUEST['idProducto']);
         } else if ($action == "searchAll") {
-            CategoriaController::getAll();
+            ProductoController::getAll();
         } else if ($action == "activate") {
-            CategoriaController::activate();
+            ProductoController::activate();
         } else if ($action == "inactivate") {
-            CategoriaController::inactivate();
+            ProductoController::inactivate();
         }/*else if ($action == "login"){
             UsuariosController::login();
         }else if($action == "cerrarSession"){
             UsuariosController::cerrarSession();
         }*/
-
     }
 
-    static public function Create()
+    static public function create()
     {
         try {
-            $arrayCategoria = array();
-            $arrayCategoria['nombre'] = $_POST['nombre'];
-            $arrayCategoria['estado'] = $_POST['estado'];
-            if (!Categoria::CategoriaRegistrado($arrayCategoria['nombre'])) {
-                $Categoria = new Categoria ($arrayCategoria);
-                if ($Categoria->create()) {
-                    header("Location: ../../views/Modules/Categoria/index.php?respuesta=correcto");
-                }else{
-                    echo "error";
+            $arrayProducto = array();
+            $arrayProducto['nombre'] = $_POST['nombre'];
+            $arrayProducto['descripcion'] = $_POST['descripcion'];
+            $arrayProducto['iva'] = $_POST['iva'];
+            $arrayProducto['stock'] = $_POST['stock'];
+            $arrayProducto['estado'] = 'Activo';
+            if(!Producto::productoRegistrado($arrayProducto['nombre'])){
+                $Producto = new Producto($arrayProducto);
+                if($Producto->create()){
+                    header("Location: ../../views/modules/Producto/index.php?respuesta=correcto");
                 }
-            } else {
-                header("Location: ../../views/Modules/Categoria/Create.php?respuesta=error&mensaje=Categoria ya registrada");
+            }else{
+                header("Location: ../../views/modules/Producto/Create.php?respuesta=error&mensaje=Producto ya registrado");
             }
         } catch (Exception $e) {
-            header("Location: ../../views/Modules/Categoria/Create.php?respuesta=error&mensaje=" . $e->getMessage());
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../views/modules/Producto/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function Edit()
-    {
+    static public function edit (){
         try {
-            $arrayCategoria= array();
-            $arrayCategoria['nombre'] = $_POST['nombre'];
-            $arrayCategoria['estado'] = $_POST['estado'];
-            $arrayCategoria['id_categoria'] = $_POST['id_categoria'];
+            $arrayProducto = array();
+            $arrayProducto['nombre'] = $_POST['nombre'];
+            $arrayProducto['descripcion'] = $_POST['descripcion'];
+            $arrayProducto['iva'] = $_POST['iva'];
+            $arrayProducto['stock'] = $_POST['stock'];
+            $arrayProducto['estado'] = $_POST['estado'];
+            $arrayProducto['id_producto'] = $_POST['id_producto'];
 
-            $Categoria = new Categoria($arrayCategoria);
-            $Categoria->update();
+            $Producto = new Producto($arrayProducto);
+            $Producto->update();
 
-            header("Location: ../../views/modules/Categoria/Show.php?idCategoria=".$Categoria->getIdCategoria()."&respuesta=correcto");
+            header("Location: ../../Views/MModules/Producto/Show.php?id=".$Producto->getIdProducto()."&respuesta=correcto");
         } catch (\Exception $e) {
-            var_dump($e);
-            //header("Location: ../../views/modules/Categoria/Edit.php?respuesta=error&mensaje" . $e->getMessage());
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Productos/Edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
-    static public function activate()
-    {
+    static public function activate (){
         try {
-            $ObjCategoria = Categoria::searchForId($_GET['idCategoria']);
-            $ObjCategoria->setEstado("Activo");
-            if ($ObjCategoria->update()) {
-                header("Location: ../../views/Modules/Categoria/index.php");
-            } else {
-                header("Location: ../../views/Modules/Categoria/index.php?respuesta=error&mensaje=Error al guardar");
+            $ObjProducto = Producto::searchForId($_GET['Id']);
+            $ObjProducto->setEstado("Activo");
+            if($ObjProducto->update()){
+                header("Location: ../../Views/Modules/Productos/index.php");
+            }else{
+                header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../views/Modules/Categoria/index.php?respuesta=error&mensaje=" . $e->getMessage());
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
-    static public function inactivate()
-    {
+    static public function inactivate (){
         try {
-            $ObjCategoria = Categoria::searchForId($_GET['idCategoria']);
-            $ObjCategoria->setestado("Inactivo");
-            if ($ObjCategoria->update()) {
-                header("Location: ../../views/modules/Categoria/index.php");
-            } else {
-                header("Location: ../../views/Modules/Categoria/index.php?respuesta=error&mensaje=Error al guardar");
+            $ObjProducto = Producto::searchForId($_GET['Id']);
+            $ObjProducto->setEstado("Inactivo");
+            if($ObjProducto->update()){
+                header("Location: ../../Views/Modules/Productos/index.php");
+            }else{
+                header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../views/Modules/Categoria/index.php?respuesta=error");
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Productos/index.php?respuesta=error");
         }
     }
 
-    static public function searchForId($id_categoria)
-    {
+    static public function searchForID ($id_producto){
         try {
-            return Categoria::searchForId($id_categoria);
+            return Productos::searchForId($id_producto);
         } catch (\Exception $e) {
-            var_dump($e);
-            //header("Location: ../../views/Modules/Categoria/manager.php?respuesta=error");
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Productos/manager.php?respuesta=error");
         }
     }
 
     static public function getAll()
     {
         try {
-            return Categoria::getAll();
+            return Producto::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            //header("Location: ../Vista/Modules/Categoria/Categoria.php?respuesta=error");
+            //header("Location: ../Vista/Modules/Producto/Producto.php?respuesta=error");
         }
     }
-
 
     /*public static function personaIsInArray($idPersona, $ArrPersonas){
         if(count($ArrPersonas) > 0){

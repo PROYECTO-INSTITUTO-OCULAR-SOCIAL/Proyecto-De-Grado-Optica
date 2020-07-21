@@ -1,8 +1,10 @@
 <?php
 namespace App\Controllers;
-require(__DIR__.'/../Models/Municipio.php');
-
+require_once(__DIR__.'/../Models/Municipio.php');
+require_once(__DIR__.'/../Models/Departamento.php');
+require_once(__DIR__.'/../Models/GeneralFunctions.php');
 use App\Models\Departamento;
+use App\Models\GeneralFunctions;
 use App\Models\Municipio;
 
 if(!empty($_GET['action'])){
@@ -36,7 +38,7 @@ class MunicipioController
             $arrayMunicipio = array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
-            $arrayMunicipio['id_departamento'] = Departamento::searchForId($_POST['id_departamento']);
+            $arrayMunicipio['departamento'] = Departamento::searchForId($_POST['departamento']);
             $Municipio = new Municipio($arrayMunicipio);
             if($Municipio->create()){
                 header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
@@ -52,7 +54,7 @@ class MunicipioController
             $arrayMunicipio= array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
-            $arrayMunicipio['id_departamento'] = Departamento::searchForId($_POST['id_departamento']);
+            $arrayMunicipio ['departamento'] = Departamento::searchForId($_POST['departamento']);
             $arrayMunicipio['id_municipio'] = $_POST['id_municipio'];
 
             $Municipio = new Municipio($arrayMunicipio);
@@ -74,7 +76,7 @@ class MunicipioController
             header("Location: ../Vista/Modules/Municipio/manager.php?respuesta=error");
         }
     }
-            static public function activate()
+    static public function activate()
     {
         try {
             $ObjMunicipio = Municipio::searchForID($_GET['id_municipio']);
@@ -113,15 +115,25 @@ class MunicipioController
         }
     }
 
+    public static function MunicipioIsInArray($id_municipio, $ArrMuicipio){
+        if(count($ArrMuicipio) > 0){
+            foreach ($ArrMuicipio as $Municipio){
+                if($Municipio->getIdMunicipio() == $id_municipio){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     static public function selectMunicipio ($isMultiple=false,
-                                           $isRequired=true,
-                                           $id="id_municipio",
-                                           $nombre="id_municipio",
-                                           $defaultValue="",
-                                           $class="",
-                                           $where="",
-                                           $arrExcluir = array()){
+                                            $isRequired=true,
+                                            $id="id_municipio",
+                                            $nombre="id_municipio",
+                                            $defaultValue="",
+                                            $class="",
+                                            $where="",
+                                            $arrExcluir = array()){
         $arrMunicipio = array();
         if($where != ""){
             $base = "SELECT * FROM Municipio WHERE ";
@@ -134,8 +146,8 @@ class MunicipioController
         $htmlSelect .= "<option value='' >Seleccione</option>";
         if(count($arrMunicipio) > 0){
             foreach ($arrMunicipio as $Municipio)
-                if (!MunicipioController::MunicipioIsInArray($Municipio->getId(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($Municipio != "") ? (($defaultValue == $Municipio->getId()) ? "selected" : "" ) : "")." value='".$Municipio->getId()."'>".$Municipio->getStock()." - ".$Municipio->getNombre()." - ".$Municipio->getCodigo_Dane()."</option>";
+                if (!MunicipioController::MunicipioIsInArray($Municipio->getIdMunicipio(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Municipio != "") ? (($defaultValue == $Municipio->getIdMunicipio()) ? "selected" : "" ) : "")." value='".$Municipio->getIdMunicipio()."'>"." - ".$Municipio->getNombre()." - ".$Municipio->getCodigoDane()."</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;

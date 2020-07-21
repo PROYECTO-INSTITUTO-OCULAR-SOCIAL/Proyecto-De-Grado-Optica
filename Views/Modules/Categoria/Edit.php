@@ -44,7 +44,7 @@ use App\Controllers\CategoriaController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el Categoria: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al crear la Categoria: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['idCategoria'])) { ?>
@@ -68,8 +68,8 @@ use App\Controllers\CategoriaController; ?>
                     if(!empty($DataCategoria)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditCategoria" name="frmEditCategoria" action="../../../app/Controllers/CategoriaController.php.?action=Edit">
-                            <input id="id" name="id" value="<?php echo $DataCategoria->getIdCategoria(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditCategoria" name="frmEditCategoria" action="../../../app/Controllers/CategoriaController.php?action=Edit">
+                            <input id="id_categoria" name="id_categoria" value="<?php echo $DataCategoria->getIdCategoria(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -86,8 +86,6 @@ use App\Controllers\CategoriaController; ?>
                                         </select>
                                     </div>
                                 </div>
-
-                            </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info">Enviar</button>

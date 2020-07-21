@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
-require(__DIR__.'/../Models/Departamento.php');
+require_once(__DIR__.'/../Models/Departamento.php');
 use App\Models\Departamento;
+use App\Models\Productos;
 
 if(!empty($_GET['action'])){
     DepartamentoController::main($_GET['action']);
@@ -60,10 +61,10 @@ class DepartamentoController
             $arrayDepartamento['codigo_dane'] = $_POST['codigo_dane'];
             $arrayDepartamento['id_departamento'] = $_POST['id_departamento'];
 
-            $user = new Departamento($arrayDepartamento);
-            $user->update();
+            $Departamento = new Departamento($arrayDepartamento);
+            $Departamento->update();
 
-            header("Location: ../../Views/Modules/Departamento/Show.php?id_departamento=" . $user->getid_departamento() . "&respuesta=correcto");
+            header("Location: ../../Views/Modules/Departamento/Show.php?id_departamento=".$Departamento->getid_departamento() . "&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
             header("Location: ../../Views/Modules/Departamento/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
@@ -89,7 +90,46 @@ class DepartamentoController
             return Departamento::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            //header("Location: ../Views/Modules/Municipio/manager.php?respuesta=error");
+            //header("Location: ../Views/Modules/Departamento/manager.php?respuesta=error");
         }
     }
+
+    public static function DepartamentoIsInArray($id_departamento, $ArrDepartamento){
+        if(count($ArrDepartamento) > 0){
+            foreach ($ArrDepartamento as $Departamento){
+                if($Departamento->getid_departamento() == $id_departamento){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    static public function selectDepartamento ($isMultiple=false,
+                                           $isRequired=true,
+                                           $id="id_departamento",
+                                           $nombre="id_departamento",
+                                           $defaultValue="",
+                                           $class="",
+                                           $where="",
+                                           $arrExcluir = array()){
+        $arrDepartamento = array();
+        if($where != ""){
+            $base = "SELECT * FROM Departamento WHERE ";
+            $arrDepartamento = Departamento::search($base.$where);
+        }else{
+            $arrDepartamento= Departamento::getAll();
+        }
+
+        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if(count($arrDepartamento) > 0){
+            foreach ($arrDepartamento as $Departamento)
+                if (!DepartamentoController::DepartamentoIsInArray($Departamento->getid_departamento(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Departamento != "") ? (($defaultValue == $Departamento->getid_departamento()) ? "selected" : "" ) : "")." value='".$Departamento->getid_departamento()."'>"." - ".$Departamento->getnombre()." - ".$Departamento->getcodigo_dane()."</option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
+    }
+
 }

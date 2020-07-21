@@ -1,12 +1,13 @@
-<?php require("../../partials/routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+<?php require_once("../../partials/routes.php");
+require_once("../../../app/Controllers/MunicipioController.php");
+require_once("../../../app/Controllers/DepartamentoController.php");
 
 use App\Controllers\MunicipioController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Layout</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <?php require_once("../../partials/head_imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -16,9 +17,9 @@ use App\Controllers\MunicipioController; ?>
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require_once("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -61,6 +62,11 @@ use App\Controllers\MunicipioController; ?>
                 <div class="card-header">
                     <h3 class="card-title">Gestionar Municipio</h3>
                     <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
+                                data-source="index.php" data-source-selector="#card-refresh-content"
+                                data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                    class="fas fa-expand"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
@@ -84,6 +90,7 @@ use App\Controllers\MunicipioController; ?>
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo Dane</th>
+                                    <th>Departamento</th>
                                     <th>Acciones</th>
 
                                 </tr>
@@ -91,13 +98,15 @@ use App\Controllers\MunicipioController; ?>
                                 <tbody>
                                 <?php
                                 $arrMunicipio = MunicipioController::getAll();
-                                foreach ($arrMunicipio as $Municipio){
+                                foreach ($arrMunicipio as $Municipio) {
+                                    ;
                                     ?>
                                     <tr>
-                                        <td><?php echo $Municipio->getIdMunicipio(); ?></td>
-                                        <td><?php echo $Municipio->getNombre(); ?></td>
-                                        <td><?php echo $Municipio->getCodigoDane(); ?></td>
-                                        <td><?= $Municipio->getid_departamennto()->getNombre(); ?> <?= $Municipio->getid_departamento()->getcodigo_dane(); ?></td>
+                                        <td><?= $Municipio->getIdMunicipio(); ?></td>
+                                        <td><?= $Municipio->getNombre(); ?></td>
+                                        <td><?= $Municipio->getCodigoDane(); ?></td>
+                                        <td><?= $Municipio->getDepartamento()->getnombre(); ?> <?= $Municipio->getDepartamento()->getcodigo_dane(); ?></td>
+
                                         <td>
                                             <a href="Edit.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="Show.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
@@ -111,9 +120,8 @@ use App\Controllers\MunicipioController; ?>
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Codigo Dane</th>
+                                    <th>Departamento</th>
                                     <th>Acciones</th>
-
-
                                 </tr>
                                 </tfoot>
                             </table>

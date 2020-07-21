@@ -48,9 +48,9 @@ use App\Controllers\CategoriaController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El usuario ha sido creado con exito!
+                            la categoria ha sido creada con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del usuario han sido actualizados correctamente!
+                            Los datos de la categoria han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -169,7 +169,7 @@ use App\Controllers\CategoriaController; ?>
             ],
             "pagingType": "full_numbers",
             "responsive": true,
-            "stateSave" : true, //Guardar la configuracion del usuario
+            "stateSave" : true,
         });
     });
 </script>

@@ -1,19 +1,17 @@
-<?php
-require_once("../../../app/Controllers/DepartamentoController.php");
-require_once("../../Partials/Routes.php"); ?>
+<?php require("../../partials/routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Municipio</title>
-    <?php require_once("../../Partials/Head_Imports.php"); ?>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Producto</title>
+    <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
+    <?php require("../../partials/navbar_customization.php"); ?>
 
-    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -22,7 +20,7 @@ require_once("../../Partials/Routes.php"); ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo Municipio</h1>
+                        <h1>Crear un Nuevo Producto</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,43 +40,45 @@ require_once("../../Partials/Routes.php"); ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el Municipio: <?= $_GET['mensaje'] ?>
+                        Error al crear el producto: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Horizontal Form</h3>
+                </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateMunicipio" name="frmCreateMunicipio" action="../../../app/Controllers/MunicipioController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateProductoController.php" name="frmCreateProductoController.php" action="../../../app/Controllers/ProductoController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre del producto">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo Dane</label>
+                            <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
                             <div class="col-sm-10">
-                                <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" placeholder="Ingrese el Codigo Dane">
+                                <input required type="number" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese el descripcion">
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="departamento" class="col-sm-2 col-form-label">Departamento</label>
+                            <label for="iva" class="col-sm-2 col-form-label">Iva</label>
                             <div class="col-sm-10">
-                                <?= \App\Controllers\DepartamentoController::selectDepartamento(false,
-                                    true,
-                                    'departamento',
-                                    'departamento',
-                                    (!empty($dataMunicipio)) ? $dataMunicipio->getDepartamento()->getid_departamento() : '',
-                                    'form-control select2bs4 select2-info'
-                                    )
-                                ?>
+                                <input required type="number" class="form-control" id="iva" name="iva" placeholder="Ingrese el iva">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+                            <div class="col-sm-10">
+                                <input required type="number" minlength="6" class="form-control" id="stock" name="stock" placeholder="Ingrese el stock">
+                            </div>
+                        </div>
+                    </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Enviar</button>
@@ -93,8 +93,10 @@ require_once("../../Partials/Routes.php"); ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../partials/footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../Partials/Scripts.php');?>
+<?php require ('../../partials/scripts.php');?>
 </body>
+</html>
+
