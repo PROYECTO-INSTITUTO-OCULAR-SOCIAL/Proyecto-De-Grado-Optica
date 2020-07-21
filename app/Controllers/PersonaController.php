@@ -57,7 +57,7 @@ class PersonaController
         }
     }
 
-    static public function edit (){
+    static public function Edit (){
         try {
             $arrayPersona= array();
             $arrayPersona['tipo_documento'] = $_POST['tipo_documento'];
@@ -70,10 +70,11 @@ class PersonaController
             $arrayPersona['rol'] = 'Cliente';
             $arrayPersona['contrasena'] = $_POST['contrasena'];
             $arrayPersona['estado'] = 'Activo';
+            $arrayPersona['id_persona'] = $_POST['id_persona'];
             $Persona = new Persona($arrayPersona);
             $Persona->update();
 
-            header("Location: ../../Views/Modules/Persona/Show.php?id_personna=".$Persona->getIdPersona()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Persona/Show.php?id_persona=".$Persona->getIdPersona()."&respuesta=correcto");
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Persona/Edit.php?respuesta=error&mensaje=".$e->getMessage());
@@ -159,7 +160,7 @@ class PersonaController
         $htmlSelect .= "<option value='' >Seleccione</option>";
         if(count($arrPersona) > 0){
             foreach ($arrPersona as $Persona)
-                if (!MunicipioController::PersonaIsInArray($Persona->getIdPersona(),$arrExcluir))
+                if (!PersonaController::PersonaIsInArray($Persona->getIdPersona(),$arrExcluir))
                     $htmlSelect .= "<option ".(($Persona != "") ? (($defaultValue == $Persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$Persona->getIdPersona()."'>".$Persona->getStock()." - ".$Persona->getNombre()." - ".$Persona->getCodigo_Dane()."</option>";
         }
         $htmlSelect .= "</select>";

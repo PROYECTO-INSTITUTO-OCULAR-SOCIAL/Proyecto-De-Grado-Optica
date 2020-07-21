@@ -23,7 +23,7 @@ use App\Controllers\MunicipioController; ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col-sm-6">
                         <h1>Informacion del Municipio</h1>
                     </div>
@@ -66,16 +66,16 @@ use App\Controllers\MunicipioController; ?>
                             <p class="card-title"><?= $DataMunicipio->getNombre() ?></p>
                         </div>
                         <hr>
-                        <strong><i class="fas fa-user mr-1"></i> ID</strong>
+                        <strong><i class="fas fa-user mr-1"></i> ID </strong>
                         <p class="text-muted"><?= $DataMunicipio->getIdMunicipio() ?></p>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Codigo Dane</strong>
                         <p class="text-muted"><?= $DataMunicipio->getCodigoDane() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Departamento</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Departamento</strong>
                         <p class="text-muted"><?= $DataMunicipio->getDepartamento()->getnombre() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Dane Departamento</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Dane Departamento</strong>
                         <p class="text-muted"><?= $DataMunicipio->getDepartamento()->getcodigo_dane() ?></p>
                         <hr>
                         <div class="card-footer">

@@ -180,7 +180,7 @@ class Persona extends BasicModel
     /**
      * @param $municipio
      */
-    public function setMunicipio(int $municipio): void
+    public function setMunicipio(Municipio $municipio): void
     {
         $this->municipio = $municipio;
     }
@@ -269,6 +269,7 @@ class Persona extends BasicModel
                 $this->rol,
                 $this->contrasena,
                 $this->estado,
+                $this->id_persona,
             )
         );
         $this->Disconnect();
@@ -353,8 +354,4 @@ class Persona extends BasicModel
         return $this->nombre . " ";
     }
 
-    public function __toString()
-    {
-        return "Documento: $this->documento, Nombre: $this->nombre, Apellido: $this->apellido, Direccion: $this->direccion, Telefono: $this->telefono, Municipio: $this->municipio->nombresCompletos(), Rol: $this->rol, Contrasena: $this->contrasena, Estado: $this->estado";
-    }
 }

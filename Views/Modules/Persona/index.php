@@ -65,7 +65,7 @@ use App\Controllers\PersonaController;
                         <!-- Default box -->
                         <div class="card card-dark">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Persona</h3>
+                                <h3 class="card-title"><i class="fas fa-user"></i>Gestionar Persona</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
                                             data-source="index.php" data-source-selector="#card-refresh-content"
@@ -125,11 +125,11 @@ use App\Controllers\PersonaController;
                                                     <td><?php echo $Persona->getRol(); ?></td>
                                                     <td><?php echo $Persona->getEstado(); ?></td>
                                                     <td>
-                                                        <a href="Edit.php?id=<?php echo $Persona->getIdPersona(); ?>"
+                                                        <a href="Edit.php?id_persona=<?php echo $Persona->getIdPersona(); ?>"
                                                            type="button" data-toggle="tooltip" title="Actualizar"
                                                            class="btn docs-tooltip btn-primary btn-xs"><i
                                                                 class="fa fa-edit"></i></a>
-                                                        <a href="Show.php?id=<?php echo $Persona->getIdPersona(); ?>"
+                                                        <a href="Show.php?id_persona=<?php echo $Persona->getIdPersona(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                 class="fa fa-eye"></i></a>

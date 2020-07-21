@@ -32,7 +32,7 @@ class MunicipioController
 
     }
 
-    static public function create()
+    static public function Create()
     {
         try {
             $arrayMunicipio = array();
@@ -49,7 +49,7 @@ class MunicipioController
         }
     }
 
-    static public function edit (){
+    static public function Edit (){
         try {
             $arrayMunicipio= array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
