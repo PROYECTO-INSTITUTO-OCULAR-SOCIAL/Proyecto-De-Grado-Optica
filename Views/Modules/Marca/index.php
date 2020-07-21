@@ -76,6 +76,8 @@ use App\Controllers\MarcaController; ?>
                             </a>
                         </div>
                     </div>
+
+
                     <div class="row">
                         <div class="col">
                             <table id="tblMarca" class="datatable table table-bordered table-striped">
