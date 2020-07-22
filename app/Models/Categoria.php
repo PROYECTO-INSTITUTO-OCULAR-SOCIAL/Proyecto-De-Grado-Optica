@@ -128,6 +128,7 @@ class Categoria extends BasicModel
         $tmp->Disconnect();
         return $arrCategoria;
 
+
     }
 
     public static function getAll() : array

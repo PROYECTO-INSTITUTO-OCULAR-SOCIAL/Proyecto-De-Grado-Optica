@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Controllers;
-require(__DIR__.'/../Models/Producto.php');
+require_once(__DIR__.'/../Models/Producto.php');
+require_once(__DIR__.'/../Models/Categoria.php');
+require_once(__DIR__.'/../Models/Marca.php');
 require_once(__DIR__.'/../Models/GeneralFunctions.php');
 
+
+use App\Models\Categoria;
 use App\Models\GeneralFunctions;
+use App\Models\Marca;
 use App\Models\Producto;
-use App\Models\Productos;
+
 
 if(!empty($_GET['action'])){
     ProductoController::main($_GET['action']);
@@ -43,14 +48,12 @@ class ProductoController{
             $arrayProducto['descripcion'] = $_POST['descripcion'];
             $arrayProducto['iva'] = $_POST['iva'];
             $arrayProducto['stock'] = $_POST['stock'];
+            $arrayProducto['categoria'] = Categoria::searchForId($_POST['categoria']);
+            $arrayProducto['marca'] = Marca::searchForid_marca($_POST['marca']);
             $arrayProducto['estado'] = 'Activo';
-            if(!Producto::productoRegistrado($arrayProducto['nombre'])){
-                $Producto = new Producto($arrayProducto);
-                if($Producto->create()){
-                    header("Location: ../../views/modules/Producto/index.php?respuesta=correcto");
-                }
-            }else{
-                header("Location: ../../views/modules/Producto/Create.php?respuesta=error&mensaje=Producto ya registrado");
+            $Producto = new Producto($arrayProducto);
+            if($Producto->create()){
+                header("Location: ../../views/modules/Producto/Create.php?id=".$Producto->getIdProducto());
             }
         } catch (Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
@@ -66,30 +69,32 @@ class ProductoController{
             $arrayProducto['iva'] = $_POST['iva'];
             $arrayProducto['stock'] = $_POST['stock'];
             $arrayProducto['estado'] = $_POST['estado'];
+            $arrayProducto['categoria'] = Categoria::searchForId($_POST['categoria']);
+            $arrayProducto['marca'] = Marca::searchForid_marca($_POST['marca']);
             $arrayProducto['id_producto'] = $_POST['id_producto'];
 
             $Producto = new Producto($arrayProducto);
             $Producto->update();
 
-            header("Location: ../../Views/MModules/Producto/Show.php?id=".$Producto->getIdProducto()."&respuesta=correcto");
+            header("Location: ../../Views/MModules/Producto/Show.php?idProducto=".$Producto->getIdProducto()."&respuesta=correcto");
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../Views/Modules/Productos/Edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../Views/Modules/Producto/Edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
     static public function activate (){
         try {
-            $ObjProducto = Producto::searchForId($_GET['Id']);
+            $ObjProducto = Producto::searchForId($_GET['IdProducto']);
             $ObjProducto->setEstado("Activo");
             if($ObjProducto->update()){
-                header("Location: ../../Views/Modules/Productos/index.php");
+                header("Location: ../../Views/Modules/Producto/index.php");
             }else{
-                header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../Views/Modules/Producto/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../Views/Modules/Producto/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
@@ -98,22 +103,22 @@ class ProductoController{
             $ObjProducto = Producto::searchForId($_GET['Id']);
             $ObjProducto->setEstado("Inactivo");
             if($ObjProducto->update()){
-                header("Location: ../../Views/Modules/Productos/index.php");
+                header("Location: ../../Views/Modules/Producto/index.php");
             }else{
-                header("Location: ../../Views/Modules/Productos/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../Views/Modules/Producto/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../Views/Modules/Productos/index.php?respuesta=error");
+            header("Location: ../../Views/Modules/Producto/index.php?respuesta=error");
         }
     }
 
     static public function searchForID ($id_producto){
         try {
-            return Productos::searchForId($id_producto);
+            return Producto::searchForId($id_producto);
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../Views/Modules/Productos/manager.php?respuesta=error");
+            header("Location: ../../Views/Modules/Producto/manager.php?respuesta=error");
         }
     }
 

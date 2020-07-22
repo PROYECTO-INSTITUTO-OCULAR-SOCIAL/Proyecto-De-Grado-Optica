@@ -1,6 +1,9 @@
 <?php
-require_once("../../../app/Controllers/ProductoController.php");
 require_once("../../partials/routes.php");
+require_once("../../../app/Controllers/ProductoController.php");
+require_once("../../../app/Controllers/MarcaController.php");
+require_once("../../../app/Controllers/CategoriaController.php");
+
 
 
 use App\Controllers\ProductoController;
@@ -35,7 +38,7 @@ use App\Controllers\ProductoController;
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -81,7 +84,7 @@ use App\Controllers\ProductoController;
                                 <div class="row">
                                     <div class="col-auto mr-auto"></div>
                                     <div class="col-auto">
-                                        <a role="button" href="create.php" class="btn btn-primary float-right"
+                                        <a role="button" href="Create.php" class="btn btn-primary float-right"
                                            style="margin-right: 5px;">
                                             <i class="fas fa-plus"></i> Crear Producto
                                         </a>
@@ -89,16 +92,16 @@ use App\Controllers\ProductoController;
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <table id="tblUsuarios" class="datatable table table-bordered table-striped">
+                                        <table id="tblProducto" class="datatable table table-bordered table-striped">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
-                                                <th>Categoria</th>
-                                                <th>Marca</th>
                                                 <th>Descrpcion</th>
                                                 <th>Iva</th>
                                                 <th>Stock</th>
+                                                <th>Categoria</th>
+                                                <th>Marca</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -112,17 +115,15 @@ use App\Controllers\ProductoController;
                                                 <tr>
                                                     <td><?= $Producto->getIdProducto(); ?></td>
                                                     <td><?= $Producto->getNombre(); ?></td>
-                                                    <td><?= $Producto->getIdCategoria()->getNombre(); ?> <?= $Producto->getIdCategoria(); ?></td>
-                                                    <td><?= $Producto->getIdMarca()->getNombre(); ?> <?= $Producto->getIdMarca(); ?></td>
-                                                    <td><?= $Producto->getDescrpcion(); ?></td>
+                                                    <td><?= $Producto->getDescripcion(); ?></td>
                                                     <td><?= $Producto->getIva(); ?></td>
                                                     <td><?= $Producto->getStock(); ?></td>
+                                                    <td><?= $Producto->getCategoria()->getNombre(); ?></td>
+                                                    <td><?= $Producto->getMarca()->getnombre(); ?></td>
                                                     <td><?= $Producto->getEstado(); ?></td>
                                                     <td>
-                                                        <a href="Show.php?id=<?php echo $Producto->getIdProducto(); ?>"
-                                                           type="button" data-toggle="tooltip" title="Ver"
-                                                           class="btn docs-tooltip btn-warning btn-xs"><i
-                                                                    class="fa fa-eye"></i></a>
+                                                        <a href="Edit.php?idProducto=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                                        <a href="Show.php?idProducto=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
                                                         <?php if ($Producto->getEstado() != "Activo") { ?>
                                                             <a href="../../../app/Controllers/ProductoController.php?action=activate&Id=<?php echo $Producto->getIdProducto(); ?>"
                                                                type="button" data-toggle="tooltip" title="Activar"
@@ -144,11 +145,11 @@ use App\Controllers\ProductoController;
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
-                                                <th>Categoria</th>
-                                                <th>Marca</th>
                                                 <th>Descrpcion</th>
                                                 <th>Iva</th>
                                                 <th>Stock</th>
+                                                <th>Categoria</th>
+                                                <th>Marca</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
