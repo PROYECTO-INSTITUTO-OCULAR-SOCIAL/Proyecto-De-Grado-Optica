@@ -1,21 +1,13 @@
 <?php
+require_once("../../../app/Controllers/ProductoController.php");
 require_once("../../../app/Controllers/MarcaController.php");
 require_once("../../../app/Controllers/CategoriaController.php");
-require_once("../../../app/Controllers/ProductoController.php");
-require_once("../../partials/routes.php");
-
-use App\Controllers\ProductoController;
-use App\Controllers\CategoriaController;
-use App\Controllers\MarcaController;
-
-
-?>
-
+require_once("../../partials/routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Crear Producto</title>
-    <?php require_once("../../partials/head_imports.php"); ?>
+    <?php require("../../partials/head_imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -25,9 +17,9 @@ use App\Controllers\MarcaController;
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require_once("../../partials/navbar_customization.php"); ?>
+    <?php require("../../partials/navbar_customization.php"); ?>
 
-    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -37,7 +29,7 @@ use App\Controllers\MarcaController;
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                    Error al crear el Producto: <?= $_GET['mensaje'] ?>
+                    Error al crear la venta: <?= $_GET['mensaje'] ?>
                 </div>
             <?php } ?>
         <?php } ?>
@@ -47,7 +39,7 @@ use App\Controllers\MarcaController;
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Producto</h1>
+                        <h1>Crear un Nuevo Producto</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -60,113 +52,91 @@ use App\Controllers\MarcaController;
         </section>
 
         <!-- Main content -->
-
-
-        <!-- Main content -->
-        <section class="content">
-
-            <?php if(!empty($_GET['respuesta'])){ ?>
-                <?php if ($_GET['respuesta'] != "correcto"){ ?>
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear la categoria: <?= $_GET['mensaje'] ?>
-                    </div>
-                <?php } ?>
-            <?php } ?>
-
-            <!-- Horizontal Form -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
-                </div>
-                <div class="card-body">
-                    <form class="form-horizontal" method="post" id="frmCreateProducto" name="frmCreateProducto"
-                          action="../../../app/Controllers/ProductoController.php?action=create">
-                        <?php
-                        $dataProducto = null;
-                        if (!empty($_GET['idProducto'])) {
-                            $dataProducto = \App\Controllers\ProductoController::searchForId($_GET['idProducto']);
-                        }
-                        ?>
-                    <div class="form-group row">
-                        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-8">
-                            <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
-                        <div class="col-sm-8">
-                            <input required type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese descripcion">
-                        </div>
-                    </div>
-                        <div class="form-group row">
-                            <label for="iva" class="col-sm-2 col-form-label">Iva</label>
-                            <div class="col-sm-8">
-                                <input required type="number" class="form-control" id="iva" name="iva" placeholder="Ingrese el  iva">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="stock" class="col-sm-2 col-form-label">Stock</label>
-                            <div class="col-sm-10">
-                                <input required type="number"  class="form-control" id="stock" name="stock" placeholder="Ingrese el stock">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
-                            <div class="col-sm-8">
-                                <?= \App\Controllers\CategoriaController::selectCategoria(false,
-                                    true,
-                                    'categoria',
-                                    'categoria',
-                                    (!empty($dataProducto)) ? $dataProducto->getCategoria()->getIdCategoria() : '',
-                                    'form-control select2bs4 select2-info',
-                                    "estado = 'Activo'")
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="marca" class="col-sm-2 col-form-label">Marca</label>
-                            <div class="col-sm-8">
-                                <?= \App\Controllers\MarcaController::selectMarca(false,
-                                    true,
-                                    'marca',
-                                    'marca',
-                                    (!empty($dataProducto)) ? $dataProducto->getMarca()->getid_marca() : '',
-                                    'form-control select2bs4 select2-info',
-                                    "estado = 'Activo'")
-                                ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                            <div class="col-sm-8">
-                                <select id="estado" name="estado" class="custom-select">
-                                    <option value="activo">Activo</option>
-                                    <option value="inactivo">Inactivo</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <?php
-                        if (!empty($dataProducto)) {
-                            ?>
-                        <?php } ?>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-info">Enviar</button>
-                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                        </div>
-                        <!-- /.card-footer -->
-                    </form>
-                </div>
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Horizontal Form</h3>
             </div>
-        </section>
+                            <div class="card-body">
+                                <form class="form-horizontal" method="post" id="frmCreateProducto" name="frmCreateProducto"
+                                      action="../../../app/Controllers/ProductoController.php?action=create">
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                        <div class="col-sm-8">
+                                            <input required type="text" class="form-control" id="nombre" name="nombre"
+                                                   placeholder="Ingrese el nombre">
+                                        </div>
 
-    <!-- /.content-wrapper -->
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+                                        <div class="col-sm-8">
+                                            <input required type="text" class="form-control" id="descripcion"
+                                                   name="descripcion" placeholder="Ingrese la Descripcion">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="iva" class="col-sm-2 col-form-label">Iva</label>
+                                        <div class="col-sm-8">
+                                            <input required type="number" class="form-control" id="iva"
+                                                   name="iva" placeholder="Ingrese el Iva">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+                                        <div class="col-sm-8">
+                                            <input required type="number" minlength="6" class="form-control" id="stock"
+                                                   name="stock" placeholder="Ingrese el stock">
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+                                            <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+                                            <div class="col-sm-8">
+                                                <?= \App\Controllers\CategoriaController::selectCategoria(false,
+                                                    true,
+                                                    'categoria',
+                                                    'categoria',
+                                                    (!empty($dataProducto)) ? $dataProducto->getCategoria()->getIdCategoria() : '',
+                                                    'form-control select2bs4 select2-info',
+                                                    "estado = 'Activo'")
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="marca" class="col-sm-2 col-form-label">Marca</label>
+                                            <div class="col-sm-8">
+                                                <?= \App\Controllers\MarcaController::selectMarca(false,
+                                                    true,
+                                                    'marca',
+                                                    'marca',
+                                                    (!empty($dataProducto)) ? $dataProducto->getMarca()->getid_marca() : '',
+                                                    'form-control select2bs4 select2-info',
+                                                    "estado = 'Activo'")
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                                            <div class="col-sm-8">
+                                                <select id="estado" name="estado" class="custom-select">
+                                                    <option value="activo">Activo</option>
+                                                    <option value="inactivo">Inactivo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    <hr>
+                                    <button type="submit" class="btn btn-info">Enviar</button>
+                                    <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 
     <?php require('../../partials/footer.php'); ?>

@@ -39,10 +39,8 @@ use App\Controllers\ProductoController; ?>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
         <!-- Main content -->
         <section class="content">
-
             <?php if(!empty($_GET['respuesta'])){ ?>
                 <?php if ($_GET['respuesta'] == "error"){ ?>
                     <div class="alert alert-danger alert-dismissible">
@@ -63,35 +61,33 @@ use App\Controllers\ProductoController; ?>
             <div class="card card-info">
                 <?php if(!empty($_GET["idProducto"]) && isset($_GET["idProducto"])){
                     $DataProducto = ProductoController::searchForID($_GET["idProducto"]);
-                    if(!empty($dataProducto)){
+                    if(!empty($DataProducto)){
                         ?>
+            </div>
                         <div class="card-header">
-                            <p class="card-title"><?= $DataProducto->getIdProducto() ?></p>
-                        </div>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Nombre</strong>
                         <p class="text-muted"><?= $DataProducto->getNombre() ?></p>
                         <hr>
-                        <hr>
                         <strong><i class="fas fa-user mr-1"></i> Descripcion</strong>
                         <p class="text-muted"><?= $DataProducto->getDescripcion() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Iva</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Iva</strong>
                         <p class="text-muted"><?= $DataProducto->getIva() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Stock</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Stock</strong>
                         <p class="text-muted"><?= $DataProducto->getStock() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Categoria</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Categoria</strong>
                         <p class="text-muted"><?= $DataProducto->getCategoria()->getNombre() ?></p>
                         <hr>
-                        <strong><i class="far fa-user mr-1"></i> Marca</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Marca</strong>
                         <p class="text-muted"><?= $DataProducto->getMarca()->getnombre() ?></p>
                         <hr>
-                        <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
+                        <strong><i class="fas fa-file-alt mr-1"></i> Estado</strong>
                         <p class="text-muted"><?= $DataProducto->getEstado() ?></p>
                         </p>
-                        <hr>
+                        </div>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">

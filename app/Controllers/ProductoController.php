@@ -49,7 +49,7 @@ class ProductoController{
             $arrayProducto['iva'] = $_POST['iva'];
             $arrayProducto['stock'] = $_POST['stock'];
             $arrayProducto['categoria'] = Categoria::searchForId($_POST['categoria']);
-            $arrayProducto['marca'] = Marca::searchForid_marca($_POST['marca']);
+            $arrayProducto['marca'] = marca::searchForid_marca($_POST['marca']);
             $arrayProducto['estado'] = 'Activo';
             $Producto = new Producto($arrayProducto);
             if($Producto->create()){
@@ -76,7 +76,7 @@ class ProductoController{
             $Producto = new Producto($arrayProducto);
             $Producto->update();
 
-            header("Location: ../../Views/MModules/Producto/Show.php?idProducto=".$Producto->getIdProducto()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Producto/Show.php?idProducto=".$Producto->getIdProducto()."&respuesta=correcto");
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Producto/Edit.php?respuesta=error&mensaje=".$e->getMessage());

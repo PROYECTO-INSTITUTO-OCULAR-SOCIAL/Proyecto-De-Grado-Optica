@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-require(__DIR__ . '/../Models/Marca.php');
+require_once(__DIR__ . '/../Models/Marca.php');
 use App\Models\Marca;
 
 if(!empty($_GET['action'])){

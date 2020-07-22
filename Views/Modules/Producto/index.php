@@ -1,13 +1,12 @@
 <?php
-require_once("../../partials/routes.php");
+
 require_once("../../../app/Controllers/ProductoController.php");
 require_once("../../../app/Controllers/MarcaController.php");
 require_once("../../../app/Controllers/CategoriaController.php");
-
+require_once("../../partials/routes.php");
 
 
 use App\Controllers\ProductoController;
-
 ?>
 <!DOCTYPE html>
 <html>
