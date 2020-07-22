@@ -75,7 +75,7 @@ require_once("../../Partials/Routes.php"); ?>
                                     'departamento',
                                     (!empty($dataMunicipio)) ? $dataMunicipio->getDepartamento()->getid_departamento() : '',
                                     'form-control select2bs4 select2-info'
-                                    )
+                                )
                                 ?>
                             </div>
                         </div>

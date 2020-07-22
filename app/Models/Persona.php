@@ -235,7 +235,7 @@ class Persona extends BasicModel
 
 
 
-    public function create()
+    public function Create()
     {
         $result = $this->insertRow("INSERT INTO mer_optica.Persona VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->tipo_documento,
