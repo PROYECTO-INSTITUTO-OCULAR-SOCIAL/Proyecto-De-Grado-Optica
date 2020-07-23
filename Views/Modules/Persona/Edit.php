@@ -59,7 +59,7 @@ use App\Controllers\PersonaController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información de la persona</h3>
                 </div>
                 <!-- /.card-header -->
                 <?php if(!empty($_GET["id_persona"]) && isset($_GET["id_persona"])){ ?>

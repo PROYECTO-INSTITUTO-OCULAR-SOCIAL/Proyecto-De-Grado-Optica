@@ -65,7 +65,7 @@ use App\Controllers\PersonaController;
                         <!-- Default box -->
                         <div class="card card-dark">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-user"></i>Gestionar Persona</h3>
+                                <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Persona</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
                                             data-source="index.php" data-source-selector="#card-refresh-content"
@@ -133,7 +133,7 @@ use App\Controllers\PersonaController;
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                 class="fa fa-eye"></i></a>
-                                                        <?php if ($Persona->getEstado() != "Activo") { ?>
+                                                        <?php if ($Persona->getEstado() != "") { ?>
                                                             <a href="../../../app/Controllers/PersonaController.php?action=activate&Id=<?php echo $Persona->getIdPersona(); ?>"
                                                                type="button" data-toggle="tooltip" title="Activar"
                                                                class="btn docs-tooltip btn-success btn-xs"><i

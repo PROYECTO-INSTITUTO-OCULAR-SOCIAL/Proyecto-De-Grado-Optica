@@ -50,6 +50,18 @@ require_once("../../Partials/Routes.php"); ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <!-- /.card-header -->
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información del Municipio</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
+                                data-source="create.php" data-source-selector="#card-refresh-content"
+                                data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                    class="fas fa-expand"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i></button>
+                    </div>
+                </div>
                 <!-- form start -->
                 <form class="form-horizontal" method="post" id="frmCreateMunicipio" name="frmCreateMunicipio" action="../../../app/Controllers/MunicipioController.php?action=create">
                     <div class="card-body">

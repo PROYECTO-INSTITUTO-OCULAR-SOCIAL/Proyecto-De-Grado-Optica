@@ -66,10 +66,10 @@ use App\Controllers\PersonaController; ?>
                             <p class="card-title"><?= $DataPersona->getNombre() ?></p>
                         </div>
                         <hr>
-                        <strong><i class="fas fa-user mr-1"></i> ID</strong>
+                        <strong><i class="fas fa-user mr-1"></i>ID</strong>
                         <p class="text-muted"><?= $DataPersona->getIdPersona() ?></p>
                         <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Tipo Documento Y Documento</strong>
+                        <strong><i class="fas fa-user mr-1"></i>Tipo Documento Y Documento</strong>
                             <p class="card-title"><?= $DataPersona->getTipoDocumento(). " === " .$DataPersona->getDocumento() ?>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Nombres Y Apellidos </strong>

@@ -44,9 +44,9 @@ class PersonaController
             $arrayPersona['direccion'] = $_POST['direccion'];
             $arrayPersona['telefono'] = $_POST['telefono'];
             $arrayPersona['municipio'] = Municipio::searchForId($_POST['municipio']);
-            $arrayPersona['rol'] = 'Cliente';
+            $arrayPersona['rol'] = $_POST['rol'];
             $arrayPersona['contrasena'] = $_POST['contrasena'];
-            $arrayPersona['estado'] = 'Activo';
+            $arrayPersona['estado'] = $_POST['estado'];
             $Persona = new Persona($arrayPersona);
             if($Persona->create()){
                 header("Location: ../../Views/Modules/Persona/index.php?respuesta=correcto");
@@ -67,9 +67,9 @@ class PersonaController
             $arrayPersona['direccion'] = $_POST['direccion'];
             $arrayPersona['telefono'] = $_POST['telefono'];
             $arrayPersona['municipio'] = Municipio::searchForId($_POST['municipio']);
-            $arrayPersona['rol'] = 'Cliente';
+            $arrayPersona['rol'] = $_POST['rol'];
             $arrayPersona['contrasena'] = $_POST['contrasena'];
-            $arrayPersona['estado'] = 'Activo';
+            $arrayPersona['estado'] = $_POST['estado'];
             $arrayPersona['id_persona'] = $_POST['id_persona'];
             $Persona = new Persona($arrayPersona);
             $Persona->update();
