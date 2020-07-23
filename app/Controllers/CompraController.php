@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
-require(__DIR__.'/../Models/Compra.php');
-require(__DIR__.'/../Models/Persona.php');
+require_once(__DIR__.'/../Models/Compra.php');
+require_once(__DIR__.'/../Models/Persona.php');
 use App\Models\Compra;
 use App\Models\Persona;
 

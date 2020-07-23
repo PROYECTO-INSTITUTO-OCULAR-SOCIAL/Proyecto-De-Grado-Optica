@@ -255,7 +255,7 @@ class Producto extends BasicModel
      */
     public function update()
     {
-        $result = $this->updateRow("UPDATE mer_optica.Producto SET nombre = ?, descripcion = ?, iva = ?, stock = ?, categoria = ?, marca = ?, estado = ? WHERE id_producto = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Producto SET nombre = ?, descripcion = ?, iva = ?, stock = ?, marca = ?,categoria = ?,  estado = ? WHERE id_producto = ?", array(
                 $this->nombre,
                 $this->descripcion,
                 $this->iva,

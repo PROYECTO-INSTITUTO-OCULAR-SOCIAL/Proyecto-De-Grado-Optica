@@ -144,11 +144,15 @@ use App\Controllers\ProductoController; ?>
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataProducto->getEstado() == "activo") ? "selected" : ""; ?>
-                                                    value="activo">activo
+                                            <option <?= ($DataProducto->getEstado() == "agotado") ? "selected" : ""; ?>
+                                                    value="agotado">Agotado
                                             </option>
-                                            <option <?= ($DataProducto->getEstado() == "inactivo") ? "selected" : ""; ?>
-                                                    value="inactivo">inactivo
+
+                                            <option <?= ($DataProducto->getEstado() == "activo") ? "selected" : ""; ?>
+                                                    value="activo">Activo
+                                            </option>
+                                            <option <?= ($DataProducto->getEstado() == "suspendido") ? "selected" : ""; ?>
+                                                    value="Suspendido">Suspendido
                                             </option>
                                         </select>
                                     </div>

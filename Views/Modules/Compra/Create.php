@@ -1,4 +1,5 @@
 <?php
+require_once("../../../app/Controllers/CompraController.php");
 require_once("../../../app/Controllers/PersonaController.php");
 require_once("../../partials/routes.php"); ?>
 <!DOCTYPE html>
@@ -74,7 +75,7 @@ require_once("../../partials/routes.php"); ?>
                                     true,
                                     'persona',
                                     'persona',
-                                    (!empty($dataDepartamento)) ? $dataDepartamento->getPersona()->getid_persona() : '',
+                                    (!empty($dataCompra)) ? $dataCompra>getPersona()->getid_persona() : '',
                                     'form-control select2bs4 select2-info'
                                 )
                                 ?>

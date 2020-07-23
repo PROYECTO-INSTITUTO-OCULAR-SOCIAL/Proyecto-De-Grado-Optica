@@ -50,15 +50,13 @@ class ProductoController{
             $arrayProducto['stock'] = $_POST['stock'];
             $arrayProducto['categoria'] = Categoria::searchForId($_POST['categoria']);
             $arrayProducto['marca'] = marca::searchForid_marca($_POST['marca']);
-            $arrayProducto['estado'] = 'Activo';
+            $arrayProducto['estado'] = $_POST['estado'];
             $Producto = new Producto($arrayProducto);
-            var_dump($Producto->getMarca()->getid_marca());
 
             if($Producto->create()){
                 header("Location: ../../views/modules/Producto/index.php?id=".$Producto->getIdProducto());
             }
         } catch (Exception $e){
-            var_dump($e);
             GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../views/modules/Producto/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }

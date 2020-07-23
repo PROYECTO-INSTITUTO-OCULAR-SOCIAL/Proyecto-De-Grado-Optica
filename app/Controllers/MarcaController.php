@@ -38,7 +38,7 @@ class MarcaController
         try {
             $arrayMarca = array();
             $arrayMarca['nombre'] = $_POST['nombre'];
-            $arrayMarca['estado'] = 'Activo';
+            $arrayMarca['estado'] = $_POST['estado'];
             if(!Marca::MarcaRegistrada($arrayMarca['nombre'])){
                 $Marca = new Marca ($arrayMarca);
                 if($Marca->Create()){
