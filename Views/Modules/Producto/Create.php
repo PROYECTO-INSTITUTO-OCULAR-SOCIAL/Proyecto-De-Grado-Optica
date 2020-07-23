@@ -119,8 +119,9 @@ require_once("../../partials/routes.php"); ?>
                                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                             <div class="col-sm-8">
                                                 <select id="estado" name="estado" class="custom-select">
+                                                    <option value="agotado">Agotado</option>
                                                     <option value="activo">Activo</option>
-                                                    <option value="inactivo">Inactivo</option>
+                                                    <option value="suspendido">Suspendido</option>
                                                 </select>
                                             </div>
                                         </div>
