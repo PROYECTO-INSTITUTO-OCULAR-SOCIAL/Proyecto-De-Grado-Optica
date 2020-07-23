@@ -67,7 +67,7 @@ use App\Controllers\CategoriaController; ?>
                     <?= $DataCategoria->getNombre()?>
                 </p>
                 <hr>
-                <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
+                <strong><i class="fas fa-file-alt mr-1"></i> Estado</strong>
                 <p class="text-muted"><?= $DataCategoria->getEstado() ?></p>
                 </p>
 

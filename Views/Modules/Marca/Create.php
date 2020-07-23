@@ -1,4 +1,8 @@
-<?php require("../../Partials/Routes.php"); ?>
+<?php
+require_once("../../../app/Controllers/MarcaController.php");
+require_once("../../Partials/Routes.php"); ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>

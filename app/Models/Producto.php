@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-require('BasicModel.php');
+require_once('BasicModel.php');
 
 class Producto extends BasicModel
 {
@@ -12,11 +12,11 @@ class Producto extends BasicModel
     private $descripcion;
     private $iva;
     private $stock;
-    private $estado;
-
-    /* Relaciones */
     private $marca;
     private $categoria;
+    private $estado;
+
+
 
     /**
      * Producto constructor.
@@ -25,6 +25,8 @@ class Producto extends BasicModel
      * @param $descripcion
      *  @param $iva
      * @param $stock
+     * * @param $marca
+     * * @param $categoria
      * @param $estado
 
      */
@@ -36,6 +38,8 @@ class Producto extends BasicModel
         $this->descripcion = $Producto['descripcion'] ?? null;
         $this->iva = $Producto['iva'] ?? null;
         $this->stock = $Producto['stock'] ?? null;
+        $this->marca = $Producto['marca'] ?? null;
+        $this->categoria = $Producto['categoria'] ?? null;
         $this->estado = $Producto['estado'] ?? null;
     }
 
@@ -70,6 +74,8 @@ class Producto extends BasicModel
     {
         $this->nombre = $nombre;
     }
+
+
 
     /**
      * @return string
@@ -106,7 +112,7 @@ class Producto extends BasicModel
     /**
      * @return int
      */
-    public function getStock(): ?int
+    public function getStock() : int
     {
         return $this->stock;
     }
@@ -114,10 +120,42 @@ class Producto extends BasicModel
     /**
      * @param int $stock
      */
-    public function setStock(?int $stock): void
+    public function setStock(int $stock): void
     {
         $this->stock = $stock;
     }
+    /**
+     * @return Categoria
+     */
+    public function getCategoria(): Categoria
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param mixed|null $categoria
+     */
+    public function setCategoria(Categoria $categoria): void
+    {
+        $this->categoria = $categoria;
+    }
+
+    /**
+     * @return Marca
+     */
+    public function getMarca(): Marca
+    {
+        return $this->marca;
+    }
+
+    /**
+     * @param mixed|null $marca
+     */
+    public function setMarca(Marca $marca): void
+    {
+        $this->marca = $marca;
+    }
+
 
     /**
      * @return string
@@ -149,6 +187,8 @@ class Producto extends BasicModel
             $Producto->descripcion = $valor['descripcion'];
             $Producto->iva = $valor['iva'];
             $Producto->stock = $valor['stock'];
+            $Producto->marca = Marca::searchForid_marca($valor['marca']);
+            $Producto->categoria = Categoria::searchForId($valor['categoria']);
             $Producto->estado = $valor['estado'];
             $Producto->Disconnect();
             array_push($arrProducto, $Producto);
@@ -181,6 +221,8 @@ class Producto extends BasicModel
             $Producto->descripcion = $getrow['descripcion'];
             $Producto->iva = $getrow['iva'];
             $Producto->stock = $getrow['stock'];
+            $Producto->marca = Marca::searchForid_marca($getrow['marca']);
+            $Producto->categoria = Categoria::searchForId($getrow['categoria']);
             $Producto->estado = $getrow['estado'];
         }
         $Producto->Disconnect();
@@ -193,14 +235,17 @@ class Producto extends BasicModel
      */
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Producto VALUES (NULL, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Producto VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->descripcion,
                 $this->iva,
                 $this->stock,
+                $this->marca->getid_marca(),
+                $this->categoria->getIdCategoria(),
                 $this->estado
             )
         );
+        $this->setIdProducto(($result) ? $this->getLastId() : null);
         $this->Disconnect();
         return $result;
     }
@@ -210,11 +255,13 @@ class Producto extends BasicModel
      */
     public function update()
     {
-        $result = $this->updateRow("UPDATE mer_optica.Producto SET nombre = ?, descripcion = ?, iva = ?, stock = ?, estado = ? WHERE id_producto = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Producto SET nombre = ?, descripcion = ?, iva = ?, stock = ?, marca = ?,categoria = ?,  estado = ? WHERE id_producto = ?", array(
                 $this->nombre,
                 $this->descripcion,
                 $this->iva,
                 $this->stock,
+                $this->marca->getid_marca(),
+                $this->categoria->getIdCategoria(),
                 $this->estado,
                 $this->id_producto
             )
@@ -240,23 +287,11 @@ class Producto extends BasicModel
      * @param $nombres
      * @return bool
      */
-    public static function productoRegistrado($nombre): bool
-    {
-        $result = Producto::search("SELECT id_producto FROM mer_optica.Producto where nombre = '" . $nombre. "'");
-        if (count($result) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 
     /**
      * @return string
      */
-    public function __toString()
-    {
-        return "Nombre: $this->nombre, Descripcion: $this->descripcion, iva: $this->iva, Stock: $this->stock, Estado: $this->estado";
-    }
+
 
 }

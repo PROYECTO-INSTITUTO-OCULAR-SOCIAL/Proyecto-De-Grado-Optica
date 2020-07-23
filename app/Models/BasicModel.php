@@ -24,6 +24,7 @@ abstract class BasicModel {
     abstract protected static function searchForId($id);
     abstract protected function create();
     abstract protected function update();
+    abstract protected function deleted($id);
 
     public function __construct(){
         $this->isConnected = true;

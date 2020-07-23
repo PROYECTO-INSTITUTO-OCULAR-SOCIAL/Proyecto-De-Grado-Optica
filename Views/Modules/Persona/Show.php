@@ -1,16 +1,13 @@
 <?php
 require_once("../../Partials/Routes.php");
-require_once("../../../app/Controllers/ProductoController.php");
-require_once("../../../app/Controllers/CategoriaController.php");
-require_once("../../../app/Controllers/MarcaController.php");
+require_once("../../../app/Controllers/PersonaController.php");
+require_once("../../../app/Controllers/MunicipioController.php");
 
-
-
-use App\Controllers\ProductoController; ?>
+use App\Controllers\PersonaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Datos del Producto</title>
+    <title><?= getenv('TITLE_SITE') ?> | Datos de la Persona</title>
     <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -26,9 +23,9 @@ use App\Controllers\ProductoController; ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col-sm-6">
-                        <h1>Informacion del Producto</h1>
+                        <h1>Información de La Persona</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -39,17 +36,19 @@ use App\Controllers\ProductoController; ?>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
+
         <!-- Main content -->
         <section class="content">
+
             <?php if(!empty($_GET['respuesta'])){ ?>
                 <?php if ($_GET['respuesta'] == "error"){ ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar el Producto: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar el Municipio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['idProducto'])) { ?>
+            <?php } else if (empty($_GET['id_persona'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -59,45 +58,48 @@ use App\Controllers\ProductoController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <?php if(!empty($_GET["idProducto"]) && isset($_GET["idProducto"])){
-                    $DataProducto = ProductoController::searchForID($_GET["idProducto"]);
-                    if(!empty($DataProducto)){
+                <?php if(!empty($_GET["id_persona"]) && isset($_GET["id_persona"])){
+                    $DataPersona = PersonaController::searchForId($_GET["id_persona"]);
+                    if(!empty($DataPersona)){
                         ?>
-            </div>
                         <div class="card-header">
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Nombre</strong>
-                        <p class="text-muted"><?= $DataProducto->getNombre() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Descripcion</strong>
-                        <p class="text-muted"><?= $DataProducto->getDescripcion() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Iva</strong>
-                        <p class="text-muted"><?= $DataProducto->getIva() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Stock</strong>
-                        <p class="text-muted"><?= $DataProducto->getStock() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Categoria</strong>
-                        <p class="text-muted"><?= $DataProducto->getCategoria()->getNombre() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Marca</strong>
-                        <p class="text-muted"><?= $DataProducto->getMarca()->getnombre() ?></p>
-                        <hr>
-                        <strong><i class="fas fa-file-alt mr-1"></i> Estado</strong>
-                        <p class="text-muted"><?= $DataProducto->getEstado() ?></p>
-                        </p>
+                            <p class="card-title"><?= $DataPersona->getNombre() ?></p>
                         </div>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i>ID</strong>
+                        <p class="text-muted"><?= $DataPersona->getIdPersona() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i>Tipo Documento Y Documento</strong>
+                            <p class="card-title"><?= $DataPersona->getTipoDocumento(). " === " .$DataPersona->getDocumento() ?>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Nombres Y Apellidos </strong>
+                            <p class="card-title"><?= $DataPersona->getNombre() . " === " . $DataPersona->getApellido() ?>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Direccion</strong>
+                        <p class="text-muted"><?= $DataPersona->getDireccion() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Telefono</strong>
+                        <p class="text-muted"><?= $DataPersona->getTelefono() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Municipio </strong>
+                        <p class="text-muted"><?= $DataPersona->getMunicipio()->getnombre() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Rol</strong>
+                        <p class="text-muted"><?= $DataPersona->getRol() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Estado</strong>
+                        <p class="text-muted"><?= $DataPersona->getEstado() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
                                     <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-tasks"></i> Gestionar Producto
+                                        <i class="fas fa-tasks"></i> Gestionar Persona
                                     </a>
                                 </div>
                                 <div class="col-auto">
                                     <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-plus"></i> Crear Producto
+                                        <i class="fas fa-plus"></i> Crear Persona
                                     </a>
                                 </div>
                             </div>

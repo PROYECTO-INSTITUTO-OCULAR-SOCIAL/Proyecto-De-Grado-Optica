@@ -1,21 +1,22 @@
 <?php
-require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require_once("../../Partials/Routes.php");
+require_once("../../../app/Controllers/MunicipioController.php");
+require_once("../../../app/Controllers/DepartamentoController.php");
 
 use App\Controllers\MunicipioController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Editar Municipio</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -47,11 +48,6 @@ use App\Controllers\MunicipioController; ?>
                         Error al crear Municipio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-<<<<<<< HEAD
-            <?php } else if (empty($_GET['id'])) { ?>
-=======
-            <?php } else if (empty($_GET['id_municipio'])) { ?>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -62,7 +58,7 @@ use App\Controllers\MunicipioController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información del Municipio</h3>
                 </div>
                 <!-- /.card-header -->
                 <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){ ?>
@@ -73,11 +69,8 @@ use App\Controllers\MunicipioController; ?>
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditMunicipio" name="frmEditMunicipio" action="../../../app/Controllers/MunicipioController.php?action=edit">
-<<<<<<< HEAD
-                            <input id="id" name="id" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
-=======
-                            <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getId(); ?>" hidden required="required" type="text">
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
+                            <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getIdMunicipio(); ?>" hidden
+                                   required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -88,10 +81,25 @@ use App\Controllers\MunicipioController; ?>
                                 <div class="form-group row">
                                     <label for="codigo_dane" class="col-sm-2 col-form-label">Codigo_Dane</label>
                                     <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigo_dane(); ?>" placeholder="Ingrese el Codigo Dane">
+                                        <input required type="number" minlength="6" class="form-control" id="codigo_dane" name="codigo_dane" value="<?= $DataMunicipio->getCodigoDane(); ?>" placeholder="Ingrese el Codigo Dane">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="departamento" class="col-sm-2 col-form-label">Departamento</label>
+                                    <div class="col-sm-10">
+                                        <?= \App\Controllers\DepartamentoController::selectDepartamento(false,
+                                            true,
+                                            'departamento',
+                                            'departamento',
+                                            (!empty($DataMunicipio)) ? $DataMunicipio->getDepartamento()->getid_departamento() : '',
+                                            'form-control select2bs4 select2-info'
+                                        )
+                                        ?>
                                     </div>
                                 </div>
                             </div>
+
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info">Enviar</button>

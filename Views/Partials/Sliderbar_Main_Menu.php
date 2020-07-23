@@ -3,8 +3,6 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
         <img src="<?= $baseURL ?>/Views/Components/Img/ojo.jpeg"
-
-
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-2"
              style="opacity: .8">
@@ -137,6 +135,7 @@
                                 <p>index</p></a>
                         </li>
                     </ul>
+
                 </li><li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
@@ -157,7 +156,6 @@
 
                             </a>
                         </li>
-                        </li>
                     </ul>
                 <li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
@@ -170,7 +168,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Producto/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -178,7 +176,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Producto/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -194,7 +192,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Persona/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -202,7 +200,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Persona/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -218,7 +216,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Compra/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -226,7 +224,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Compra/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -242,15 +240,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Venta/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
                         </li>
-
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Venta/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -266,7 +263,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Detalles_Venta/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -274,7 +271,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Detalles_Venta/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -290,7 +287,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Detalles_Compra/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -298,7 +295,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Detalles_Compra/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
@@ -314,7 +311,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Abono/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
@@ -322,7 +319,7 @@
 
                         </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Abono/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>index</p></a>
                         </li>
