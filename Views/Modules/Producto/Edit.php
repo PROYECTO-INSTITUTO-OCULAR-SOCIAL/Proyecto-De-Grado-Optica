@@ -113,7 +113,19 @@ use App\Controllers\ProductoController; ?>
                                     </div>
                                 </div>
 
-
+                                <div class="form-group row">
+                                    <label for="marca" class="col-sm-2 col-form-label">Marca</label>
+                                    <div class="col-sm-8">
+                                        <?= \App\Controllers\MarcaController::selectMarca(false,
+                                            true,
+                                            'marca',
+                                            'marca',
+                                            (!empty($DataProducto)) ? $DataProducto->getMarca()->getid_marca() : '',
+                                            'form-control select2bs4 select2-info',
+                                            "estado = 'Activo'")
+                                        ?>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
                                     <div class="col-sm-8">
@@ -128,19 +140,6 @@ use App\Controllers\ProductoController; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="marca" class="col-sm-2 col-form-label">Marca</label>
-                                    <div class="col-sm-8">
-                                        <?= \App\Controllers\MarcaController::selectMarca(false,
-                                            true,
-                                            'marca',
-                                            'marca',
-                                            (!empty($DataProducto)) ? $DataProducto->getMarca()->getid_marca() : '',
-                                            'form-control select2bs4 select2-info',
-                                            "estado = 'Activo'")
-                                        ?>
-                                    </div>
-                                </div>
                                 <div class="form-group row">
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">

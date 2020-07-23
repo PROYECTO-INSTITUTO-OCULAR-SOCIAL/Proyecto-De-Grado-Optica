@@ -12,8 +12,8 @@ class Producto extends BasicModel
     private $descripcion;
     private $iva;
     private $stock;
-    private $categoria;
     private $marca;
+    private $categoria;
     private $estado;
 
 
@@ -25,8 +25,8 @@ class Producto extends BasicModel
      * @param $descripcion
      *  @param $iva
      * @param $stock
+     * * @param $marca
      * * @param $categoria
-     * @param $marca
      * @param $estado
 
      */
@@ -38,8 +38,8 @@ class Producto extends BasicModel
         $this->descripcion = $Producto['descripcion'] ?? null;
         $this->iva = $Producto['iva'] ?? null;
         $this->stock = $Producto['stock'] ?? null;
-        $this->categoria = $Producto['categoria'] ?? null;
         $this->marca = $Producto['marca'] ?? null;
+        $this->categoria = $Producto['categoria'] ?? null;
         $this->estado = $Producto['estado'] ?? null;
     }
 
@@ -187,8 +187,8 @@ class Producto extends BasicModel
             $Producto->descripcion = $valor['descripcion'];
             $Producto->iva = $valor['iva'];
             $Producto->stock = $valor['stock'];
-            $Producto->categoria = Categoria::searchForId($valor['categoria']);
             $Producto->marca = Marca::searchForid_marca($valor['marca']);
+            $Producto->categoria = Categoria::searchForId($valor['categoria']);
             $Producto->estado = $valor['estado'];
             $Producto->Disconnect();
             array_push($arrProducto, $Producto);
@@ -221,8 +221,8 @@ class Producto extends BasicModel
             $Producto->descripcion = $getrow['descripcion'];
             $Producto->iva = $getrow['iva'];
             $Producto->stock = $getrow['stock'];
-            $Producto->categoria = Categoria::searchForId($getrow['categoria']);
             $Producto->marca = Marca::searchForid_marca($getrow['marca']);
+            $Producto->categoria = Categoria::searchForId($getrow['categoria']);
             $Producto->estado = $getrow['estado'];
         }
         $Producto->Disconnect();
@@ -240,8 +240,8 @@ class Producto extends BasicModel
                 $this->descripcion,
                 $this->iva,
                 $this->stock,
-                $this->categoria->getIdCategoria(),
                 $this->marca->getid_marca(),
+                $this->categoria->getIdCategoria(),
                 $this->estado
             )
         );
@@ -260,8 +260,8 @@ class Producto extends BasicModel
                 $this->descripcion,
                 $this->iva,
                 $this->stock,
-                $this->categoria->getIdCategoria(),
                 $this->marca->getid_marca(),
+                $this->categoria->getIdCategoria(),
                 $this->estado,
                 $this->id_producto
             )

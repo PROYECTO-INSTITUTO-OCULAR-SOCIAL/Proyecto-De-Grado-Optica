@@ -99,8 +99,8 @@ use App\Controllers\ProductoController;
                                                 <th>Descrpcion</th>
                                                 <th>Iva</th>
                                                 <th>Stock</th>
-                                                <th>Categoria</th>
                                                 <th>Marca</th>
+                                                <th>Categoria</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -117,8 +117,8 @@ use App\Controllers\ProductoController;
                                                     <td><?= $Producto->getDescripcion(); ?></td>
                                                     <td><?= $Producto->getIva(); ?></td>
                                                     <td><?= $Producto->getStock(); ?></td>
-                                                    <td><?= $Producto->getCategoria()->getNombre(); ?></td>
                                                     <td><?= $Producto->getMarca()->getnombre(); ?></td>
+                                                    <td><?= $Producto->getCategoria()->getNombre(); ?></td>
                                                     <td><?= $Producto->getEstado(); ?></td>
                                                     <td>
                                                         <a href="Edit.php?idProducto=<?php echo $Producto->getIdProducto(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
@@ -147,8 +147,8 @@ use App\Controllers\ProductoController;
                                                 <th>Descrpcion</th>
                                                 <th>Iva</th>
                                                 <th>Stock</th>
-                                                <th>Categoria</th>
                                                 <th>Marca</th>
+                                                <th>Categoria</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>

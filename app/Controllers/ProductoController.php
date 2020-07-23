@@ -55,7 +55,7 @@ class ProductoController{
             var_dump($Producto->getMarca()->getid_marca());
 
             if($Producto->create()){
-                header("Location: ../../views/modules/Producto/Create.php?id=".$Producto->getIdProducto());
+                header("Location: ../../views/modules/Producto/index.php?id=".$Producto->getIdProducto());
             }
         } catch (Exception $e){
             var_dump($e);
