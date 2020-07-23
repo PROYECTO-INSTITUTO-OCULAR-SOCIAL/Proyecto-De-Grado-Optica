@@ -3,8 +3,6 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
         <img src="<?= $baseURL ?>/Views/Components/Img/ojo.jpeg"
-
-
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-2"
              style="opacity: .8">
@@ -157,30 +155,174 @@
                                 <p>index</p></a></li><li class="nav-item">
 
                             </a>
-                        </li></li>
+                        </li>
                     </ul>
-
-                </li><li class="nav-item has-treeview menu-close">
+                <li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
                         <p>
-                            Persona
-                            <i class="fas fa-angle-left right"></i></p></a>
+
+                            Producto
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Persona/Create.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Crear</p>
                             </a>
                         </li>
+
+                        </a>
                         </li><li class="nav-item">
-                            <a href="<?= $baseURL ?>/Views/Modules/Persona/index.php" class="nav-link">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>index</p></a></li><li class="nav-item">
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
 
+                            Persona
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
                             </a>
-                        </li></li>
+                        </li>
 
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+
+                            Compra
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+
+                            Venta
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+
+                            Detalles de Venta
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+
+                            Detalles de Compra
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
+                    </ul>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+
+                            Abonos
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/Create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+
+                        </a>
+                        </li><li class="nav-item">
+                            <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p></a>
+                        </li>
                     </ul>
         </nav>
         <!-- /.sidebar-menu -->
