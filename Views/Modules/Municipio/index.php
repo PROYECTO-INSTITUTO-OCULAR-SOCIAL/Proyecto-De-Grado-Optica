@@ -1,12 +1,13 @@
-<?php require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+<?php require_once("../../partials/routes.php");
+require_once("../../../app/Controllers/MunicipioController.php");
+require_once("../../../app/Controllers/DepartamentoController.php");
 
 use App\Controllers\MunicipioController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Layout</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../partials/head_imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -16,9 +17,9 @@ use App\Controllers\MunicipioController; ?>
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -41,19 +42,16 @@ use App\Controllers\MunicipioController; ?>
 
         <!-- Main content -->
         <section class="content">
-<<<<<<< HEAD
 
-=======
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
             <?php if(!empty($_GET['respuesta']) && !empty($_GET['action'])){ ?>
                 <?php if ($_GET['respuesta'] == "correcto"){ ?>
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El usuario ha sido creado con exito!
+                            El Municipio ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del usuario han sido actualizados correctamente!
+                            Los datos del Municipio han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -62,11 +60,18 @@ use App\Controllers\MunicipioController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Municipio</h3>
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Municipio</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
+                                data-source="index.php" data-source-selector="#card-refresh-content"
+                                data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                    class="fas fa-expand"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"
+                                data-toggle="tooltip" title="Remove">
                             <i class="fas fa-times"></i></button>
                     </div>
                 </div>
@@ -86,32 +91,28 @@ use App\Controllers\MunicipioController; ?>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
+                                    <th>Codigo Dane</th>
+                                    <th>Departamento</th>
                                     <th>Acciones</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
                                 $arrMunicipio = MunicipioController::getAll();
-                                foreach ($arrMunicipio as $Municipio){
+                                foreach ($arrMunicipio as $Municipio) {
+                                    ;
                                     ?>
                                     <tr>
-                                        <td><?php echo $Municipio->getId(); ?></td>
-                                        <td><?php echo $Municipio->getNombre(); ?></td>
-                                        <td><?php echo $Municipio->getCodigo_dane(); ?></td>
+                                        <td><?= $Municipio->getIdMunicipio(); ?></td>
+                                        <td><?= $Municipio->getNombre(); ?></td>
+                                        <td><?= $Municipio->getCodigoDane(); ?></td>
+                                        <td><?= $Municipio->getDepartamento()->getnombre(); ?> <?= $Municipio->getDepartamento()->getcodigo_dane(); ?></td>
+
                                         <td>
-<<<<<<< HEAD
-                                            <a href="Edit.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($Municipio->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/MunicipioController.php?action=activate&Id=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
-                                            <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/MunicipioController.php?action=inactivate&Id=<?php echo $Municipio->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
-                                            <?php } ?>
-=======
-                                            <a href="Edit.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_municipio=<?php echo $Municipio->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
+                                            <a href="Edit.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -120,7 +121,8 @@ use App\Controllers\MunicipioController; ?>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Codigo_Dane</th>
+                                    <th>Codigo Dane</th>
+                                    <th>Departamento</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </tfoot>
@@ -140,10 +142,10 @@ use App\Controllers\MunicipioController; ?>
     </div>
     <!-- /.content-wrapper -->
 
-    <?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../partials/footer.php');?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../Partials/Scripts.php');?>
+<?php require ('../../partials/scripts.php');?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>

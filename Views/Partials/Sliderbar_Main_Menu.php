@@ -3,8 +3,6 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
         <img src="<?= $baseURL ?>/Views/Components/Img/ojo.jpeg"
-
-
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-2"
              style="opacity: .8">
@@ -137,6 +135,7 @@
                                 <p>index</p></a>
                         </li>
                     </ul>
+
                 </li><li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>
@@ -156,7 +155,6 @@
                                 <p>index</p></a></li><li class="nav-item">
 
                             </a>
-                        </li>
                         </li>
                     </ul>
                 <li class="nav-item has-treeview menu-close">
@@ -247,7 +245,6 @@
                                 <p>Crear</p>
                             </a>
                         </li>
-
                         </a>
                         </li><li class="nav-item">
                             <a href="<?= $baseURL ?>/Views/Modules/Formula/index.php" class="nav-link">
