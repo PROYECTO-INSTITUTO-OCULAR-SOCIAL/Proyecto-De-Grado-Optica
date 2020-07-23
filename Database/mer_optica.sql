@@ -1,3 +1,4 @@
+
 -- phpMyAdmin SQL Dump
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
@@ -61,132 +62,21 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `fecha` date NOT NULL,
   `valor_total` double DEFAULT NULL,
   `persona` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_compra`),
-  KEY `fk_COMPRA_PERSONA1_idx` (`persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+  INDEX `fk_PERSONA_MUNICIPIO1_idx` (`municipio` ASC),
+  CONSTRAINT `fk_PERSONA_MUNICIPIO1`
+    FOREIGN KEY (`municipio`)
+    REFERENCES `MER_optica`.`MUNICIPIO` (`id_municipio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
---
--- Estructura de tabla para la tabla `departamento`
---
 
-CREATE TABLE IF NOT EXISTS `departamento` (
-  `id_departamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  `codigo_dane` mediumint(10) NOT NULL,
-  PRIMARY KEY (`id_departamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalles_compra`
---
-
-CREATE TABLE IF NOT EXISTS `detalles_compra` (
-  `id_detalles_compra` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cantidad` mediumint(20) NOT NULL,
-  `precio` double NOT NULL,
-  `compra` int(10) UNSIGNED NOT NULL,
-  `producto` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_detalles_compra`),
-  KEY `fk_DETALLES_COMPRA_COMPRA1_idx` (`compra`),
-  KEY `fk_DETALLES_COMPRA_PRODUCTO1_idx` (`producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalles_venta`
---
-
-CREATE TABLE IF NOT EXISTS `detalles_venta` (
-  `id_detalles_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cantidad` mediumint(30) NOT NULL,
-  `precio_unitario` double NOT NULL,
-  `precio_total` double NOT NULL,
-  `venta` int(10) UNSIGNED NOT NULL,
-  `producto` int(10) UNSIGNED DEFAULT NULL,
-  `formula` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id_detalles_venta`),
-  KEY `fk_DETALLES_VENTA_VENTA1_idx` (`venta`),
-  KEY `fk_DETALLES_VENTA_PRODUCTO1_idx` (`producto`),
-  KEY `fk_DETALLES_VENTA_FORMULA1_idx` (`formula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `formula`
---
-
-CREATE TABLE IF NOT EXISTS `formula` (
-  `id_formula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `od_esfera` varchar(15) NOT NULL,
-  `oi_esfera` varchar(15) NOT NULL,
-  `od_cilindro` varchar(15) NOT NULL,
-  `oi_cilindro` varchar(15) NOT NULL,
-  `od_eje` varchar(15) NOT NULL,
-  `oi_eje` varchar(15) NOT NULL,
-  `od_av` varchar(15) NOT NULL,
-  `oi_av` varchar(15) NOT NULL,
-  `dp` varchar(15) NOT NULL,
-  `color` varchar(15) NOT NULL,
-  `numero_montura` mediumint(10) NOT NULL,
-  `observaciones` tinytext NOT NULL,
-  `bifocal` varchar(15) NOT NULL,
-  `material` varchar(15) NOT NULL,
-  `valor` double NOT NULL,
-  PRIMARY KEY (`id_formula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `marca`
---
-
-CREATE TABLE IF NOT EXISTS `marca` (
-  `id_marca` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(25) NOT NULL,
-  `estado` enum('activo','inactivo') NOT NULL,
-  PRIMARY KEY (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `municipio`
---
-
-CREATE TABLE IF NOT EXISTS `municipio` (
-  `id_municipio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  `codigo_dane` mediumint(10) NOT NULL,
-  `departamento` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_municipio`),
-  KEY `fk_MUNICIPIO_DEPARTAMENTO1_idx` (`departamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `persona`
---
-
-CREATE TABLE IF NOT EXISTS `persona` (
-  `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `documento` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `apellido` varchar(10) NOT NULL,
-  `direccion` varchar(15) NOT NULL,
-  `telefono` decimal(11,0) NOT NULL,
-  `municipio` int(10) UNSIGNED NOT NULL,
-  `rol` enum('cliente','proveedor',' vendedor') NOT NULL,
-  `contraseña` varchar(45) NOT NULL,
-  `estado` enum('activo','inactivo') NOT NULL,
-  PRIMARY KEY (`id_persona`),
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
   KEY `fk_PERSONA_MUNICIPIO1_idx` (`municipio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
