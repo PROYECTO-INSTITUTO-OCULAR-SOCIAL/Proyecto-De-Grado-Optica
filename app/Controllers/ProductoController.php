@@ -52,10 +52,13 @@ class ProductoController{
             $arrayProducto['marca'] = marca::searchForid_marca($_POST['marca']);
             $arrayProducto['estado'] = 'Activo';
             $Producto = new Producto($arrayProducto);
+            var_dump($Producto->getMarca()->getid_marca());
+
             if($Producto->create()){
                 header("Location: ../../views/modules/Producto/Create.php?id=".$Producto->getIdProducto());
             }
-        } catch (Exception $e) {
+        } catch (Exception $e){
+            var_dump($e);
             GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../views/modules/Producto/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
