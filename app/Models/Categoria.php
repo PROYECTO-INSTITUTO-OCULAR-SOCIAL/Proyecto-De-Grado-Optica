@@ -2,7 +2,7 @@
 
 
 namespace App\Models;
-require('BasicModel.php');
+require_once('BasicModel.php');
 
 class Categoria extends BasicModel
 {
@@ -127,6 +127,7 @@ class Categoria extends BasicModel
         }
         $tmp->Disconnect();
         return $arrCategoria;
+
 
     }
 
