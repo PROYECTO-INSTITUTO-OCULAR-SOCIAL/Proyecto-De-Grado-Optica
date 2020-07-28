@@ -1,8 +1,10 @@
 <?php
 
+
 namespace app\Models;
 
-require('BasicModel.php');
+require_once('BasicModel.php');
+
 
 class Abono extends BasicModel
 {
@@ -12,111 +14,182 @@ class Abono extends BasicModel
 
 
     /**
-     * Usuarios constructor.
+     * Ventas constructor.
      * @param $id_abono
      * @param $fecha
      * @param $valor
      */
+
+
     public function __construct($Abono = array())
     {
-        parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
+        parent::__construct();
         $this->id_abono = $Abono['id_abono'] ?? null;
         $this->fecha = $Abono['fecha'] ?? null;
-        $this->valor = $Abono['valor'] ?? null;
+        $this->valor = $Abono['monto'] ?? null;
     }
 
-    /* Metodo destructor cierra la conexion. */
-    function __destruct() {
+    /**
+     *
+     */
+    function __destruct()
+    {
         $this->Disconnect();
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getid_abono() : int
+    public function getid_abono()
     {
         return $this->id_abono;
     }
 
-    /**
-     * @param int $id_abono
-     */
-    public function setid_abono(int $id_abono): void
-    {
-        $this->id_abono = $id_abono;
-    }
+
 
     /**
-     * @return datetime
+     * @param mixed $id_abono
      */
-    public function getfecha() : datetime
+    public function setid_abono($id_abono): void
+    {
+        $this->id = $id_abono;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getfecha()
     {
         return $this->fecha;
     }
 
     /**
-     * @param datetime $fecha
+     * @param mixed $fecha
      */
-    public function setfecha(datetime $Abono): void
+    public function setfecha($fecha): void
     {
-        $this->fecha = $Abono;
+        $this->fecha = $fecha;
     }
 
 
 
     /**
-     * @return double
+     * @return mixed
      */
-    public function getvalor(): double
+    public function getvalor()
     {
         return $this->valor;
     }
 
     /**
-     * @param double $valor
+     * @param mixed $valor
      */
-    public function setvalor(double $valor): void
+    public function setvalor($valor): void
     {
         $this->valor = $valor;
     }
 
 
-
-
-    public function create() : bool
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public static function search($query)
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Abono VALUES (NULL, ?, ?)", array(
-                $this->fecha,
-                $this->valor
-            )
-        );
-        $this->Disconnect();
-        return $result;
+
+        $arrAbono = array();
+        $tmp = new Abono();
+        $getrows = $tmp->getRows($query);
+
+        foreach ($getrows as $valor) {
+            $Abono = new Abono();
+            $Abono->id_abono = $valor['id_abono'];
+            $Abono->fecha = $valor['fecha'];
+            $Abono->valor = $valor['valor'];
+            $Abono->Disconnect();
+            array_push($arrAbono, $Abono);
+        }
+        $tmp->Disconnect();
+        return $arrAbono;
     }
 
-    public function update() : bool
+    /**
+     * @return mixed
+     */
+    public static function getAll()
     {
-        $result = $this->updateRow("UPDATE mer_optica.Abono SET fecha = ? , valor = ? WHERE id_abono = ?", array(
+        return Abono::search("SELECT * FROM mer_optica.Abono");
+    }
+
+    /**
+     * @param $id_abono
+     * @return mixed
+     */
+    public static function searchForId($id_abono)
+    {
+        $Abono = null;
+        if ($id_abono > 0) {
+            $Abono= new Abono();
+            $getrow = $Abono->getRow("SELECT * FROM mer_optica.Abono WHERE id_abonno =?", array($id_abono));
+            $Abono->id_abono = $getrow['id_abono'];
+            $Abono->fecha = $getrow['fecha'];
+            $Abono->valor = $getrow['valor'];
+
+        }
+        $Abono->Disconnect();
+        return $Abono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function create()
+    {
+        $result = $this->insertRow("INSERT INTO mer_optica.Abono VALUES (NULL, ?, ?)", array(
 
                 $this->fecha,
                 $this->valor,
-                $this->id_abono,
+            )
+        );
+        $this->setid_abono(($result) ? $this->getLastid_abono() : null);
+        $this->Disconnect();
+        return $result;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function update()
+    {
+        $result = $this->updateRow("UPDATE mer_optica.Abono SET fecha = ?, valor = ? WHERE id_abono = ?", array(
+                $this->fecha,
+                $this->valor,
+                $this->id_abono
             )
         );
         $this->Disconnect();
         return $result;
     }
 
-    public function deleted($id_abono) : void
+
+    /**
+     * @param $id_abono
+     * @return mixed
+     */
+    public function deleted($id_abono)
     {
-        // TODO: Implement deleted() method.
+        $Abono = Abono::searchForid_abono($id_abono); //Buscando abono por el ID
+        return $Abono->update();                    //Guarda los cambios..
     }
 
-
-
-    protected static function searchForId($id)
+    /**
+     * @return string
+     */
+    public function __toString()
     {
-        // TODO: Implement searchForId() method.
+        return "fecha: $this->fecha, valor: $this->valor";
     }
+
 }

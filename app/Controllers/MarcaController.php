@@ -127,18 +127,6 @@ class MarcaController
         return false;
     }
 
-    public static function MarcaIsInArray($id_marca, $ArrMarca){
-        if(count($ArrMarca) > 0){
-            foreach ($ArrMarca as $Marca){
-                if($Marca->getid_marca() == $id_marca){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
     static public function selectMarca ($isMultiple=false,
                                            $isRequired=true,
                                            $id="id_marca",
