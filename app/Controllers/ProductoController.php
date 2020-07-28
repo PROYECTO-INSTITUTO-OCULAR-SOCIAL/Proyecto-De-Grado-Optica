@@ -133,43 +133,42 @@ class ProductoController{
         }
     }
 
-    /*public static function personaIsInArray($idPersona, $ArrPersonas){
-        if(count($ArrPersonas) > 0){
-            foreach ($ArrPersonas as $Persona){
-                if($Persona->getIdPersona() == $idPersona){
+    public static function ProductoIsInArray($id_producto, $ArrProducto){
+        if(count($ArrProducto) > 0){
+            foreach ($ArrProducto as $Producto){
+                if($Producto->getIdProducto() == $id_producto){
                     return true;
                 }
             }
         }
         return false;
     }
-
-    static public function selectPersona ($isMultiple=false,
-                                          $isRequired=true,
-                                          $id="idConsultorio",
-                                          $nombre="idConsultorio",
-                                          $defaultValue="",
-                                          $class="",
-                                          $where="",
-                                          $arrExcluir = array()){
-        $arrPersonas = array();
+    static public function selectProducto ($isMultiple=false,
+                                            $isRequired=true,
+                                            $id="id_producto",
+                                            $nombre="id_producto",
+                                            $defaultValue="",
+                                            $class="",
+                                            $where="",
+                                            $arrExcluir = array()){
+        $arrProducto = array();
         if($where != ""){
-            $base = "SELECT * FROM persona WHERE ";
-            $arrPersonas = Persona::buscar($base.$where);
+            $base = "SELECT * FROM Producto WHERE ";
+            $arrProducto = Producto::search($base.$where);
         }else{
-            $arrPersonas = Persona::getAll();
+            $arrProducto= Producto::getAll();
         }
 
         $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
         $htmlSelect .= "<option value='' >Seleccione</option>";
-        if(count($arrPersonas) > 0){
-            foreach ($arrPersonas as $persona)
-                if (!UsuariosController::personaIsInArray($persona->getIdPersona(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($persona != "") ? (($defaultValue == $persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$persona->getIdPersona()."'>".$persona->getNombres()." ".$persona->getApellidos()."</option>";
+        if(count($arrProducto) > 0){
+            foreach ($arrProducto as $Producto)
+                if (!ProductoController::ProductoIsInArray($Producto->getIdProducto(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Producto != "") ? (($defaultValue == $Producto->getIdProducto()) ? "selected" : "" ) : "")." value='".$Producto->getIdProducto()." '> ".$Producto->getNombre()."</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;
-    }*/
+    }
 
     /*
     public function buscar ($Query){
