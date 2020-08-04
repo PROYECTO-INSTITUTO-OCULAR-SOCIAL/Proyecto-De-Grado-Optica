@@ -7,20 +7,20 @@ require_once ('BasicModel.php');
 
 class Departamento extends BasicModel
 {
-    private $id_departamento;
-    private $nombre;
+    private int $id_departamento;
+    private string $nombre;
     private $codigo_dane;
 /**
  * Usuarios constructor.
- * @param $id_departamento
- * @param $nombre
+ * @param int $id_departamento
+ * @param String $nombre
  * @param $codigo_dane
  */
     public function __construct($Departamento = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_departamento = $Departamento['id_departamento'] ?? null;
-        $this->nombre = $Departamento['nombre'] ?? null;
+        $this->id_departamento = $Departamento['id_departamento'] ?? 0;
+        $this->nombre = $Departamento['nombre'] ?? 0;
         $this->codigo_dane= $Departamento['codigo_dane'] ?? null;
     }
 
@@ -64,7 +64,7 @@ class Departamento extends BasicModel
     /**
      * @return string
      */
-    public function getcodigo_dane() : string
+    public function getcodigo_dane() : int
     {
         return $this->codigo_dane;
     }
@@ -72,7 +72,7 @@ class Departamento extends BasicModel
     /**
      * @param string $codigo_dane
      */
-    public function setcodigo_dane(string $codigo_dane): void
+    public function setcodigo_dane(int $codigo_dane): void
     {
         $this->codigo_dane = $codigo_dane;
     }

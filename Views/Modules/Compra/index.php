@@ -3,6 +3,7 @@
 require_once("../../../app/Controllers/compraController.php");
 require_once("../../../app/Controllers/personaController.php");
 require_once("../../partials/routes.php");
+use Carbon\Carbon;
 use App\Controllers\CompraController; ?>
 
 <!DOCTYPE html>
@@ -106,14 +107,14 @@ use App\Controllers\CompraController; ?>
                                     ;
                                     ?>
                                     <tr>
-                                        <td><?= $Compra->getid_compra(); ?></td>
-                                        <td><?= $Compra->getfecha(); ?></td>
-                                        <td><?= $Compra->getvalor_total(); ?></td>
-                                        <td><?= $Compra->getPersona()->getfecha(); ?> <?= $Compra->getPersona()->getvalor_total(); ?></td>
+                                        <td><?php echo $Compra->getid_compra(); ?></td>
+                                        <td><?php echo $Compra->getfecha()->translatedFormat('l, j \\de F Y'); ?></td>
+                                        <td><?php echo $Compra->getvalor_total(); ?></td>
+                                        <td><?php echo $Compra->getPersona()->getNombre(); ?> <?= $Compra->getPersona()->getApellido(); ?></td>
 
                                         <td>
                                             <a href="Edit.php?id_compra=<?php echo $Compra->getid_compra(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_comprao=<?php echo $Compra->getid_compra(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="Show.php?id_compra=<?php echo $Compra->getid_compra(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
 
                                         </td>
                                     </tr>
@@ -122,9 +123,9 @@ use App\Controllers\CompraController; ?>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo Dane</th>
-                                    <th>Departamento</th>
+                                    <th>Fecha</th>
+                                    <th>Valor Total</th>
+                                    <th>Persona</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </tfoot>

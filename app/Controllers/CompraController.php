@@ -2,8 +2,10 @@
 namespace App\Controllers;
 require_once(__DIR__.'/../Models/Compra.php');
 require_once(__DIR__.'/../Models/Persona.php');
+
 use App\Models\Compra;
 use App\Models\Persona;
+use Carbon\Carbon;
 
 if(!empty($_GET['action'])){
     CompraController::main($_GET['action']);
@@ -38,30 +40,29 @@ class CompraController
     {
         try {
             $arrayCompra = array();
-            $arrayCompra['fecha'] = date('Y-m-d H:i:s'); //Fecha Completa Hoy
-            $arrayCompra['valor_total'] = $_POST['valor_total'];
-            $arrayCompra['persona'] = Persona::searchForId($_POST['persona']);
+            $arrayCompra['fecha'] =Carbon::parse($_POST['fecha']);
+            $arrayCompra['valor_total'] = 0;
+            $arrayCompra['Persona'] = Persona::searchForId($_POST['Persona']);
 
-            if (!Compra::CompraRegistrado($arrayCompra['fecha'])) {
-                $Compra = new Compra ($arrayCompra);
-                if ($Compra->create()) {
-                    header("Location: ../../Views/Modules/Compra/index.php?respuesta=correcto");
-                } else{echo "Error";}
-            } else {
-                header("Location: ../../Views/Modules/Compra/Create.php?respuesta=error&mensaje=Compra ya registrado");
+            $Compra = new Compra ($arrayCompra);
+
+            if($Compra->Create()){
+                header("Location: ../../Views/Modules/Compra/index.php?respuesta=correcto");
             }
+
         } catch (Exception $e) {
-            header("Location: ../../Views/Modules/Compra/Create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../views/modules/Compra/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
+
 
     static public function Edit()
     {
         try {
             $arrayCompra = array();
-            $arrayCompra['fecha'] = date('Y-m-d H:i:s');
+            $arrayCompra['fecha'] = Carbon::parse($_POST['fecha']);
             $arrayCompra['valor_total'] = $_POST['valor_total'];
-            $arrayCompra['persona'] =Persona::searchForId($_POST['persona']);
+            $arrayCompra['Persona'] =Persona::searchForId($_POST['persona']);
             $arrayCompra['id_compra'] = $_POST['id_compra'];
 
             $Compra= new Compra($arrayCompra);

@@ -2,30 +2,32 @@
 
 
 namespace App\Models;
+require_once (__DIR__ .'/../../vendor/autoload.php');
 require_once('BasicModel.php');
 require_once ('Persona.php');
+use Carbon\Carbon;
 
 
 class Compra extends BasicModel
 {
-    private $id_compra;
-    private $fecha;
-    private $valor_total;
+    private int $id_compra;
+    private carbon $fecha;
+    private float $valor_total;
     private $Persona;
     /**
      * Usuarios constructor.
-     * @param $id_compra
-     * @param $fecha
-     * @param $valor_total
+     * @param int $id_compra
+     * @param carbon $fecha
+     * @param float $valor_total
      * * @param $Persona
      */
     public function __construct($Compra = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_compra = $Compra['id_compra'] ?? null;
-        $this->fecha = $Compra['fecha'] ?? null;
-        $this->valor_total= $Compra['valor_total'] ?? null;
-        $this->Persona = $Persona['Persona'] ?? null;
+        $this->id_compra = $Compra['id_compra'] ?? 0;
+        $this->fecha = $Compra['fecha'] ?? new carbon();
+        $this->valor_total= $Compra['valor_total'] ?? 0.0;
+        $this->Persona = $Compra['Persona'] ?? '';
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -52,15 +54,15 @@ class Compra extends BasicModel
     /**
      * @return mixed
      */
-    public function getfecha()
+    public function getfecha() : carbon
     {
-        return $this->fecha;
+        return $this->fecha-> locale('es');
     }
 
     /**
-     * @param string $fecha
+     * @param mixed $fecha_venta
      */
-    public function setfecha($fecha): void
+    public function setfecha(carbon $fecha): void
     {
         $this->fecha = $fecha;
     }
@@ -76,11 +78,13 @@ class Compra extends BasicModel
     /**
      * @param double $valor_total
      */
-    public function setvalor_total($valor_total): void
+    public function setvalor_total(float $valor_total): void
     {
         $this->valor_total = $valor_total;
     }
-
+    /**
+     * @return Persona
+     */
     public function getPersona(): Persona
     {
         return $this->Persona;
@@ -94,18 +98,20 @@ class Compra extends BasicModel
         $this->Persona = $Persona;
     }
 
-    public function Create() : bool
+    public function Create()
     {
-        $result = $this->insertRow("INSERT INTO mer_optica.Compra VALUES (NULL, ?, ? ,?)", array(
-                $this->fecha,
+        $result = $this->insertRow("INSERT INTO mer_optica.Compra VALUES (NULL, ?, ?, ?)", array(
+                $this->fecha->toDateString(), //YYYY-MM-DD
                 $this->valor_total,
-                $this->Persona->getid_persona(),
+                $this->Persona->getIdPersona(),
 
             )
         );
+        $this->setid_compra(($result) ? $this->getLastId() : null);
         $this->Disconnect();
         return $result;
     }
+
     public static function search($query): array
     {
 
@@ -116,9 +122,9 @@ class Compra extends BasicModel
         foreach ($getrows as $valor) {
             $Compra = new Compra();
             $Compra->id_compra = $valor['id_compra'];
-            $Compra->fecha = $valor['fecha'];
+            $Compra->fecha = Carbon::parse($valor['fecha']);
             $Compra->valor_total = $valor['valor_total'];
-            $Compra->Persona= Persona::searchForId($valor['Persona']);
+            $Compra->Persona= Persona::searchForId($valor['persona']);
             $Compra->Disconnect();
             array_push($arrCompra, $Compra);
         }
@@ -150,9 +156,9 @@ class Compra extends BasicModel
             $Compra= new Compra();
             $getrow = $Compra->getRow("SELECT * FROM mer_optica.Compra WHERE id_compra =?", array($id));
             $Compra->id_compra = $getrow['id_compra'];
-            $Compra->fecha = $getrow['fecha'];
+            $Compra->fecha= Carbon::parse($getrow['fecha']);
             $Compra->valor_total= $getrow['valor_total'];
-            $Compra->Persona = Persona::searchForId($getrow['Persona']);
+            $Compra->Persona = Persona::searchForId($getrow['persona']);
 
         }
         $Compra->Disconnect();
@@ -163,15 +169,16 @@ class Compra extends BasicModel
     public function update()
     {
         $result = $this->updateRow("UPDATE mer_optica.Compra SET fecha= ?, valor_total = ?, Persona = ?  WHERE id_compra = ?", array(
-                $this->fecha,
+                $this->fecha->toDateString(),
                 $this->valor_total,
-                $this->Persona->getid_persona(),
+                $this->Persona->getIdPersona(),
                 $this->id_compra
             )
         );
         $this->Disconnect();
         return $result;
     }
+
 
     public function deleted($id)
     {

@@ -1,4 +1,4 @@
-<?php
+<?php use Carbon\Carbon;
 require_once("../../../app/Controllers/CompraController.php");
 require_once("../../../app/Controllers/PersonaController.php");
 require_once("../../partials/routes.php"); ?>
@@ -57,8 +57,10 @@ require_once("../../partials/routes.php"); ?>
                         <div class="form-group row">
                             <label for="fecha" class="col-sm-2 col-form-label">fecha</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="fecha" name="" placeholder="Ingrese la fecha">
+                                <input required type="date" max="<?= Carbon::now()->subYear(12)->format('Y-m-d') ?>" class="form-control" id="fecha"
+                                       name="fecha" placeholder="Ingrese la Fecha ">
                             </div>
+
                         </div>
                         <div class="form-group row">
                             <label for="valor_total" class="col-sm-2 col-form-label">Valor_total</label>
@@ -73,9 +75,9 @@ require_once("../../partials/routes.php"); ?>
                             <div class="col-sm-10">
                                 <?= \App\Controllers\PersonaController::selectPersona(false,
                                     true,
-                                    'persona',
-                                    'persona',
-                                    (!empty($dataCompra)) ? $dataCompra>getPersona()->getid_persona() : '',
+                                    'Persona',
+                                    'Persona',
+                                    (!empty($dataCompra)) ? $dataCompra>getPersona()->getIdPersona() : '',
                                     'form-control select2bs4 select2-info'
                                 )
                                 ?>

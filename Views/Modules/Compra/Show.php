@@ -1,9 +1,9 @@
 <?php
 require_once("../../Partials/Routes.php");
-require_once("../../../app/Controllers/MunicipioController.php");
+require_once("../../../app/Controllers/CompraController.php");
 require_once("../../../app/Controllers/PersonaController.php");
 
-use App\Controllers\DepartamentoController; ?>
+use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@ use App\Controllers\DepartamentoController; ?>
                         Error al consultar el Compra: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_departamento'])) { ?>
+            <?php } else if (empty($_GET['id_compra'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -59,19 +59,19 @@ use App\Controllers\DepartamentoController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <?php if(!empty($_GET["id_compra"]) && isset($_GET["id_compra"])){
-                    $DataCompra= CompraController::searchForId($_GET["id_compra"]);
+                    $DataCompra=CompraController::searchForId($_GET["id_compra"]);
                     if(!empty($DataCompra)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataCompra->getfecha()?></h3>
+                            <p class="card-title"><?= $DataCompra->getfecha() ?></p>
                         </div>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Valor Total</strong>
-                        <p class="text-muted"><?= $DataCompra->getvalor_total().": ".$DataCompra->getvalor_total() ?></p>
+                        <p class="number"><?= $DataCompra->getvalor_total().": ".$DataCompra->getvalor_total() ?></p>
                         <hr>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Persona</strong>
-                        <p class="text-muted"><?= $DataCompra->getPersona()->getfecha() ?></p>
+                        <p class="text-muted"><?= $DataCompra->getPersona()->getNombre() ?></p>
                         <hr>
                         <div class="card-footer">
                             <div class="row">

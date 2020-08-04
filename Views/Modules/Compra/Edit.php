@@ -1,7 +1,8 @@
 <?php
 require("../../partials/routes.php");
 require("../../../app/Controllers/CompraController.php");
-
+require("../../../app/Controllers/PersonaController.php");
+use Carbon\Carbon;
 use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
@@ -74,13 +75,15 @@ use App\Controllers\CompraController; ?>
                                 <div class="form-group row">
                                     <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="fecha" name="fecha" value="<?= $DataCompra->getfecha(); ?>" placeholder="Ingrese la Compra">
+                                        <input required type="date" max="<?= Carbon::now()->subYear(12)->format('Y-m-d') ?>"
+                                               value="<?= $DataCompra->getfecha()->toDateString(); ?>" class="form-control" id="fecha"
+                                               name="fecha" placeholder="Ingrese la Fecha">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="descripcion" class="col-sm-2 col-form-label">Valor Total</label>
+                                    <label for="valor_total" class="col-sm-2 col-form-label">Valor Total</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="valor_total" name="Valor_total" value="<?= $DataCompra->getvalor_total(); ?>" placeholder="Ingrese el valor total">
+                                        <input required type="number" minlength="6" class="form-control" id="valor_total" name="valor_total" value="<?= $DataCompra->getvalor_total(); ?>" placeholder="Ingrese el Valor">
                                     </div>
                                 </div>
 
@@ -92,7 +95,7 @@ use App\Controllers\CompraController; ?>
                                             true,
                                             'persona',
                                             'persona',
-                                            (!empty($dataDepartamento)) ? $dataDepartamento->getPersona()->getid_persona() : '',
+                                            (!empty($dataCompra)) ? $dataCompra->getPersona()->getIdPersona() : '',
                                             'form-control select2bs4 select2-info'
                                         )
                                         ?>
