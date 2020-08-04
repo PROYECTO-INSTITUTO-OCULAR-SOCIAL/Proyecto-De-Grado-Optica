@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-require(__DIR__.'/../Models/Departamento.php');
+require_once(__DIR__.'/../Models/Departamento.php');
 use App\Models\Departamento;
 use App\Models\Productos;
 
@@ -94,6 +94,16 @@ class DepartamentoController
         }
     }
 
+    public static function DepartamentoIsInArray($id_departamento, $ArrDepartamento){
+        if(count($ArrDepartamento) > 0){
+            foreach ($ArrDepartamento as $Departamento){
+                if($Departamento->getid_departamento() == $id_departamento){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     static public function selectDepartamento ($isMultiple=false,
                                            $isRequired=true,
@@ -115,8 +125,8 @@ class DepartamentoController
         $htmlSelect .= "<option value='' >Seleccione</option>";
         if(count($arrDepartamento) > 0){
             foreach ($arrDepartamento as $Departamento)
-                if (!DepartamentoController::DepartamentoIsInArray($Departamento->getId(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($Departamento != "") ? (($defaultValue == $Departamento->getId()) ? "selected" : "" ) : "")." value='".$Departamento->getId()."'>".$Departamento->getStock()." - ".$Departamento->getnombre()." - ".$Departamento->getcodigo_dane()."</option>";
+                if (!DepartamentoController::DepartamentoIsInArray($Departamento->getid_departamento(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Departamento != "") ? (($defaultValue == $Departamento->getid_departamento()) ? "selected" : "" ) : "")." value='".$Departamento->getid_departamento()."'>"." - ".$Departamento->getnombre()." - ".$Departamento->getcodigo_dane()."</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;

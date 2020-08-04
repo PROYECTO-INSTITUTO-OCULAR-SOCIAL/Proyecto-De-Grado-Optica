@@ -1,6 +1,6 @@
 <?php
-require("../../../app/Controllers/CategoriaController.php");
-require("../../partials/routes.php"); ?>
+require_once("../../../app/Controllers/CategoriaController.php");
+require_once("../../partials/routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>

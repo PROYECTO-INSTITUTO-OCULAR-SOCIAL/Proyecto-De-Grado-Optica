@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-require(__DIR__ . '/../Models/Marca.php');
+require_once(__DIR__ . '/../Models/Marca.php');
 use App\Models\Marca;
 
 if(!empty($_GET['action'])){
@@ -38,7 +38,7 @@ class MarcaController
         try {
             $arrayMarca = array();
             $arrayMarca['nombre'] = $_POST['nombre'];
-            $arrayMarca['estado'] = 'Activo';
+            $arrayMarca['estado'] = $_POST['estado'];
             if(!Marca::MarcaRegistrada($arrayMarca['nombre'])){
                 $Marca = new Marca ($arrayMarca);
                 if($Marca->Create()){
@@ -116,6 +116,43 @@ class MarcaController
             //header("Location: ../Views/Modules/Marca/Marca.php?respuesta=error");
         }
     }
+    public static function MarcaIsInArray($id_marca, $ArrMarca){
+        if(count($ArrMarca) > 0){
+            foreach ($ArrMarca as $Marca){
+                if($Marca->getid_marca() == $id_marca){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    static public function selectMarca ($isMultiple=false,
+                                           $isRequired=true,
+                                           $id="id_marca",
+                                           $nombre="id_marca",
+                                           $defaultValue="",
+                                           $class="",
+                                           $where="",
+                                           $arrExcluir = array())
+    {
+        $arrMarca = array();
+        if ($where != "") {
+            $base = "SELECT * FROM Marca WHERE ";
+            $arrMarca = Marca::search($base . $where);
+        } else {
+            $arrMarca = Marca::getAll();
+        }
+
+        $htmlSelect = "<select " . (($isMultiple) ? "multiple" : "") . " " . (($isRequired) ? "required" : "") . " id= '" . $id . "' name='" . $nombre . "' class='" . $class . "'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if (count($arrMarca) > 0) {
+            foreach ($arrMarca as $Marca)
+                if (!MarcaController::MarcaIsInArray($Marca->getid_marca(), $arrExcluir))
+                    $htmlSelect .= "<option " . (($Marca != "") ? (($defaultValue == $Marca->getid_marca()) ? "selected" : "") : "") . " value='" . $Marca->getid_marca() . "'>" . $Marca->getNombre(). "</option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
+    }
 
 }

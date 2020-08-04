@@ -1,6 +1,10 @@
 <?php
 namespace App\Controllers;
-require(__DIR__.'/../Models/Municipio.php');
+require_once(__DIR__.'/../Models/Municipio.php');
+require_once(__DIR__.'/../Models/Departamento.php');
+require_once(__DIR__.'/../Models/GeneralFunctions.php');
+use App\Models\Departamento;
+use App\Models\GeneralFunctions;
 use App\Models\Municipio;
 
 if(!empty($_GET['action'])){
@@ -19,63 +23,63 @@ class MunicipioController
         } else if ($action == "searchForID") {
             MunicipioController::searchForID($_REQUEST['id_municipio']);
         } else if ($action == "searchAll") {
-            MunicipioController::getAll();
+            MunicipioController:: getAll();
         } else if ($action == "activate") {
             MunicipioController::activate();
         } else if ($action == "inactivate") {
             MunicipioController::inactivate();
-        }/*else if ($action == "login"){
-            MunicipioController::login();
-        }else if($action == "cerrarSession"){
-            MunicipioController::cerrarSession();
-        }*/
+        }
 
     }
 
-    static public function create()
+    static public function Create()
     {
         try {
             $arrayMunicipio = array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
-
-            if (!Municipio::MunicipioRegistrado($arrayMunicipio['nombre'])) {
-                $Municipio = new Municipio ($arrayMunicipio);
-                if ($Municipio->create()) {
-                    header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
-                }else{
-                    echo "Error";
-                }
-            } else {
-                header("Location: ../../Views/Modules/Municipio/Create.php?respuesta=error&mensaje=Municipio ya registrado");
+            $arrayMunicipio['departamento'] = Departamento::searchForId($_POST['departamento']);
+            $Municipio = new Municipio($arrayMunicipio);
+            if($Municipio->create()){
+                header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
             }
         } catch (Exception $e) {
+            GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Municipio/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function edit()
-    {
+    static public function Edit (){
         try {
-            $arrayMunicipio = array();
+            $arrayMunicipio= array();
             $arrayMunicipio['nombre'] = $_POST['nombre'];
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
+            $arrayMunicipio ['departamento'] = Departamento::searchForId($_POST['departamento']);
             $arrayMunicipio['id_municipio'] = $_POST['id_municipio'];
 
-            $user = new Municipio($arrayMunicipio);
-            $user->update();
+            $Municipio = new Municipio($arrayMunicipio);
+            $Municipio->update();
 
-            header("Location: ../../Views/Modules/Municipio/Show.php?id_municipio=" . $user->getId() . "&respuesta=correcto");
+            header("Location: ../../Views/Modules/Municipio/Show.php?id_municipio=".$Municipio->getIdMunicipio()."&respuesta=correcto");
         } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../Views/Modules/Municipio/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Municipio/Edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
+    static public function getAll ()
+    {
+        try {
+            return Municipio::getAll();
+        } catch (\Exception $e) {
+            GeneralFunctions::console($e, 'log', 'errorStack');
+            header("Location: ../Vista/Modules/Municipio/manager.php?respuesta=error");
+        }
+    }
     static public function activate()
     {
         try {
-            $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
+            $ObjMunicipio = Municipio::searchForID($_GET['id_municipio']);
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
@@ -87,10 +91,9 @@ class MunicipioController
         }
     }
 
-    static public function inactivate()
-    {
+    static public function inactivate(){
         try {
-            $ObjMunicipio = Municipio::searchForid($_GET['id_municipio']);
+            $ObjMunicipio = Municipio::searchForId($_GET['id_municipio']);
             if ($ObjMunicipio->update()) {
                 header("Location: ../../Views/Modules/Municipio/index.php");
             } else {
@@ -102,27 +105,51 @@ class MunicipioController
         }
     }
 
-    static public function searchForID($id_municipio)
+    static public function searchForID($id)
     {
         try {
-            return Municipio::searchForid($id_municipio);
+            return Municipio::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../Views/Modules/Municipio/manager.php?respuesta=error");
         }
     }
 
-    static public function getAll()
-    {
-        try {
-            return Municipio::getAll();
-        } catch (\Exception $e) {
-            var_dump($e);
-<<<<<<< HEAD
-            //header("Location: ../Vista/Modules/Municipio/manager.php?respuesta=error");
-=======
-            //header("Location: ../Views/Modules/Municipio/manager.php?respuesta=error");
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
+    public static function MunicipioIsInArray($id_municipio, $ArrMuicipio){
+        if(count($ArrMuicipio) > 0){
+            foreach ($ArrMuicipio as $Municipio){
+                if($Municipio->getIdMunicipio() == $id_municipio){
+                    return true;
+                }
+            }
         }
+        return false;
+    }
+
+    static public function selectMunicipio ($isMultiple=false,
+                                            $isRequired=true,
+                                            $id="id_municipio",
+                                            $nombre="id_municipio",
+                                            $defaultValue="",
+                                            $class="",
+                                            $where="",
+                                            $arrExcluir = array()){
+        $arrMunicipio = array();
+        if($where != ""){
+            $base = "SELECT * FROM Municipio WHERE ";
+            $arrMunicipio = Municipio::search($base.$where);
+        }else{
+            $arrMunicipio = Municipio:: getAll();
+        }
+
+        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if(count($arrMunicipio) > 0){
+            foreach ($arrMunicipio as $Municipio)
+                if (!MunicipioController::MunicipioIsInArray($Municipio->getIdMunicipio(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Municipio != "") ? (($defaultValue == $Municipio->getIdMunicipio()) ? "selected" : "" ) : "")." value='".$Municipio->getIdMunicipio()."'>"." - ".$Municipio->getNombre()." - ".$Municipio->getCodigoDane()."</option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
     }
 }

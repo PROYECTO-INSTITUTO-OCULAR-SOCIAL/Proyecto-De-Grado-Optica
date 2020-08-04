@@ -1,28 +1,29 @@
 <?php
-require("../../Partials/Routes.php");
-require("../../../app/Controllers/MunicipioController.php");
+require_once("../../Partials/Routes.php");
+require_once("../../../app/Controllers/MunicipioController.php");
+require_once("../../../app/Controllers/DepartamentoController.php");
 
 use App\Controllers\MunicipioController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Datos del Municipio</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col-sm-6">
                         <h1>Informacion del Municipio</h1>
                     </div>
@@ -47,11 +48,7 @@ use App\Controllers\MunicipioController; ?>
                         Error al consultar el Municipio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-<<<<<<< HEAD
-            <?php } else if (empty($_GET['id'])) { ?>
-=======
             <?php } else if (empty($_GET['id_municipio'])) { ?>
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -62,20 +59,25 @@ use App\Controllers\MunicipioController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <?php if(!empty($_GET["id_municipio"]) && isset($_GET["id_municipio"])){
-<<<<<<< HEAD
-                    $DataMunicipio = MunicipioController::searchForID($_GET["id_municipio"]);
-=======
                     $DataMunicipio = MunicipioController::searchForId($_GET["id_municipio"]);
->>>>>>> e0536aa5349fcc34841e0ada23f0dba9394f43f8
                     if(!empty($DataMunicipio)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataMunicipio->getNombre()  ?></h3>
+                            <p class="card-title"><?= $DataMunicipio->getNombre() ?></p>
                         </div>
-                            <hr>
-                            <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
-                            <p class="text-muted"><?= $DataMunicipio->getCodigo_dane().": ".$DataMunicipio->getCodigo_dane() ?></p>
-                            <hr>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> ID </strong>
+                        <p class="text-muted"><?= $DataMunicipio->getIdMunicipio() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Codigo Dane</strong>
+                        <p class="text-muted"><?= $DataMunicipio->getCodigoDane() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Departamento</strong>
+                        <p class="text-muted"><?= $DataMunicipio->getDepartamento()->getnombre() ?></p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Dane Departamento</strong>
+                        <p class="text-muted"><?= $DataMunicipio->getDepartamento()->getcodigo_dane() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
@@ -111,4 +113,3 @@ use App\Controllers\MunicipioController; ?>
 <?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
-

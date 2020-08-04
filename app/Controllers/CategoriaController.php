@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-require(__DIR__.'/../Models/Categoria.php');
+require_once(__DIR__.'/../Models/Categoria.php');
 require_once(__DIR__.'/../Models/GeneralFunctions.php');
 
 use App\Models\GeneralFunctions;
@@ -124,49 +124,48 @@ class CategoriaController{
             return Categoria::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            //header("Location: ../Vista/Modules/Categoria/Categoria.php?respuesta=error");
+            //header("Location: ../Views/Modules/Categoria/manager.php?respuesta=error");
         }
     }
 
 
-    /*public static function personaIsInArray($idPersona, $ArrPersonas){
-        if(count($ArrPersonas) > 0){
-            foreach ($ArrPersonas as $Persona){
-                if($Persona->getIdPersona() == $idPersona){
+
+    public static function CategoriaIsInArray($id_categoria, $ArrCategoria){
+        if(count($ArrCategoria) > 0){
+            foreach ($ArrCategoria as $Categoria){
+                if($Categoria->getIdCategoria() == $id_categoria){
                     return true;
                 }
             }
         }
         return false;
     }
-
-    static public function selectPersona ($isMultiple=false,
-                                          $isRequired=true,
-                                          $id="idConsultorio",
-                                          $nombre="idConsultorio",
-                                          $defaultValue="",
-                                          $class="",
-                                          $where="",
-                                          $arrExcluir = array()){
-        $arrPersonas = array();
+    static public function selectCategoria ($isMultiple=false,
+                                               $isRequired=true,
+                                               $id="id_categoria",
+                                               $nombre="id_categoria",
+                                               $defaultValue="",
+                                               $class="",
+                                               $where="",
+                                               $arrExcluir = array()){
+        $arrCategoria = array();
         if($where != ""){
-            $base = "SELECT * FROM persona WHERE ";
-            $arrPersonas = Persona::buscar($base.$where);
+            $base = "SELECT * FROM Categoria WHERE ";
+            $arrCategoria = Categoria::search($base.$where);
         }else{
-            $arrPersonas = Persona::getAll();
+            $arrCategoria= Categoria::getAll();
         }
 
         $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
         $htmlSelect .= "<option value='' >Seleccione</option>";
-        if(count($arrPersonas) > 0){
-            foreach ($arrPersonas as $persona)
-                if (!UsuariosController::personaIsInArray($persona->getIdPersona(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($persona != "") ? (($defaultValue == $persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$persona->getIdPersona()."'>".$persona->getNombres()." ".$persona->getApellidos()."</option>";
+        if(count($arrCategoria) > 0){
+            foreach ($arrCategoria as $Categoria)
+                if (!CategoriaController::CategoriaIsInArray($Categoria->getIdCategoria(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Categoria != "") ? (($defaultValue == $Categoria->getIdCategoria()) ? "selected" : "" ) : "")." value='".$Categoria->getIdCategoria()." '> ".$Categoria->getNombre()."</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;
-    }*/
-
+    }
     /*
     public function buscar ($Query){
         try {
