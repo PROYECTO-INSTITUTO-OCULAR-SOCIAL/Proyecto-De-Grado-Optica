@@ -3,26 +3,25 @@
 
 namespace App\Models;
 require_once('BasicModel.php');
-
 class Categoria extends BasicModel
 {
-    private $id_categoria;
-    private $nombre;
-    private $estado;
+    private  int $id_categoria;
+    private  string $nombre;
+    private  string $estado;
 
 
     /**
      * Formula constructor.
-     * @param $id_categoria
-     * @param $nombre
-     * @param $estado
+     * @param int  $id_categoria
+     * @param  string $nombre
+     * @param  string $estado
      */
     public function __construct($Categoria = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_categoria = $Categoria['id_categoria'] ?? null;
-        $this->nombre = $Categoria['nombre'] ?? null;
-        $this->estado = $Categoria['estado'] ?? null;
+        $this->id_categoria = $Categoria['id_categoria'] ?? 0;
+        $this->nombre = $Categoria['nombre'] ?? '';
+        $this->estado = $Categoria['estado'] ?? '';
 
     }
 
@@ -49,33 +48,33 @@ class Categoria extends BasicModel
     }
 
     /**
-     * @return string
+     * @return String
      */
-    public function getNombre(): ? string
+    public function getNombre(): String
     {
         return $this->nombre;
     }
 
     /**
-     * @param string $nombre
+     * @param String $nombre
      */
-    public function setNombre(?string $nombre): void
+    public function setNombre(String $nombre): void
     {
         $this->nombre = $nombre;
     }
 
     /**
-     * @return string
+     * @return String
      */
-    public function getEstado(): ?string
+    public function getEstado(): String
     {
         return $this->estado;
     }
 
     /**
-     * @param string $estado
+     * @param String $estado
      */
-    public function setEstado(?string $estado): void
+    public function setEstado(String $estado): void
     {
         $this->estado = $estado;
     }

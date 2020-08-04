@@ -2,45 +2,44 @@
 
 
 namespace App\Models;
-
 require_once('BasicModel.php');
 
 class Producto extends BasicModel
 {
-    private $id_producto;
-    private $nombre;
-    private $descripcion;
-    private $iva;
-    private $stock;
-    private $marca;
-    private $categoria;
-    private $estado;
+    private  int $id_producto;
+    private  string $nombre;
+    private  string $descripcion;
+    private  int $iva;
+    private  int $stock;
+    private  ?Marca $marca;
+    private ?Categoria $categoria;
+    private  string $estado;
 
 
 
     /**
      * Producto constructor.
-     * @param $id_producto
-     * @param $nombre
-     * @param $descripcion
-     *  @param $iva
-     * @param $stock
-     * * @param $marca
-     * * @param $categoria
-     * @param $estado
+     * @param  int $id_producto
+     * @param  string $nombre
+     * @param string $descripcion
+     *  @param  int $iva
+     * @param  int $stock
+     * * @param Marca $marca
+     * * @param Categoria $categoria
+     * @param string $estado
 
      */
     public function __construct($Producto = array())
     {
         parent::__construct();
-        $this->id_producto = $Producto['id_producto'] ?? null;
-        $this->nombre = $Producto['nombre'] ?? null;
-        $this->descripcion = $Producto['descripcion'] ?? null;
-        $this->iva = $Producto['iva'] ?? null;
-        $this->stock = $Producto['stock'] ?? null;
+        $this->id_producto = $Producto['id_producto'] ?? 0;
+        $this->nombre = $Producto['nombre'] ?? '';
+        $this->descripcion = $Producto['descripcion'] ?? '';
+        $this->iva = $Producto['iva'] ?? 0;
+        $this->stock = $Producto['stock'] ?? 0;
         $this->marca = $Producto['marca'] ?? null;
         $this->categoria = $Producto['categoria'] ?? null;
-        $this->estado = $Producto['estado'] ?? null;
+        $this->estado = $Producto['estado'] ?? '';
     }
 
     /**
@@ -68,9 +67,9 @@ class Producto extends BasicModel
     }
 
     /**
-     * @param string $nombre
+     * @param String $nombre
      */
-    public function setNombre(?string $nombre): void
+    public function setNombre(String $nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -78,17 +77,17 @@ class Producto extends BasicModel
 
 
     /**
-     * @return string
+     * @return String
      */
-    public function getDescripcion(): ?string
+    public function getDescripcion(): String
     {
         return $this->descripcion;
     }
 
     /**
-     * @param string $descripcion
+     * @param String $descripcion
      */
-    public function setDescripcion(?string $descripcion): void
+    public function setDescripcion(String $descripcion): void
     {
         $this->descripcion = $descripcion;
     }
@@ -158,17 +157,17 @@ class Producto extends BasicModel
 
 
     /**
-     * @return string
+     * @return String
      */
-    public function getEstado(): ?string
+    public function getEstado(): String
     {
         return $this->estado;
     }
 
     /**
-     * @param string $estado
+     * @param String $estado
      */
-    public function setEstado(?string $estado): void
+    public function setEstado(String $estado): void
     {
         $this->estado = $estado;
     }
