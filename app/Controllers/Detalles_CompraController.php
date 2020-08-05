@@ -49,29 +49,27 @@ class Detalles_CompraController{
             $arrayDetalles_Compra['compra'] = Compra::searchForId($_POST['compra']);
             $arrayDetalles_Compra['producto'] = Producto::searchForId($_POST['producto']);
             $Detalles_Compra = new Detalles_Compra($arrayDetalles_Compra);
-
             if($Detalles_Compra->create()){
-                header("Location: ../../views/modules/Detalles_Compra/index.php?id=".$Detalles_Compra->getIdProducto());
+                header("Location: ../../Views/Modules/Detalles_Compra/index.php?respuesta=correcto");
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../views/modules/Detalles_Compra/Create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../Views/Modules/Detalles_Compra/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
-
     static public function edit (){
         try {
             $arrayDetalles_Compra = array();
             $arrayDetalles_Compra['cantidad'] = $_POST['cantidad'];
             $arrayDetalles_Compra['precio'] = $_POST['precio'];
-            $arrayDetalles_Compra['compra'] = Compra::searchForId($_POST['categoria']);
+            $arrayDetalles_Compra['compra'] = Compra::searchForId($_POST['compra']);
             $arrayDetalles_Compra['producto'] = Producto::searchForId($_POST['producto']);
             $arrayDetalles_Compra['id_detalles_compra'] = $_POST['id_detalles_compra'];
 
             $Detalles_Compra = new Detalles_Compra($arrayDetalles_Compra);
             $Detalles_Compra->update();
 
-            header("Location: ../../Views/Modules/Detalles_Compra/Show.php?idProducto=".$Detalles_Compra->getIdDetallesCompra()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Detalles_Compra/Show.php?id_detalles_compra=".$Detalles_Compra->getIdDetallesCompra()."&respuesta=correcto");
         } catch (\Exception $e) {
             GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Detalles_Compra/Edit.php?respuesta=error&mensaje=".$e->getMessage());

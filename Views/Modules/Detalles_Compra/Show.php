@@ -73,7 +73,7 @@ use App\Controllers\Detalles_CompraController; ?>
                 <p class="text-muted"><?= $DataDetalles_Compra->getPrecio() ?></p>
                 <hr>
                 <strong><i class="fas fa-user mr-1"></i> Compra</strong>
-                <p class="text-muted"><?= $DataDetalles_Compra->getCompra()->getNombre() ?></p>
+                <p class="text-muted"><?= $DataDetalles_Compra->getCompra()->getfecha() ?></p>
                 <hr>
                 <strong><i class="fas fa-user mr-1"></i> Producto</strong>
                 <p class="text-muted"><?= $DataDetalles_Compra->getProducto()->getnombre() ?></p>

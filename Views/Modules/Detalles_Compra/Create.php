@@ -1,8 +1,10 @@
 <?php
-require_once("../../../app/Controllers/ProductoController.php");
+
+require_once("../../../app/Controllers/Detalles_CompraController.php");
 require_once("../../../app/Controllers/CompraController.php");
 require_once("../../../app/Controllers/ProductoController.php");
-require_once("../../partials/routes.php"); ?>
+require_once("../../partials/routes.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,8 +59,9 @@ require_once("../../partials/routes.php"); ?>
                 <h3 class="card-title">Horizontal Form</h3>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" method="post" id="frmCreateProducto" name="frmCreateProducto"
-                      action="../../../app/Controllers/ProductoController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateDetalles_Compra" name="frmCreateDetalles_Compra"
+                      action="../../../app/Controllers/Detalles_CompraController.php?action=create">
+
                     <div class="form-group row">
                         <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
                         <div class="col-sm-8">
@@ -76,13 +79,13 @@ require_once("../../partials/routes.php"); ?>
                     </div>
 
                     <div class="form-group row">
-                        <label for="comra" class="col-sm-2 col-form-label">Compra</label>
+                        <label for="compra" class="col-sm-2 col-form-label">Compra</label>
                         <div class="col-sm-8">
                             <?= \App\Controllers\CompraController::selectCompra(false,
                                 true,
                                 'compra',
                                 'compra',
-                                (!empty($dataCompra)) ? $dataCompra->getCompra()->getid_compra() : '',
+                                (!empty($DataDetalles_Compra)) ? $DataDetalles_Compra->getCompra()->getid_compra() : '',
                                 'form-control select2bs4 select2-info')
                             ?>
                         </div>
@@ -94,7 +97,7 @@ require_once("../../partials/routes.php"); ?>
                                 true,
                                 'producto',
                                 'producto',
-                                (!empty($dataProducto)) ? $dataProducto->getproducto()->getIdProducto() : '',
+                                (!empty($DataDetalles_Compra)) ? $DataDetalles_Compra->getProducto()->getIdProducto() : '',
                                 'form-control select2bs4 select2-info')
                             ?>
                         </div>
