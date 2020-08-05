@@ -93,7 +93,7 @@ use App\Models\Detalles_Compra;
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblProducto" class="datatable table table-bordered table-striped">
+                            <table id="tblDetalles_Compra" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                    <th>#</th>
@@ -114,7 +114,7 @@ use App\Models\Detalles_Compra;
                                         <td><?= $Detalles_Compra->getIdDetallesCompra(); ?></td>
                                         <td><?= $Detalles_Compra->getCantidad(); ?></td>
                                         <td><?= $Detalles_Compra->getPrecio(); ?></td>
-                                        <td><?= $Detalles_Compra->getCompra()->getnombre(); ?></td>
+                                        <td><?= $Detalles_Compra->getCompra()->getfecha(); ?></td>
                                         <td><?= $Detalles_Compra->getProducto()->getNombre(); ?></td>
 
                                         <td>

@@ -49,7 +49,7 @@ use App\Controllers\Detalles_CompraController; ?>
                         Error al crear Producto: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['idProducto'])) { ?>
+            <?php } else if (empty($_GET['idDetalles_Compra'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -67,7 +67,7 @@ use App\Controllers\Detalles_CompraController; ?>
                     <p>
                     <?php
                     $DataDetalles_Compra = Detalles_CompraController::searchForID($_GET["idDetalles_Compra"]);
-                    if(!empty($DataProducto)){
+                    if(!empty($DataDetalles_Compra)){
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditDetalles_Compra" name="frmEditDetalles_Compra" action="../../../app/Controllers/Detalles_CompraController.php?action=edit">

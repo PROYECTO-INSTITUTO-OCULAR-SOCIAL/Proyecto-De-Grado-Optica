@@ -4,35 +4,37 @@
 namespace App\Models;
 
 require_once('BasicModel.php');
+require_once ('Producto.php');
+require_once ('Compra.php');
 
 class Detalles_Compra extends BasicModel
 {
-    private $id_detalles_compra;
-    private $cantidad;
-    private $precio;
-    private $compra;
-    private $producto;
+    private  int $id_detalles_compra;
+    private  int $cantidad;
+    private  int $precio;
+    private  ?Compra $compra;
+    private  ?Producto $producto;
 
 
 
 
     /**
      * Producto constructor.
-     * @param $id_detalles_compra
-     * @param $cantidad
-     * @param $precio
-     *  @param $compra
-     * @param $producto
+     * @param  int $id_detalles_compra
+     * @param  int $cantidad
+     * @param  int $precio
+     *  @param Compra $compra
+     * @param  Producto $producto
 
      */
     public function __construct($Detalles_Compra = array())
     {
         parent::__construct();
-        $this->id_detalles_compra = Detalles_Compra['id_detalles_compra'] ?? null;
-        $this->cantidad = Detalles_Compra['cantidad'] ?? null;
-        $this->precio = Detalles_Compra['precio'] ?? null;
-        $this->compra = Detalles_Compra['compra'] ?? null;
-        $this->producto = Detalles_Compra['producto'] ?? null;
+        $this->id_detalles_compra = $Detalles_Compra['id_detalles_compra'] ?? 0;
+        $this->cantidad = $Detalles_Compra['cantidad'] ?? 0;
+        $this->precio = $Detalles_Compra['precio'] ?? 0;
+        $this->compra = $Detalles_Compra['compra'] ?? null;
+        $this->producto = $Detalles_Compra['producto'] ?? null;
     }
 
     /**
@@ -110,7 +112,7 @@ class Detalles_Compra extends BasicModel
     /**
      * @param |null $producto
      */
-    public function setProducto(Producto$producto): void
+    public function setProducto(Producto $producto): void
     {
         $this->producto = $producto;
     }
@@ -129,7 +131,7 @@ class Detalles_Compra extends BasicModel
             $Detalles_Compra->id_detalles_compra = $valor['id_detalles_compra'];
             $Detalles_Compra->cantidad = $valor['cantidad'];
             $Detalles_Compra->precio = $valor['precio'];
-            $Detalles_Compra->compra = Compra::searchForid_marca($valor['compra']);
+            $Detalles_Compra->compra = Compra::searchForId($valor['compra']);
             $Detalles_Compra->producto = Producto::searchForId($valor['producto']);
             $Detalles_Compra->Disconnect();
             array_push($arrDetalles_Compra, $Detalles_Compra);
@@ -148,24 +150,25 @@ class Detalles_Compra extends BasicModel
 
     /**
      * @param $id_detalles_compra
-     * @return Detalles_Compra|null
+     * @return Detalles_Compra |null
      * @throws \Exception
      */
-    public static function searchForId($id_detalles_compra)
+    public static function searchForId($id):Detalles_Compra
     {
         $Detalles_Compra = null;
-        if ($id_detalles_compra > 0) {
-            $id_detalles_compra = new Detalles_Compra();
-            $getrow = $id_detalles_compra->getRow("SELECT * FROM mer_optica.Detalles_Compra WHERE id_detalles_compra =?", array($id_detalles_compra));
-            $id_detalles_compra->id_detalles_compra = $getrow['id_detalles_compra'];
-            $id_detalles_compra->cantidad = $getrow['cantidad'];
-            $id_detalles_compra->precio = $getrow['precio'];
-            $id_detalles_compra->Compra = Compra::searchForid_marca($getrow['compra']);
-            $id_detalles_compra->producto = Producto::searchForId($getrow['producto']);
+        if ($id > 0) {
+            $Detalles_Compra = new Detalles_Compra();
+            $getrow = $Detalles_Compra->getRow("SELECT * FROM mer_optica.Detalles_Compra WHERE id_detalles_compra =?", array($id));
+            $Detalles_Compra->id_detalles_compra = $getrow['id_detalles_compra'];
+            $Detalles_Compra->cantidad = $getrow['cantidad'];
+            $Detalles_Compra->precio = $getrow['precio'];
+            $Detalles_Compra->compra = Compra::searchForId($getrow['compra']);
+            $Detalles_Compra->producto = Producto::searchForId($getrow['producto']);
         }
-        $id_detalles_compra->Disconnect();
+        $Detalles_Compra->Disconnect();
         return $Detalles_Compra;
     }
+
 
     /**
      * @return bool
@@ -176,7 +179,7 @@ class Detalles_Compra extends BasicModel
         $result = $this->insertRow("INSERT INTO mer_optica.Detalles_Compra VALUES (NULL, ?, ?, ?, ?)", array(
                 $this->cantidad,
                 $this->precio,
-                $this->compra->getid_marca(),
+                $this->compra->getid_compra(),
                 $this->producto->getIdProducto(),
 
             )
@@ -194,7 +197,7 @@ class Detalles_Compra extends BasicModel
         $result = $this->updateRow("UPDATE mer_optica.Detalles_Compra SET  cantidad= ?, precio = ?, compra = ?, producto = ? WHERE id_detalles_compra = ?", array(
                 $this->cantidad,
                 $this->precio,
-                $this->compra->getid_marca(),
+                $this->compra->getid_compra(),
                 $this->producto->getIdProducto(),
                 $this->id_detalles_compra
             )
@@ -210,9 +213,7 @@ class Detalles_Compra extends BasicModel
      */
     public function deleted($id_detalles_compra)
     {
-        $id_detalles_compra = Producto::searchForId($id_detalles_compra); //Buscando un usuario por el ID
-        $id_detalles_compra->setEstado("Inactivo"); //Cambia el estado del Usuario
-        return $id_detalles_compra->update();                    //Guarda los cambios..
+
     }
 
 

@@ -62,6 +62,7 @@ class ProductoController{
         }
     }
 
+
     static public function edit (){
         try {
             $arrayProducto = array();
