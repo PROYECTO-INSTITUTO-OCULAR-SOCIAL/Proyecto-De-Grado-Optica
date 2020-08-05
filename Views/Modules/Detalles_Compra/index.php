@@ -1,14 +1,20 @@
 <?php
-require_once("../../partials/routes.php");
-require_once("../../../app/Controllers/MunicipioController.php");
-require_once("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\MunicipioController; ?>
+require_once("../../../app/Controllers/ProductoController.php");
+require_once("../../../app/Controllers/CompraController.php");
+require_once("../../../app/Controllers/Detalles_CompraController.php");
+require_once("../../partials/routes.php");
+
+
+use App\Controllers\Detalles_CompraController;
+use App\Models\Detalles_Compra;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Layout</title>
-    <?php require_once("../../partials/head_imports.php"); ?>
+    <?php require("../../partials/head_imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -44,30 +50,29 @@ use App\Controllers\MunicipioController; ?>
         <!-- Main content -->
         <section class="content">
 
-            <?php if(!empty($_GET['respuesta']) && !empty($_GET['action'])){ ?>
-                <?php if ($_GET['respuesta'] == "correcto"){ ?>
+            <?php if (!empty($_GET['respuesta']) && !empty($_GET['action'])) { ?>
+                <?php if ($_GET['respuesta'] == "correcto") { ?>
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
-                        <?php if ($_GET['action'] == "create"){ ?>
-                            El Municipio ha sido creado con exito!
-                        <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del Municipio han sido actualizados correctamente!
+                        <?php if ($_GET['action'] == "create") { ?>
+                            El Producto ha sido creado con exito!
+                        <?php } else if ($_GET['action'] == "update") { ?>
+                            Los datos del Producto han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
             <?php } ?>
 
-            <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Municipio</h3>
+                    <h3 class="card-title"></i> &nbsp; Gestionar Detalle de Compra</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
                                 data-source="index.php" data-source-selector="#card-refresh-content"
                                 data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                                    class="fas fa-expand"></i></button>
+                                class="fas fa-expand"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                 data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -80,50 +85,58 @@ use App\Controllers\MunicipioController; ?>
                     <div class="row">
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
-                            <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Municipio
+                            <a role="button" href="Create.php" class="btn btn-primary float-right"
+                               style="margin-right: 5px;">
+                                <i class="fas fa-plus"></i> Crear Detalle de Compra
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblMunicipio" class="datatable table table-bordered table-striped">
+                            <table id="tblProducto" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo Dane</th>
-                                    <th>Departamento</th>
+                                   <th>#</th>
+                                     <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Compra</th>
+                                    <th>Producto</th>
                                     <th>Acciones</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrMunicipio = MunicipioController::getAll();
-                                foreach ($arrMunicipio as $Municipio) {
+                                $arrDetalles_Compra = Detalles_CompraController::getAll();
+                                foreach ($arrDetalles_Compra as $Detalles_Compra) {
                                     ;
                                     ?>
                                     <tr>
-                                        <td><?= $Municipio->getIdMunicipio(); ?></td>
-                                        <td><?= $Municipio->getNombre(); ?></td>
-                                        <td><?= $Municipio->getCodigoDane(); ?></td>
-                                        <td><?= $Municipio->getDepartamento()->getnombre(); ?> <?= $Municipio->getDepartamento()->getcodigo_dane(); ?></td>
+                                        <td><?= $Detalles_Compra->getIdDetallesCompra(); ?></td>
+                                        <td><?= $Detalles_Compra->getCantidad(); ?></td>
+                                        <td><?= $Detalles_Compra->getPrecio(); ?></td>
+                                        <td><?= $Detalles_Compra->getCompra()->getnombre(); ?></td>
+                                        <td><?= $Detalles_Compra->getProducto()->getNombre(); ?></td>
 
                                         <td>
-                                            <a href="Edit.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-
+                                            <a href="Edit.php?idDetalles_Compra=<?php echo $Detalles_Compra->getIdDetallesCompra(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?idDetalles_Compra=<?php echo $Detalles_Compra->getIdDetallesCompra(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a
+                                                <a type="button"
+                                                   href="../../../app/Controllers/Detalles_CompraController.php?action=inactivate&Id=<?php echo $Detalles_Compra->getIdDetallesCompra(); ?>"
+                                                   data-toggle="tooltip" title="Inactivar"
+                                                   class="btn docs-tooltip btn-danger btn-xs"><i
+                                                        class="fa fa-times-circle"></i></a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
-                                <?php } ?>
+
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo Dane</th>
-                                    <th>Departamento</th>
+                                    <th>#</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Compra</th>
+                                    <th>Producto</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </tfoot>
@@ -138,15 +151,20 @@ use App\Controllers\MunicipioController; ?>
                 <!-- /.card-footer-->
             </div>
             <!-- /.card -->
-        </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+</div>
+</div>
 
-    <?php require ('../../partials/footer.php');?>
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<?php require('../../partials/footer.php'); ?>
 </div>
 <!-- ./wrapper -->
-<?php require ('../../partials/scripts.php');?>
+<?php require('../../partials/scripts.php'); ?>
 <!-- DataTables -->
 <script src="<?= $adminlteURL ?>/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= $adminlteURL ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -178,10 +196,11 @@ use App\Controllers\MunicipioController; ?>
             ],
             "pagingType": "full_numbers",
             "responsive": true,
-            "stateSave" : true, //Guardar la configuracion del usuario
+            "stateSave": true, //Guardar la configuracion del usuario
         });
     });
 </script>
 
 </body>
 </html>
+

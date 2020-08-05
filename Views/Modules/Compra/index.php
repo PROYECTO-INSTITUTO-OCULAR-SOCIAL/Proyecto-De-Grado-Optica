@@ -1,9 +1,11 @@
 <?php
-require_once("../../partials/routes.php");
-require_once("../../../app/Controllers/MunicipioController.php");
-require_once("../../../app/Controllers/DepartamentoController.php");
 
-use App\Controllers\MunicipioController; ?>
+require_once("../../../app/Controllers/compraController.php");
+require_once("../../../app/Controllers/personaController.php");
+require_once("../../partials/routes.php");
+use Carbon\Carbon;
+use App\Controllers\CompraController; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +54,7 @@ use App\Controllers\MunicipioController; ?>
                         <?php if ($_GET['action'] == "create"){ ?>
                             El Municipio ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del Municipio han sido actualizados correctamente!
+                            Los datos del La Compra han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -61,7 +63,7 @@ use App\Controllers\MunicipioController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Municipio</h3>
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar Compra</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
                                 data-source="index.php" data-source-selector="#card-refresh-content"
@@ -81,38 +83,38 @@ use App\Controllers\MunicipioController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Municipio
+                                <i class="fas fa-plus"></i> Crear Compra
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblMunicipio" class="datatable table table-bordered table-striped">
+                            <table id="tblCompra" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo Dane</th>
-                                    <th>Departamento</th>
+                                    <th>Fecha</th>
+                                    <th>Valor Total</th>
+                                    <th>Persona</th>
                                     <th>Acciones</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrMunicipio = MunicipioController::getAll();
-                                foreach ($arrMunicipio as $Municipio) {
+                                $arrCompra = CompraController::getAll();
+                                foreach ($arrCompra as $Compra) {
                                     ;
                                     ?>
                                     <tr>
-                                        <td><?= $Municipio->getIdMunicipio(); ?></td>
-                                        <td><?= $Municipio->getNombre(); ?></td>
-                                        <td><?= $Municipio->getCodigoDane(); ?></td>
-                                        <td><?= $Municipio->getDepartamento()->getnombre(); ?> <?= $Municipio->getDepartamento()->getcodigo_dane(); ?></td>
+                                        <td><?php echo $Compra->getid_compra(); ?></td>
+                                        <td><?php echo $Compra->getfecha()->translatedFormat('l, j \\de F Y'); ?></td>
+                                        <td><?php echo $Compra->getvalor_total(); ?></td>
+                                        <td><?php echo $Compra->getPersona()->getNombre(); ?> <?= $Compra->getPersona()->getApellido(); ?></td>
 
                                         <td>
-                                            <a href="Edit.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="Show.php?id_municipio=<?php echo $Municipio->getIdMunicipio(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="Edit.php?id_compra=<?php echo $Compra->getid_compra(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="Show.php?id_compra=<?php echo $Compra->getid_compra(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
 
                                         </td>
                                     </tr>
@@ -121,9 +123,9 @@ use App\Controllers\MunicipioController; ?>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo Dane</th>
-                                    <th>Departamento</th>
+                                    <th>Fecha</th>
+                                    <th>Valor Total</th>
+                                    <th>Persona</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </tfoot>
