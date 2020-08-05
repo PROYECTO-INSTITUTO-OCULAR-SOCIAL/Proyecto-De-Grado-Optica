@@ -209,6 +209,17 @@ class Producto extends BasicModel
      * @return Producto|null
      * @throws \Exception
      */
+
+    public static function ProductoRegistrado ($nombre) : bool
+    {
+        $result = Producto::search("SELECT nombre FROM mer_optica.Producto where nombre = '".$nombre."'");
+        if (count($result) > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public static function searchForId($id_producto)
     {
         $Producto = null;

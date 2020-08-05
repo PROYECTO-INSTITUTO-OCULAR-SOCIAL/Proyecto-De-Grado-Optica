@@ -97,4 +97,40 @@ class CompraController
             //header("Location: ../Views/Modules/Compra/manager.php?respuesta=error");
         }
     }
+    public static function CompraIsInArray($id_compra, $ArrCompra){
+        if(count($ArrCompra) > 0){
+            foreach ($ArrCompra as $Compra){
+                if($Compra->getid_compra() == $id_compra){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    static public function selectCompra ($isMultiple=false,
+                                           $isRequired=true,
+                                           $id="id_compra",
+                                           $nombre="id_compra",
+                                           $defaultValue="",
+                                           $class="",
+                                           $where="",
+                                           $arrExcluir = array()){
+        $arrCompra = array();
+        if($where != ""){
+            $base = "SELECT * FROM Compra WHERE ";
+            $arrCompra = Compra::search($base.$where);
+        }else{
+            $arrCompra= Compra::getAll();
+        }
+
+        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if(count($arrCompra) > 0){
+            foreach ($arrCompra as $Compra)
+                if (!CompraController::CompraIsInArray($Compra->getid_compra(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($Compra != "") ? (($defaultValue == $Compra->getid_compra()) ? "selected" : "" ) : "")." value='".$Compra->getid_compra()." '> ".$Compra->getfecha()."</option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
+    }
 }
