@@ -1,28 +1,27 @@
 <?php
 
 namespace App\Models;
-
 require_once('BasicModel.php');
 
 class Marca extends BasicModel
 {
-    private $id_marca;
-    private $nombre;
-    private $estado;
+    private  int $id_marca;
+    private string $nombre;
+    private string  $estado;
 
 
     /**
      * Usuarios constructor.
-     * @param $id_marca
-     * @param $nombre
-     * @param $estado
+     * @param int $id_marca
+     * @param  string $nombre
+     * @param  string $estado
      */
     public function __construct($Marca = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_marca = $Marca['id_marca'] ?? null;
-        $this->nombre = $Marca['nombre'] ?? null;
-        $this->estado = $Marca['estado'] ?? null;
+        $this->id_marca = $Marca['id_marca'] ?? 0;
+        $this->nombre = $Marca['nombre'] ?? '';
+        $this->estado = $Marca['estado'] ?? '';
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -47,17 +46,17 @@ class Marca extends BasicModel
     }
 
     /**
-     * @return string
+     * @return String
      */
-    public function getnombre() : string
+    public function getnombre() : String
     {
         return $this->nombre;
     }
 
     /**
-     * @param string $nombre
+     * @param String $nombre
      */
-    public function setnombre(string $nombre): void
+    public function setnombre(String $nombre): void
     {
         $this->nombre = $nombre;
     }

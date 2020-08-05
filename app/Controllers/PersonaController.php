@@ -161,7 +161,7 @@ class PersonaController
         if(count($arrPersona) > 0){
             foreach ($arrPersona as $Persona)
                 if (!PersonaController::PersonaIsInArray($Persona->getIdPersona(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($Persona != "") ? (($defaultValue == $Persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$Persona->getIdPersona()."'>".$Persona->getStock()." - ".$Persona->getNombre()." - ".$Persona->getCodigo_Dane()."</option>";
+                    $htmlSelect .= "<option ".(($Persona != "") ? (($defaultValue == $Persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$Persona->getIdPersona()."'> - ".$Persona->getNombre()."</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;
