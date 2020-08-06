@@ -378,7 +378,7 @@ class Formula extends BasicModel
 
     }
 
-    protected static function getAll()
+    public static function getAll()
     {
 
         return Formula::search("SELECT * FROM Proyecto-De-Grado-Optica.Formula");
