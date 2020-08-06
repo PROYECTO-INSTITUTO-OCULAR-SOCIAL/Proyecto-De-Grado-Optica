@@ -1,9 +1,8 @@
 <?php
 
 
-namespace app\Models;
-
-require_once('BasicModel.php');
+namespace App\Models;
+require_once ('BasicModel.php');
 
 
 class Abono extends BasicModel
@@ -15,18 +14,18 @@ class Abono extends BasicModel
 
     /**
      * Ventas constructor.
-     * @param $id_abono
-     * @param $fecha
-     * @param $valor
+     * @param int $id_abono
+     * @param Carbon $fecha
+     * @param Double $valor
      */
 
 
     public function __construct($Abono = array())
     {
         parent::__construct();
-        $this->id_abono = $Abono['id_abono'] ?? null;
-        $this->fecha = $Abono['fecha'] ?? null;
-        $this->valor = $Abono['monto'] ?? null;
+        $this->id_abono = $Abono['id_abono'] ?? 0;
+        $this->fecha = $Abono['fecha'] ?? new Carbon();
+        $this->valor = $Abono['valor'] ?? new Double;
     }
 
     /**
@@ -37,120 +36,64 @@ class Abono extends BasicModel
         $this->Disconnect();
     }
 
+
     /**
-     * @return mixed
+     * @return int|mixed
+     * @return int|mixed
      */
-    public function getid_abono()
+    public function getid_abono(): int
     {
         return $this->id_abono;
     }
 
-
-
     /**
-     * @param mixed $id_abono
+     * @param int|mixed $id_abono
      */
-    public function setid_abono($id_abono): void
+    public function setid_abono(int $id_abono): void
     {
-        $this->id = $id_abono;
+        $this->id_abono = $id_abono;
     }
 
 
-
     /**
-     * @return mixed
+     * @return Carbon|mixed
      */
-    public function getfecha()
+    public function getfecha(): Carbon
     {
-        return $this->fecha;
+        return $this->fecha->locale('es');
     }
 
     /**
-     * @param mixed $fecha
+     * @param Carbon|mixed $fecha
      */
-    public function setfecha($fecha): void
+    public function setfecha(Carbon $fecha): void
     {
         $this->fecha = $fecha;
     }
 
 
-
     /**
-     * @return mixed
+     * @return Double|mixed
      */
-    public function getvalor()
+    public function getvalor(): float
     {
         return $this->valor;
     }
 
     /**
-     * @param mixed $valor
+     * @param Double|mixed $valor
      */
-    public function setvalor($valor): void
+    public function setvalor(float $valor): void
     {
         $this->valor = $valor;
     }
 
 
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public static function search($query)
-    {
-
-        $arrAbono = array();
-        $tmp = new Abono();
-        $getrows = $tmp->getRows($query);
-
-        foreach ($getrows as $valor) {
-            $Abono = new Abono();
-            $Abono->id_abono = $valor['id_abono'];
-            $Abono->fecha = $valor['fecha'];
-            $Abono->valor = $valor['valor'];
-            $Abono->Disconnect();
-            array_push($arrAbono, $Abono);
-        }
-        $tmp->Disconnect();
-        return $arrAbono;
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getAll()
-    {
-        return Abono::search("SELECT * FROM mer_optica.Abono");
-    }
-
-    /**
-     * @param $id_abono
-     * @return mixed
-     */
-    public static function searchForId($id_abono)
-    {
-        $Abono = null;
-        if ($id_abono > 0) {
-            $Abono= new Abono();
-            $getrow = $Abono->getRow("SELECT * FROM mer_optica.Abono WHERE id_abonno =?", array($id_abono));
-            $Abono->id_abono = $getrow['id_abono'];
-            $Abono->fecha = $getrow['fecha'];
-            $Abono->valor = $getrow['valor'];
-
-        }
-        $Abono->Disconnect();
-        return $Abono;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function create()
+    public function create(): bool
     {
         $result = $this->insertRow("INSERT INTO mer_optica.Abono VALUES (NULL, ?, ?)", array(
-
-                $this->fecha,
-                $this->valor,
+                $this->fecha->toDateTimeString(), //YYYY-MM-DD HH:MM:SS
+                $this->valor
             )
         );
         $this->setid_abono(($result) ? $this->getLastid_abono() : null);
@@ -161,10 +104,10 @@ class Abono extends BasicModel
     /**
      * @return mixed
      */
-    public function update()
+    public function update(): bool
     {
-        $result = $this->updateRow("UPDATE mer_optica.Abono SET fecha = ?, valor = ? WHERE id_abono = ?", array(
-                $this->fecha,
+        $result = $this->updateRow("UPDATE mer_optica.Abono SET  fecha = ?, valor = ? WHERE id_abono = ?", array(
+                $this->fecha->toDateTimeString(),
                 $this->valor,
                 $this->id_abono
             )
@@ -173,23 +116,75 @@ class Abono extends BasicModel
         return $result;
     }
 
+    /**
+     * @param $id_abono
+     * @return mixed
+     */
+    public function deleted($id_abono): bool
+    {
+        $Abono = Abono::searchForid_abono($id_abono); //Buscando un usuario por el ID
+        return $Abono->update();                    //Guarda los cambios..
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public static function search($query): array
+    {
+        $arrAbono = array();
+        $tmp = new Abono();
+        $getrows = $tmp->getRows($query);
+
+        foreach ($getrows as $valor) {
+            $Abono = new Abono();
+            $Abono->id = $valor['id_abono'];
+            $Abono->fecha = Carbon::parse($valor['fecha']);
+            $Abono->valor = $valor['valor'];
+            $Abono->Disconnect();
+            array_push($arrAbono, $Abono);
+        }
+
+        $tmp->Disconnect();
+        return $arrAbono;
+    }
 
     /**
      * @param $id_abono
      * @return mixed
      */
-    public function deleted($id_abono)
+    public static function searchForid_abono($id_abono): Abono
     {
-        $Abono = Abono::searchForid_abono($id_abono); //Buscando abono por el ID
-        return $Abono->update();                    //Guarda los cambios..
+        $Abono = null;
+        if ($id_abono > 0) {
+            $Abono = new Abono();
+            $getrow = $Abono->getRow("SELECT * FROM mer_optica.Abono WHERE id_abono =?", array($id_abono));
+            $Abono->id_abono = $getrow['id_abono'];
+            $Abono->fecha = Carbon::parse($getrow['fecha']);
+            $Abono->valor = $getrow['valor'];
+        }
+        $Abono->Disconnect();
+        return $Abono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getAll(): array
+    {
+        return Abono::search("SELECT * FROM mer_optica.Abono");
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return "fecha: $this->fecha, valor: $this->valor";
+        return "fecha: $this->fecha->toDateTimeString(), valor: $this->valor";
     }
 
+    protected static function searchForId($id)
+    {
+        // TODO: Implement searchForId() method.
+    }
 }

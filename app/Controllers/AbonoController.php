@@ -11,8 +11,7 @@ require_once(__DIR__.'/../Models/Abono.php');
 
 use app\Models\Abono;
 use App\Models\GeneralFunctions;
-use App\Models\Usuarios;
-use App\Models\Ventas;
+
 
 if(!empty($_GET['action'])){
     AbonoController::main($_GET['action']);
@@ -31,10 +30,6 @@ class AbonoController
             AbonoController::searchForid_abono($_REQUEST['id_abono']);
         } else if ($action == "searchAll") {
             AbonoController::getAll();
-        } else if ($action == "activate") {
-            AbonoController::activate();
-        } else if ($action == "inactivate") {
-            AbonoController::inactivate();
         }
     }
 
