@@ -102,7 +102,6 @@ use App\Controllers\ProductoController;
                                                 <th>Marca</th>
                                                 <th>Categoria</th>
                                                 <th>Estado</th>
-                                                <th>Acciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
