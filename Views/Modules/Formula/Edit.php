@@ -1,21 +1,21 @@
 <?php
-require("../../Partials/Routes.php");
-require("../../../app/Controllers/FormulaController.php");
+require_once("../../Partials/Routes.php");
+require_once("../../../app/Controllers/FormulaController.php");
 
 use App\Controllers\FormulaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Editar Formula</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -44,10 +44,10 @@ use App\Controllers\FormulaController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el Categoria: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al Modificar Formula: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['idCategoria'])) { ?>
+            <?php } else if (empty($_GET['id_formula'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -61,15 +61,17 @@ use App\Controllers\FormulaController; ?>
                     <h3 class="card-title">Horizontal Form</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if(!empty($_GET["idFormula"]) && isset($_GET["idFormula"])){ ?>
+                <?php if(!empty($_GET["id_formula"]) && isset($_GET["id_formula"])){ ?>
                     <p>
                     <?php
-                    $DataFormula = \App\Controllers\FormulaController::searchForId($_GET["idFormula"]);
+                    $DataFormula = FormulaController::searchForID($_GET["id_formula"]);
                     if(!empty($DataFormula)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id_formula="frmEditFormula" name="frmEditFormula" action="../../../app/Controllers/FormulaController.php?action=edit">
-                            <input id_formula="id_formula" name="id_formula" value="<?php echo $DataFormula->getidFormula(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditFormula" name="frmEditFormula" action="../../../app/Controllers/FormulaController.php?action=edit">
+                            <input id="id_formula" name="id_formula" value="<?php echo $DataFormula->getIdFormula(); ?>" hidden
+                                   required="required" type="text">
+
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="od_esfera" class="col-sm-2 col-form-label">od esfera</label>
@@ -128,13 +130,13 @@ use App\Controllers\FormulaController; ?>
                                 <div class="form-group row">
                                     <label for="color" class="col-sm-2 col-form-label">color</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="color name="color" value="<?= $DataFormula->getcolor(); ?>" placeholder="Ingrese color">
+                                        <input required type="text" class="form-control" id="color" name="color" value="<?= $DataFormula->getcolor(); ?>" placeholder="Ingrese el color">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="numero_montura" class="col-sm-2 col-form-label">numero_montura</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="numero_montura" name="numero_montura" value="<?= $DataFormula->getnumero_montura(); ?>" placeholder="Ingrese numero montura">
+                                        <input required type="number" class="form-control" id="numero_montura" name="numero_montura" value="<?= $DataFormula->getnumero_montura(); ?>" placeholder="Ingrese numero montura">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -158,7 +160,7 @@ use App\Controllers\FormulaController; ?>
                                 <div class="form-group row">
                                     <label for="valor" class="col-sm-2 col-form-label">valor</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="valor" name="valor" value="<?= $DataFormula->getvalor(); ?>" placeholder="Ingrese el valor">
+                                        <input required type="number" class="form-control" id="valor" name="valor" value="<?= $DataFormula->getvalor(); ?>" placeholder="Ingrese el valor">
                                     </div>
                                 </div>
                             </div>
@@ -179,36 +181,15 @@ use App\Controllers\FormulaController; ?>
                     </p>
                 <?php } ?>
             </div>
-
-
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
     </div>
-    <!-- /.card-body -->
-    <div class="card-footer">
-        <button type="submit" class="btn btn-info">Enviar</button>
-        <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-    </div>
-    <!-- /.card-footer -->
-    </form>
-    <else{
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h5><i class="icon fas fa-ban"></i> Error!</h5>
-        No se encontro ningun registro con estos parametros de busqueda <?= ($_GET['mensaje']) ?? "" ?>
-    </div>
-    }
-    </p>
-    }
-</div>
-<!-- /.card -->
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
 
-<?php require ('../../Partials/Footer.php');?>
+    <?php require ('../../Partials/Footer.php');?>
 </div>
 <!-- ./wrapper -->
 <?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
-

@@ -26,12 +26,10 @@ use App\Controllers\ProductoController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Un Nueva Producto</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
-                            <li class="breadcrumb-item active">Inicio</li>
+                            <li class="breadcrumb-item">I-O-S</li
                         </ol>
                     </div>
                 </div>
@@ -60,8 +58,10 @@ use App\Controllers\ProductoController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h1 class="card-title">Editar Un Nuevo Producto </h1>
                 </div>
+            </div>
+                <div class="card card-info">
                 <!-- /.card-header -->
                 <?php if(!empty($_GET["idProducto"]) && isset($_GET["idProducto"])){ ?>
                     <p>

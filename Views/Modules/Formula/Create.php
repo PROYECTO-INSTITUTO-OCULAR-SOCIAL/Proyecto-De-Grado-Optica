@@ -1,21 +1,19 @@
 <?php
-
-
-require("../../../app/Controllers/FormulaController.php");
-require("../../Partials/Routes.php"); ?>
+require_once("../../../app/Controllers/FormulaController.php");
+require_once("../../Partials/Routes.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Crear Formula</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -52,7 +50,16 @@ require("../../Partials/Routes.php"); ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
+                                data-source="create.php" data-source-selector="#card-refresh-content"
+                                data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                    class="fas fa-expand"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i></button>
+                    </div>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -61,91 +68,91 @@ require("../../Partials/Routes.php"); ?>
                         <div class="form-group row">
                             <label for="od_esfera" class="col-sm-2 col-form-label">od esfera</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id_formula="od_esfera" name="od_esfera" placeholder="Ingrese od esfera">
+                                <input required type="text" class="form-control" id="od_esfera" name="od_esfera" placeholder="Ingrese od esfera">
                             </div>
                         </div>
-                            <div class="form-group row">
-                                <label for="oi_esfera" class="col-sm-2 col-form-label">oi esfera</label>
-                                <div class="col-sm-10">
-                                    <input required type="text" class="form-control" id_formula="oi_esfera" name="oi_esfera" placeholder="Ingrese oi esfera">
-                                </div>
+                        <div class="form-group row">
+                            <label for="oi_esfera" class="col-sm-2 col-form-label">oi esfera</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="oi_esfera" name="oi_esfera" placeholder="Ingrese oi esfera">
                             </div>
-                                <div class="form-group row">
-                                    <label for="od_cilindro" class="col-sm-2 col-form-label">od cilindro</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id_formula="od_cilindro" name="od_cilindro" placeholder="Ingrese od cilindro">
-                                    </div>
-                                </div>
-                                    <div class="form-group row">
-                                        <label for="oi_cilindro" class="col-sm-2 col-form-label">oi cilindro</label>
-                                        <div class="col-sm-10">
-                                            <input required type="text" class="form-control" id_formula="oi_cilindro" name="oi_cilindro" placeholder="Ingrese oi cilindro">
-                                        </div>
-                                    </div>
-                                        <div class="form-group row">
-                                            <label for="od_eje" class="col-sm-2 col-form-label">od eje</label>
-                                            <div class="col-sm-10">
-                                                <input required type="text" class="form-control" id_formula="od_eje" name="od_eje" placeholder="Ingrese od eje">
-                                            </div>
-                                        </div>
-                                            <div class="form-group row">
-                                                <label for="oi_eje" class="col-sm-2 col-form-label">oi eje</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id_formula="oi_eje" name="oi_eje" placeholder="Ingrese oi eje">
-                                                </div></div>
-                                                <div class="form-group row">
-                                                    <label for="od_av" class="col-sm-2 col-form-label">od av</label>
-                                                    <div class="col-sm-10">
-                                                        <input required type="text" class="form-control" id_formula="od_av" name="od_av" placeholder="Ingrese od av">
-                                                    </div></div>
-                                                    <div class="form-group row">
-                                                        <label for="oi_av" class="col-sm-2 col-form-label">oi av</label>
-                                                        <div class="col-sm-10">
-                                                            <input required type="text" class="form-control" id_formula="oi_av" name="oi_av" placeholder="Ingrese oi av">
-                                                        </div></div>
-                                                        <div class="form-group row">
-                                                            <label for="dp" class="col-sm-2 col-form-label">dp</label>
-                                                            <div class="col-sm-10">
-                                                                <input required type="text" class="form-control" id_formula="dp" name="dp" placeholder="Ingrese dp">
-                                                            </div></div>
-                                                            <div class="form-group row">
-                                                                <label for="color" class="col-sm-2 col-form-label">color</label>
-                                                                <div class="col-sm-10">
-                                                                    <input required type="text" class="form-control" id_formula="color" name="color" placeholder="Ingrese color">
-                                                                </div></div>
-                                                                <div class="form-group row">
-                                                                    <label for="numero_montura" class="col-sm-2 col-form-label">numero de montura</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input required type="text" class="form-control" id_formula="numero_montura" name="numero_montura" placeholder="Ingrese numero de montura">
-                                                                    </div></div>
-                                                                    <div class="form-group row">
-                                                                        <label for="observaciones" class="col-sm-2 col-form-label">observaciones</label>
-                                                                        <div class="col-sm-10">
-                                                                            <input required type="text" class="form-control" id_formula="observaciones" name="observaciones" placeholder="observaciones">
-                                                                        </div></div>
-                                                                        <div class="form-group row">
-                                                                            <label for="bifocal" class="col-sm-2 col-form-label">bifocal</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input required type="text" class="form-control" id_formula="bifocal" name="bifocal" placeholder="Ingrese bifocal">
-                                                                            </div></div>
-                                                                            <div class="form-group row">
-                                                                                <label for="material" class="col-sm-2 col-form-label">material</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <input required type="text" class="form-control" id_formula="material" name="material" placeholder="material">
-                                                                                </div></div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="valor" class="col-sm-2 col-form-label">valor</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input required type="text" class="form-control" id_formula="valor" name="valor" placeholder="valor">
-                                                                                    </div>
-                                                                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="od_cilindro" class="col-sm-2 col-form-label">od cilindro</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="od_cilindro" name="od_cilindro" placeholder="Ingrese od cilindro">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="oi_cilindro" class="col-sm-2 col-form-label">oi cilindro</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="oi_cilindro" name="oi_cilindro" placeholder="Ingrese oi cilindro">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="od_eje" class="col-sm-2 col-form-label">od eje</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="od_eje" name="od_eje" placeholder="Ingrese od eje">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="oi_eje" class="col-sm-2 col-form-label">oi eje</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="oi_eje" name="oi_eje" placeholder="Ingrese oi eje">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="od_av" class="col-sm-2 col-form-label">od av</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="od_av" name="od_av" placeholder="Ingrese od av">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="oi_av" class="col-sm-2 col-form-label">oi av</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="oi_av" name="oi_av" placeholder="Ingrese oi av">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="dp" class="col-sm-2 col-form-label">dp</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="dp" name="dp" placeholder="Ingrese dp">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="color" class="col-sm-2 col-form-label">color</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="color" name="color" placeholder="Ingrese color">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="numero_montura" class="col-sm-2 col-form-label">numero de montura</label>
+                            <div class="col-sm-10">
+                                <input required type="number" class="form-control" id="numero_montura" name="numero_montura" placeholder="Ingrese numero de montura">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="observaciones" class="col-sm-2 col-form-label">observaciones</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="observaciones" name="observaciones" placeholder="observaciones">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="bifocal" class="col-sm-2 col-form-label">bifocal</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="bifocal" name="bifocal" placeholder="Ingrese bifocal">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="material" class="col-sm-2 col-form-label">material</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="material" name="material" placeholder="material">
+                            </div></div>
+                        <div class="form-group row">
+                            <label for="valor" class="col-sm-2 col-form-label">valor</label>
+                            <div class="col-sm-10">
+                                <input required type="number" class="form-control" id="valor" name="valor" placeholder="valor">
+                            </div>
+                        </div>
 
-                                                                                <!-- /.card-body -->
-                                                                                <div class="card-footer">
-                                                                                    <button type="submit" class="btn btn-info">Enviar</button>
-                                                                                    <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                                                                                </div>
-                                                                                <!-- /.card-footer -->
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enviar</button>
+                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                        </div>
+                        <!-- /.card-footer -->
                 </form>
             </div>
             <!-- /.card -->

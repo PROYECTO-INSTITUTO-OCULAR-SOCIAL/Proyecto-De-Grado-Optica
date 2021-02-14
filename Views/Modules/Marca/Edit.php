@@ -1,21 +1,21 @@
 <?php
-require("../../Partials/Routes.php");
-require("../../../app/Controllers/MarcaController.php");
+require_once("../../Partials/Routes.php");
+require_once("../../../app/Controllers/MarcaController.php");
 
 use App\Controllers\MarcaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Editar Marca</title>
-    <?php require("../../Partials/Head_Imports.php"); ?>
+    <?php require_once("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../Partials/Navbar_Customization.php"); ?>
+    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

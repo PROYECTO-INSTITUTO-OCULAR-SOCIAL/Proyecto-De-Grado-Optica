@@ -24,15 +24,6 @@ use App\Controllers\PersonaController; ?>
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-3">
-                    <div class="col-sm-6">
-                        <h1>Información de La Persona</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
-                            <li class="breadcrumb-item active">Inicio</li>
-                        </ol>
-                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -58,22 +49,27 @@ use App\Controllers\PersonaController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Datos De La Persona </h3>
+                </div>
+            </div>
+
+                <div class="card card-info">
                 <?php if(!empty($_GET["id_persona"]) && isset($_GET["id_persona"])){
                     $DataPersona = PersonaController::searchForId($_GET["id_persona"]);
                     if(!empty($DataPersona)){
                         ?>
-                        <div class="card-header">
-                            <p class="card-title"><?= $DataPersona->getNombre() ?></p>
-                        </div>
+                        <strong><i class="fas fa-user mr-1"></i>Nombre</strong>
+                        <p class="text-muted"><?= $DataPersona->getNombre() ?></p>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i>ID</strong>
                         <p class="text-muted"><?= $DataPersona->getIdPersona() ?></p>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i>Tipo Documento Y Documento</strong>
-                            <p class="card-title"><?= $DataPersona->getTipoDocumento(). " === " .$DataPersona->getDocumento() ?>
+                            <p class="card-title"><?= $DataPersona->getTipoDocumento(). " ==> " .$DataPersona->getDocumento() ?>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Nombres Y Apellidos </strong>
-                            <p class="card-title"><?= $DataPersona->getNombre() . " === " . $DataPersona->getApellido() ?>
+                            <p class="card-title"><?= $DataPersona->getNombre() . " ==> " . $DataPersona->getApellido() ?>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Direccion</strong>
                         <p class="text-muted"><?= $DataPersona->getDireccion() ?></p>

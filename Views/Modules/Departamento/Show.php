@@ -65,9 +65,12 @@ use App\Controllers\DepartamentoController; ?>
                             <h3 class="card-title"><?= $DataDepartamento->getnombre()?></h3>
                         </div>
                         <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
-                        <p class="text-muted"><?= $DataDepartamento->getcodigo_dane().": ".$DataDepartamento->getcodigo_dane() ?></p>
+
+                        <strong>
+                            <i class="fas fa-user mr-1"></i> Codigo_Dane</strong>
+                        <p class="text-muted"><?= $DataDepartamento->getcodigo_dane() ?></p>
                         <hr>
+
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">

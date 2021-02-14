@@ -2,73 +2,74 @@
 
 
 namespace App\Models;
-require('BasicModel.php');
+require_once('BasicModel.php');
 
 class Formula extends BasicModel
 {
-    private $id_formula;
-    private $od_esfera;
-    private $oi_esfera;
-    private $od_cilindro;
-    private $oi_cilindro;
-    private $od_eje;
-    private $oi_eje;
-    private $od_av;
-    private $oi_av;
-    private $dp;
-    private $color;
-    private $numero_montura;
-    private $observaciones;
-    private $bifocal;
-    private $material;
-    private $valor;
+    private int $id_formula;
+    private string $od_esfera;
+    private string $oi_esfera;
+    private string $od_cilindro;
+    private string $oi_cilindro;
+    private string $od_eje;
+    private string $oi_eje;
+    private string $od_av;
+    private string $oi_av;
+    private string $dp;
+    private string $color;
+    private int $numero_montura;
+    private string $observaciones;
+    private string $bifocal;
+    private  string $material;
+    private int $valor;
 
     /**
      * Formula constructor.
-     * @param $id_formula
-     * @param $od_esfera
-     * @param $oi_esfera
-     * @param $od_cilindro
-     * @param $oi_cilindro
-     * @param $od_eje
-     * @param $oi_eje
-     * @param $od_av
-     * @param $oi_av
-     * @param $dp
-     * @param $color
-     * @param $numero_montura
-     * @param $observaciones
-     * @param $bifocal
-     * @param $material
-     * @param $valor
+     * @param int $id_formula
+     * @param string $od_esfera
+     * @param string $oi_esfera
+     * @param string $od_cilindro
+     * @param string $oi_cilindro
+     * @param string $od_eje
+     * @param string $oi_eje
+     * @param string $od_av
+     * @param string $oi_av
+     * @param string $dp
+     * @param string $color
+     * @param int $numero_montura
+     * @param string $observaciones
+     * @param string $bifocal
+     * @param string $material
+     * @param int $valor
      */
     public function __construct($Formula = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_formula = $Formula['id_formula'] ?? null;
-        $this->od_esfera = $Formula['od_esfera'] ?? null;
-        $this->oi_esfera = $Formula['oi_esfera'] ?? null;
-        $this->od_cilindro = $Formula['od_cilindro'] ?? null;
-        $this->oi_cilindro = $Formula['oi_cilindro'] ?? null;
-        $this->od_eje= $Formula['od_eje'] ?? null;
-        $this->oi_eje = $Formula['oi_eje'] ?? null;
-        $this->od_av = $Formula['od_av'] ?? null;
-        $this->oi_eje = $Formula['oi_eje'] ?? null;
-        $this->dp = $Formula['dp'] ?? null;
-        $this->color = $Formula['color'] ?? null;
-        $this->numero_montura = $Formula['numero_montura'] ?? null;
-        $this->observaciones = $Formula['observaciones'] ?? null;
-        $this->bifocal = $Formula['bifocal'] ?? null;
-        $this->material = $Formula['material'] ?? null;
-        $this->valor = $Formula['valor'] ?? null;
+        $this->id_formula = $Formula['id_formula'] ?? 0;
+        $this->od_esfera = $Formula['od_esfera'] ?? '';
+        $this->oi_esfera = $Formula['oi_esfera'] ?? '';
+        $this->od_cilindro = $Formula['od_cilindro'] ?? '';
+        $this->oi_cilindro = $Formula['oi_cilindro'] ?? '';
+        $this->od_eje= $Formula['od_eje'] ?? '';
+        $this->oi_eje = $Formula['oi_eje'] ?? '';
+        $this->od_av = $Formula['od_av'] ?? '';
+        $this->oi_av = $Formula['oi_av'] ?? '';
+        $this->dp = $Formula['dp'] ?? '';
+        $this->color = $Formula['color'] ?? '';
+        $this->numero_montura = $Formula['numero_montura'] ?? 0;
+        $this->observaciones = $Formula['observaciones'] ?? '';
+        $this->bifocal = $Formula['bifocal'] ?? '';
+        $this->material = $Formula['material'] ?? '';
+        $this->valor = $Formula['valor'] ?? 0;
     }
     /* Metodo destructor cierra la conexion. */
     function __destruct() {
         $this->Disconnect();
-    }/**
+    }
+    /**
  * @return int
  */
-    public function getId() : int
+    public function getIdFormula() : int
     {
         return $this->id_formula;
     }
@@ -76,7 +77,7 @@ class Formula extends BasicModel
      * @param int $id_formula
      *
      */
-    public function setId(int $id_formula): void
+    public function setIdFormula(int $id_formula): void
     {
         $this->id_formula = $id_formula;
     }
@@ -87,7 +88,6 @@ class Formula extends BasicModel
     {
         return $this->od_esfera;
     }
-
     /**
      * @param string $od_esfera
      */
@@ -102,7 +102,6 @@ class Formula extends BasicModel
     {
         return $this->oi_esfera;
     }
-
     /**
      * @param string $oi_esfera
      */
@@ -117,7 +116,6 @@ class Formula extends BasicModel
     {
         return $this->od_cilindro;
     }
-
     /**
      * @param string $od_cilindro
      */
@@ -282,21 +280,21 @@ class Formula extends BasicModel
     /**
      * @return double
      */
-    public function getvalor() : double
+    public function getvalor() : int
     {
         return $this->valor;
     }
     /**
      * @param double $valor
      */
-    public function setvalor(double $valor): void
+    public function setvalor(int $valor): void
     {
         $this->valor = $valor;
     }
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO Proyecto-De-Grado-Optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)", array(
+        $result = $this->insertRow("INSERT INTO mer_optica.Formula VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)", array(
 
                 $this->od_esfera,
                 $this->oi_esfera,
@@ -305,7 +303,7 @@ class Formula extends BasicModel
                 $this->od_eje,
                 $this->oi_eje,
                 $this->od_av,
-                $this->oi_eje,
+                $this->oi_av,
                 $this->dp,
                 $this->color,
                 $this->numero_montura,
@@ -315,39 +313,55 @@ class Formula extends BasicModel
                 $this->valor
             )
         );
+        $this->setIdFormula(($result) ? $this->getLastId() : null);
         $this->Disconnect();
         return $result;
     }
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE Proyecto-De-Grado-Optica.Formula SET  =od_esfera ?, oi_esfera = ?, od_cilindro = ?, oi_cilindro = ?, od_eje = ?, oi_eje= ?, od_av = ?, oi_av = ?, dp = ?, color = ?, numero_montura = ?, observaciones = ?,bifocal = ?, material = ?, valor = ? WHERE id_formula = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Formula SET  od_esfera = ?, oi_esfera = ?, od_cilindro = ?, oi_cilindro = ?, od_eje = ?, oi_eje= ?, od_av = ?, oi_av= ?, dp = ?, color = ?, numero_montura = ?, observaciones = ?,bifocal = ?, material = ?, valor = ? WHERE id_formula = ?", array(
 
-                $this->od_esfera,
-                $this->oi_esfera,
-                $this->od_cilindro,
-                $this->oi_cilindro,
-                $this->od_eje,
-                $this->oi_eje,
-                $this->od_av,
-                $this->oi_eje,
-                $this->dp,
-                $this->color,
-                $this->numero_montura,
-                $this->observaciones,
-                $this->bifocal,
-                $this->material,
-                $this->valor,
-                $this->id_formula
+            $this->od_esfera,
+            $this->oi_esfera,
+            $this->od_cilindro,
+            $this->oi_cilindro,
+            $this->od_eje,
+            $this->oi_eje,
+            $this->od_av,
+            $this->oi_av,
+            $this->dp,
+            $this->color,
+            $this->numero_montura,
+            $this->observaciones,
+            $this->bifocal,
+            $this->material,
+            $this->valor,
+         $this->id_formula
             )
         );
         $this->Disconnect();
         return $result;
     }
 
-    protected static function search($query)
+    public static function getAll()
     {
 
+        return Formula::search("SELECT * FROM mer_optica.Formula");
+    }
+
+    public static function FormulaRegistrada ($id_formula) : bool
+    {
+        $result = Formula::search("SELECT id_formula FROM mer_optica.Formula where id_formula = '" . $id_formula."'");
+        if (count($result) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected static function search($query)
+    {
         $arrFormula = array();
         $tmp = new Formula();
         $getrows = $tmp->getRows($query);
@@ -375,33 +389,16 @@ class Formula extends BasicModel
         }
         $tmp->Disconnect();
         return $arrFormula;
-
     }
 
-    public static function getAll()
-    {
-
-        return Formula::search("SELECT * FROM Proyecto-De-Grado-Optica.Formula");
-    }
-
-    public static function FormulaRegistrada ($id_formula) : bool
-    {
-        $result = Formula::search("SELECT id_formula FROM royecto-De-Grado-Optica.Formula where id_formula = '" . $id_formula."'");
-        if (count($result) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    protected static function searchForId($id_formula)
+ public static function searchForId($id)
     {
         $Formula = null;
-        if ($id_formula> 0){
+        if ($id> 0){
             $Formula = new Formula();
-            $getrow = $Formula->getRow("SELECT * FROM Proyecto-De-Grado-Optica.Formula WHERE id_formula =?", array($id_formula));
+            $getrow = $Formula->getRow("SELECT * FROM mer_optica.Formula WHERE id_formula =?", array($id));
             $Formula->id_formula = $getrow['id_formula'];
-            $Formula->od_esfera = $getrow['od_esfera '];
+            $Formula->od_esfera = $getrow['od_esfera'];
             $Formula->oi_esfera = $getrow['oi_esfera'];
             $Formula->od_cilindro = $getrow['od_cilindro'];
             $Formula->oi_cilindro = $getrow['oi_cilindro'];
@@ -420,9 +417,14 @@ class Formula extends BasicModel
         $Formula->Disconnect();
         return $Formula;
     }
-    protected function deleted($id)
+    public function deleted($id)
     {
-        // TODO: Implement deleted() method.
+        $Formula = Formula::searchForId($id); //Buscando un usuario por el ID
+        $Formula->setEstado("Inactivo"); //Cambia el estado del Usuario
+        return $Formula->update();                    //Guarda los cambios..
     }
-
+    public function nombresCompletos()
+    {
+        return $this->id_formula . " ";
+    }
 }
