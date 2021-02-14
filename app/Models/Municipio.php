@@ -144,7 +144,6 @@ class Municipio extends BasicModel
 
     public static function search($query)
     {
-
         $arrMunicipio = array();
         $tmp = new Municipio();
         $getrows = $tmp->getRows($query);

@@ -40,6 +40,7 @@ class MunicipioController
             $arrayMunicipio['codigo_dane'] = $_POST['codigo_dane'];
             $arrayMunicipio['departamento'] = Departamento::searchForId($_POST['departamento']);
             $Municipio = new Municipio($arrayMunicipio);
+
             if($Municipio->create()){
                 header("Location: ../../Views/Modules/Municipio/index.php?respuesta=correcto");
             }

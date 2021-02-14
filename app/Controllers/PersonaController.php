@@ -48,18 +48,19 @@ class PersonaController
             $arrayPersona['contrasena'] = $_POST['contrasena'];
             $arrayPersona['estado'] = $_POST['estado'];
             $Persona = new Persona($arrayPersona);
-            if($Persona->create()){
+            if ($Persona->create()) {
                 header("Location: ../../Views/Modules/Persona/index.php?respuesta=correcto");
             }
         } catch (Exception $e) {
-            GeneralFunctions::console( $e, 'error', 'errorStack');
+            GeneralFunctions::console($e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Persona/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function Edit (){
+    static public function Edit()
+    {
         try {
-            $arrayPersona= array();
+            $arrayPersona = array();
             $arrayPersona['tipo_documento'] = $_POST['tipo_documento'];
             $arrayPersona['documento'] = $_POST['documento'];
             $arrayPersona['nombre'] = $_POST['nombre'];
@@ -74,14 +75,14 @@ class PersonaController
             $Persona = new Persona($arrayPersona);
             $Persona->update();
 
-            header("Location: ../../Views/Modules/Persona/Show.php?id_persona=".$Persona->getIdPersona()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Persona/Show.php?id_persona=" . $Persona->getIdPersona() . "&respuesta=correcto");
         } catch (\Exception $e) {
-            GeneralFunctions::console( $e, 'error', 'errorStack');
-            header("Location: ../../Views/Modules/Persona/Edit.php?respuesta=error&mensaje=".$e->getMessage());
+            GeneralFunctions::console($e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Persona/Edit.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function getAll ()
+    static public function getAll()
     {
         try {
             return Persona::getAll();
@@ -90,6 +91,7 @@ class PersonaController
             header("Location: ../Vista/Modules/Persona/manager.php?respuesta=error");
         }
     }
+
     static public function activate()
     {
         try {
@@ -105,7 +107,8 @@ class PersonaController
         }
     }
 
-    static public function inactivate(){
+    static public function inactivate()
+    {
         try {
             $ObjPersona = Persona::searchForId($_GET['id_persona']);
             if ($ObjPersona->update()) {
@@ -129,10 +132,11 @@ class PersonaController
         }
     }
 
-    public static function PersonaIsInArray($id_Persona, $ArrPersona){
-        if(count($ArrPersona) > 0){
-            foreach ($ArrPersona as $Persona){
-                if($Persona->getIdPersona() == $id_Persona){
+    public static function PersonaIsInArray($id_Persona, $ArrPersona)
+    {
+        if (count($ArrPersona) > 0) {
+            foreach ($ArrPersona as $Persona) {
+                if ($Persona->getIdPersona() == $id_Persona) {
                     return true;
                 }
             }
@@ -140,28 +144,29 @@ class PersonaController
         return false;
     }
 
-    static public function selectPersona ($isMultiple=false,
-                                            $isRequired=true,
-                                            $id="id_persona",
-                                            $nombre="id_persona",
-                                            $defaultValue="",
-                                            $class="",
-                                            $where="",
-                                            $arrExcluir = array()){
+    static public function selectPersona($isMultiple = false,
+                                         $isRequired = true,
+                                         $id = "id_persona",
+                                         $nombre = "id_persona",
+                                         $defaultValue = "",
+                                         $class = "",
+                                         $where = "",
+                                         $arrExcluir = array())
+    {
         $arrPersona = array();
-        if($where != ""){
+        if ($where != "") {
             $base = "SELECT * FROM Persona WHERE ";
-            $arrPersona = Persona::search($base.$where);
-        }else{
+            $arrPersona = Persona::search($base . $where);
+        } else {
             $arrPersona = Persona:: getAll();
         }
 
-        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
+        $htmlSelect = "<select " . (($isMultiple) ? "multiple" : "") . " " . (($isRequired) ? "required" : "") . " id= '" . $id . "' name='" . $nombre . "' class='" . $class . "'>";
         $htmlSelect .= "<option value='' >Seleccione</option>";
-        if(count($arrPersona) > 0){
+        if (count($arrPersona) > 0) {
             foreach ($arrPersona as $Persona)
-                if (!PersonaController::PersonaIsInArray($Persona->getIdPersona(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($Persona != "") ? (($defaultValue == $Persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$Persona->getIdPersona()."'> - ".$Persona->getNombre()."</option>";
+                if (!PersonaController::PersonaIsInArray($Persona->getIdPersona(), $arrExcluir))
+                    $htmlSelect .= "<option " . (($Persona != "") ? (($defaultValue == $Persona->getIdPersona()) ? "selected" : "") : "") . " value='" . $Persona->getIdPersona() . "'> - " . $Persona->getNombre() . "</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;

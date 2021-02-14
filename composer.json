@@ -42,7 +42,6 @@
   ],
   "require":{
     "php": ">=7.4.0",
- master
     "almasaeed2010/adminlte": "^3.0",
     "vlucas/phpdotenv": "^3.6",
     "nesbot/carbon": "^2.37"

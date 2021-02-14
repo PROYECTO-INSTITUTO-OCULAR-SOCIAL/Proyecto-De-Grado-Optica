@@ -85,6 +85,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item has-treeview menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon far fa-user"></i>

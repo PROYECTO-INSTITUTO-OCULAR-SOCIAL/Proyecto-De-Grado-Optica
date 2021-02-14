@@ -67,7 +67,7 @@ use App\Controllers\CompraController; ?>
                         </div>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Valor Total</strong>
-                        <p class="number"><?= $DataCompra->getvalor_total().": ".$DataCompra->getvalor_total() ?></p>
+                        <p class="number"><?= $DataCompra->getvalor_total() ?></p>
                         <hr>
                         <hr>
                         <strong><i class="fas fa-user mr-1"></i> Persona</strong>
