@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
         <b>Version</b> <?= date('Y') ?>
     </div>
-    <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= $baseURL; ?>">Proyecto-De-Grado-Optica</a>.</strong> Derechos Reservados.
+    <strong>Copyright &copy; <?= date('Y') ?> <a href="<?= $baseURL; ?>"> -Instituto - Ocular - Social-  </a>.</strong> Derechos Reservados.
 </footer>
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">

@@ -7,47 +7,47 @@ require_once ('Municipio.php');
 class Persona extends BasicModel
 {
 
-    private $id_persona;
-    private $tipo_documento;
-    private $documento;
-    private $nombre;
-    private $apellido;
-    private $direccion;
-    private $telefono;
-    private $municipio;
-    private $rol;
-    private $contrasena;
-    private $estado;
+    private int $id_persona;
+    private String $tipo_documento;
+    private int $documento;
+    private String $nombre;
+    private String $apellido;
+    private String $direccion;
+    private int $telefono;
+    private ?Municipio $municipio;
+    private String $rol;
+    private ?String $contrasena;
+    private String $estado;
 
     /**
      *  Usuarios constructor.
-     * @param $id_persona
-     * @param $tipo_documento
-     * @param $documento
-     * @param $nombre
-     * @param $apellido
-     * @param $direccion
-     * @param $telefono
-     * @param $municipio
-     * @param $rol
-     * @param $contrasena
-     * @param $estado
+     * @param int $id_persona
+     * @param String $tipo_documento
+     * @param int $documento
+     * @param String $nombre
+     * @param String $apellido
+     * @param String $direccion
+     * @param int $telefono
+     * @param Municipio $municipio
+     * @param String $rol
+     * @param String $contrasena
+     * @param String $estado
      */
 
     public function __construct($Persona = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_persona = $Persona['id_persona'] ?? null;
-        $this->tipo_documento = $Persona['tipo_documento'] ?? null;
-        $this->documento = $Persona['documento'] ?? null;
-        $this->nombre = $Persona['nombre'] ?? null;
-        $this->apellido = $Persona['apellido'] ?? null;
-        $this->direccion = $Persona['direccion'] ?? null;
-        $this->telefono = $Persona['telefono'] ?? null;
+        $this->id_persona = $Persona['id_persona'] ?? 0;
+        $this->tipo_documento = $Persona['tipo_documento'] ?? '';
+        $this->documento = $Persona['documento'] ?? 0;
+        $this->nombre = $Persona['nombre'] ?? '';
+        $this->apellido = $Persona['apellido'] ?? '';
+        $this->direccion = $Persona['direccion'] ?? '';
+        $this->telefono = $Persona['telefono'] ?? 0;
         $this->municipio = $Persona['municipio'] ?? null;
-        $this->rol = $Persona['rol'] ?? null;
-        $this->contrasena = $Persona['contrasena'] ?? null;
-        $this->estado = $Persona['estado'] ?? null;
+        $this->rol = $Persona['rol'] ?? '';
+        $this->contrasena = $Persona['contrasena'] ?? '';
+        $this->estado = $Persona['estado'] ?? '';
     }
 
     /* Metodo destructor cierra la conexion. */

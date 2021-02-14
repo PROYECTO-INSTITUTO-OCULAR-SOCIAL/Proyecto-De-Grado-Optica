@@ -1,21 +1,21 @@
 <?php
 require_once("../../Partials/Routes.php");
-require_once("../../../app/Controllers/MarcaController.php");
+require_once("../../../app/Controllers/AbonoController.php");
 
-use App\Controllers\MarcaController; ?>
+use App\Controllers\AbonoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Datos de Marca</title>
-    <?php require_once("../../Partials/Head_Imports.php"); ?>
+    <title><?= getenv('TITLE_SITE') ?> | Datos Abono</title>
+    <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -24,7 +24,7 @@ use App\Controllers\MarcaController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Información de Marca</h1>
+                        <h1>Información Abono</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,10 +44,10 @@ use App\Controllers\MarcaController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar Marca: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar Abono: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_marca'])) { ?>
+            <?php } else if (empty($_GET['id_abono'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -57,37 +57,32 @@ use App\Controllers\MarcaController; ?>
 
             <!-- Horizontal Form -->
             <div class="card card-info">
-                <?php if(!empty($_GET["id_marca"]) && isset($_GET["id_marca"])){
-                    $DataMarca = MarcaController::searchForid_marca($_GET["id_marca"]);
-                    if(!empty($DataMarca)){
+                <?php if(!empty($_GET["id_abono"]) && isset($_GET["id_abono"])){
+                    $DataAbono=AbonoController::searchForid_abono($_GET["id_abono"]);
+                    if(!empty($DataAbono)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataMarca->getnombre()  ?></h3>
+                            <p class="card-title"><?= $DataAbono->getfecha() ?></p>
                         </div>
-                        <div class="card-body">
-                            <p>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Valor</strong>
+                        <p class="number"><?= $DataAbono->getvalor().": ".$DataAbono->getvalor() ?></p>
+                        <hr>
 
-
-                                <strong><i class="fas fa-book mr-1"></i>Nombre</strong>
-                            <p class="text-muted">
-                                <?= $DataMarca->getnombre()?>
-                            </p>
-                            <hr>
-                            <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
-                            <p class="text-muted"><?= $DataMarca->getestado() ?></p>
-                            </p>
-
-                        </div>
+                        <hr>
+                        <strong><i class="fas fa-user mr-1"></i> Venta</strong>
+                        <p class="text-muted"><?= $DataAbono->getVenta()->getFecha() ?></p>
+                        <hr>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-auto mr-auto">
                                     <a role="button" href="index.php" class="btn btn-success float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-tasks"></i> Gestionar Marca
+                                        <i class="fas fa-tasks"></i> Gestionar Abono
                                     </a>
                                 </div>
                                 <div class="col-auto">
                                     <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-plus"></i> Crear Marca
+                                        <i class="fas fa-plus"></i> Crear Abono
                                     </a>
                                 </div>
                             </div>
@@ -96,7 +91,7 @@ use App\Controllers\MarcaController; ?>
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            No se encontro ningun registro con estos parametros de busqueda <?= ($_GET['mensaje']) ?? "" ?>
+                            No se encontra ningún registro con estos parametros de busqueda <?= ($_GET['mensaje']) ?? "" ?>
                         </div>
                     <?php }
                 } ?>
@@ -113,4 +108,5 @@ use App\Controllers\MarcaController; ?>
 <?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
+
 

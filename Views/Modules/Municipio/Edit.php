@@ -71,6 +71,7 @@ use App\Controllers\MunicipioController; ?>
                         <form class="form-horizontal" method="post" id="frmEditMunicipio" name="frmEditMunicipio" action="../../../app/Controllers/MunicipioController.php?action=edit">
                             <input id="id_municipio" name="id_municipio" value="<?php echo $DataMunicipio->getIdMunicipio(); ?>" hidden
                                    required="required" type="text">
+
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -98,6 +99,7 @@ use App\Controllers\MunicipioController; ?>
                                         ?>
                                     </div>
                                 </div>
+
                             </div>
 
                             <!-- /.card-body -->

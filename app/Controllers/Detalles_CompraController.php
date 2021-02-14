@@ -7,11 +7,10 @@ require_once(__DIR__.'/../Models/Compra.php');
 require_once(__DIR__.'/../Models/GeneralFunctions.php');
 
 
-use App\Models\Detalles_Compra;
 use App\Models\GeneralFunctions;
 use App\Models\Compra;
 use App\Models\Producto;
-
+use App\Models\Detalles_Compra;
 
 if(!empty($_GET['action'])){
     Detalles_CompraController::main($_GET['action']);

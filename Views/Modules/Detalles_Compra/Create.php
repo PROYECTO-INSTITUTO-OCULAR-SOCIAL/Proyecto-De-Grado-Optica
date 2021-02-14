@@ -1,15 +1,14 @@
 <?php
-
 require_once("../../../app/Controllers/Detalles_CompraController.php");
 require_once("../../../app/Controllers/CompraController.php");
 require_once("../../../app/Controllers/ProductoController.php");
-require_once("../../partials/routes.php");
+require_once("../../Partials/Routes.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Crear Detalles de Compra</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <?php require("../../Partials/Head_Imports.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -19,9 +18,9 @@ require_once("../../partials/routes.php");
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

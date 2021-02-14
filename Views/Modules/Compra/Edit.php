@@ -1,22 +1,22 @@
 <?php
-require("../../partials/routes.php");
-require("../../../app/Controllers/CompraController.php");
-require("../../../app/Controllers/PersonaController.php");
+require_once("../../partials/routes.php");
+require_once("../../../app/Controllers/CompraController.php");
+require_once("../../../app/Controllers/PersonaController.php");
 use Carbon\Carbon;
 use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Editar Compra</title>
-    <?php require("../../partials/head_imports.php"); ?>
+    <?php require_once("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require_once("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
+    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

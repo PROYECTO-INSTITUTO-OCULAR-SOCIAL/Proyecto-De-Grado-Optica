@@ -24,15 +24,6 @@ use App\Controllers\PersonaController; ?>
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Editar Una Nueva Persona</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">Proyecto-De-Grado-Optica</a></li>
-                            <li class="breadcrumb-item active">Inicio</li>
-                        </ol>
-                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -61,6 +52,8 @@ use App\Controllers\PersonaController; ?>
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información de la persona</h3>
                 </div>
+            </div>
+                <div class="card card-info">
                 <!-- /.card-header -->
                 <?php if(!empty($_GET["id_persona"]) && isset($_GET["id_persona"])){ ?>
                     <p>

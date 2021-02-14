@@ -96,7 +96,7 @@ class Detalles_Compra extends BasicModel
     /**
      * @param |null $compra
      */
-    public function setCompra(Compra$compra): void
+    public function setCompra(Compra $compra): void
     {
         $this->compra = $compra;
     }
@@ -153,7 +153,7 @@ class Detalles_Compra extends BasicModel
      * @return Detalles_Compra |null
      * @throws \Exception
      */
-    public static function searchForId($id):Detalles_Compra
+    public static function searchForId($id)
     {
         $Detalles_Compra = null;
         if ($id > 0) {
@@ -194,7 +194,7 @@ class Detalles_Compra extends BasicModel
      */
     public function update()
     {
-        $result = $this->updateRow("UPDATE mer_optica.Detalles_Compra SET  cantidad= ?, precio = ?, compra = ?, producto = ? WHERE id_detalles_compra = ?", array(
+        $result = $this->updateRow("UPDATE mer_optica.Detalles_Compra SET  cantidad = ?, precio = ?, compra = ?, producto = ? WHERE id_detalles_compra = ?", array(
                 $this->cantidad,
                 $this->precio,
                 $this->compra->getid_compra(),

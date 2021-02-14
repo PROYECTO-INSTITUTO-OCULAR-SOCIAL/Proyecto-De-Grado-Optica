@@ -1,21 +1,24 @@
 <?php
-require_once("../../Partials/Routes.php");
-require_once("../../../app/Controllers/MarcaController.php");
+require("../../partials/routes.php");
+require("../../../app/Controllers/AbonoController.php");
+require("../../../app/Controllers/VentaController.php");
 
-use App\Controllers\MarcaController; ?>
+
+use Carbon\Carbon;
+use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar Marca</title>
-    <?php require_once("../../Partials/Head_Imports.php"); ?>
+    <title><?= getenv('TITLE_SITE') ?> | Editar Abono</title>
+    <?php require("../../Partials/Head_Imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require_once("../../Partials/Navbar_Customization.php"); ?>
+    <?php require("../../Partials/Navbar_Customization.php"); ?>
 
-    <?php require_once("../../Partials/Sliderbar_Main_Menu.php"); ?>
+    <?php require("../../Partials/Sliderbar_Main_Menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -24,7 +27,7 @@ use App\Controllers\MarcaController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nueva Marca</h1>
+                        <h1>Editar Abono</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,10 +47,10 @@ use App\Controllers\MarcaController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear Marca: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al Editar Abono: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
-            <?php } else if (empty($_GET['id_marca'])) { ?>
+            <?php } else if (empty($_GET['id_abono'])) { ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Error!</h5>
@@ -58,39 +61,52 @@ use App\Controllers\MarcaController; ?>
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Registrar Marca</h3>
+                    <h3 class="card-title">Abono</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if(!empty($_GET["id_marca"]) && isset($_GET["id_marca"])){ ?>
+                <?php if(!empty($_GET["id_abono"]) && isset($_GET["id_abono"])){ ?>
                     <p>
                     <?php
-                    $DataMarca = MarcaController::searchForid_marca($_GET["id_marca"]);
-                    if(!empty($DataMarca)){
+                    $DataAbono = AbonoController::searchForid_abono($_GET["id_abono"]);
+                    if(!empty($DataAbono)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditMarca" name="frmEditMarca" action="../../../app/Controllers/MarcaController.php?action=Edit">
-                            <input id="id_marca" name="id_marca" value="<?php echo $DataMarca->getid_marca(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditAbono" name="frmEditAbono" action="../../../app/Controllers/AbonoController.php?action=edit">
+                            <input id="id_abono" name="id_abono" value="<?php echo $DataAbono->getid_abono(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                    <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataMarca->getnombre(); ?>" placeholder="Ingrese nombre marca">
+                                        <input required type="date" max="<?= Carbon::now()->subYear()->format('Y-m-d') ?>"
+                                               value="<?= $DataAbono->getfecha()->toDateString(); ?>" class="form-control" id="fecha"
+                                               name="fecha" placeholder="Ingrese Fecha Abono">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="valor" class="col-sm-2 col-form-label">Valor</label>
+                                    <div class="col-sm-10">
+                                        <input required type="number" minlength="6" class="form-control" id="valor" name="valor" value="<?= $DataAbono->getvalor(); ?>" placeholder="Ingrese Valor Abono">
+                                    </div>
+                                </div>
+
+
 
 
 
 
                                 <div class="form-group row">
-                                    <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                                    <label for="Venta" class="col-sm-2 col-form-label">Venta</label>
                                     <div class="col-sm-10">
-                                        <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataMarca->getestado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataMarca->getestado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
-                                        </select>
+                                        <?= \App\Controllers\VentaController::selectVenta(false,
+                                            true,
+                                            'Venta',
+                                            'Venta',
+                                            (!empty($dataAbono)) ? $dataAbono->getVenta()->getid_venta() : '',
+                                            'form-control select2bs4 select2-info'
+                                        )
+                                        ?>
                                     </div>
                                 </div>
-
 
                             </div>
                             <!-- /.card-body -->
@@ -122,4 +138,5 @@ use App\Controllers\MarcaController; ?>
 <?php require ('../../Partials/Scripts.php');?>
 </body>
 </html>
+
 

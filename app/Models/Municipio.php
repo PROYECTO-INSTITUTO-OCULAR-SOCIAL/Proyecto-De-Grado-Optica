@@ -8,25 +8,25 @@ require_once ('Departamento.php');
 class Municipio extends BasicModel
 {
 
-    private $id_municipio;
-    private $nombre;
-    private $codigo_dane;
+    private int $id_municipio;
+    private String $nombre;
+    private int $codigo_dane;
     /* Relaciones */
-    private $departamento;
+    private ?Departamento $departamento;
 
     /**
      *  Usuarios constructor.
-     * @param $id_municipio
-     * @param $nombre
-     * @param $codigo_dane
-     * @param $departamento
+     * @param int $id_municipio
+     * @param  String $nombre
+     * @param  int $codigo_dane
+     * @param Departamento $departamento
      */
     public function __construct($Municipio = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->id_municipio = $Municipio['id_municipio'] ?? null;
-        $this->nombre = $Municipio['nombre'] ?? null;
-        $this->codigo_dane = $Municipio['codigo_dane'] ?? null;
+        $this->id_municipio = $Municipio['id_municipio'] ?? 0;
+        $this->nombre = $Municipio['nombre'] ?? '';
+        $this->codigo_dane = $Municipio['codigo_dane'] ?? 0.0;
         $this->departamento = $Municipio['departamento'] ?? null;
     }
 
@@ -144,7 +144,6 @@ class Municipio extends BasicModel
 
     public static function search($query)
     {
-
         $arrMunicipio = array();
         $tmp = new Municipio();
         $getrows = $tmp->getRows($query);

@@ -1,29 +1,37 @@
 <?php
-
 namespace app\Controllers;
-require(__DIR__.'/../Models/Formula.php');
-use app\Models\Formula;
+require_once(__DIR__.'/../Models/Formula.php');
+require_once(__DIR__.'/../Models/GeneralFunctions.php');
+use App\Models\Departamento;
+use App\Models\Formula;
+use App\Models\GeneralFunctions;
+use App\Models\Municipio;
 
 if(!empty($_GET['action'])){
     FormulaController::main($_GET['action']);
 }
 
-class FormulaController{
+class FormulaController
+{
 
     static function main($action)
     {
         if ($action == "create") {
-            FormulaController::create();
+            FormulaController::Create();
         } else if ($action == "edit") {
-            FormulaController::edit();
+            FormulaController::Edit();
         } else if ($action == "searchForID") {
-            FormulaController::searchForID($_REQUEST['idFormula']);
+            FormulaController::searchForID($_REQUEST['id_formula']);
         } else if ($action == "searchAll") {
-            FormulaController::getAll();
+            FormulaController:: getAll();
+        } else if ($action == "activate") {
+            PersonaController::activate();
+        } else if ($action == "inactivate") {
+            PersonaController::inactivate();
         }
     }
 
-    static public function create()
+    static public function Create()
     {
         try {
             $arrayFormula = array();
@@ -43,20 +51,17 @@ class FormulaController{
             $arrayFormula['material'] = $_POST['material'];
             $arrayFormula['valor'] = $_POST['valor'];
 
-            if(!Formula::FormulaRegistrada($arrayFormula['id_formula'])){
-                $Formula = new Formula ($arrayFormula);
-                if($Formula->create()){
-                    header("Location: ../../Views/Modules/Formula/index.php?respuesta=correcto");
-                }
-            }else{
-                header("Location: ../../Views/Modules/Formula/Create.php?respuesta=error&mensaje=Formula ya registrada");
+            $Formula = new Formula($arrayFormula);
+            if($Formula->create()){
+                header("Location: ../../Views/Modules/Formula/index.php?respuesta=correcto");
             }
         } catch (Exception $e) {
+            GeneralFunctions::console( $e, 'error', 'errorStack');
             header("Location: ../../Views/Modules/Formula/Create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function edit (){
+    static public function Edit (){
         try {
             $arrayFormula = array();
             $arrayFormula['od_esfera'] = $_POST['od_esfera'];
@@ -76,22 +81,72 @@ class FormulaController{
             $arrayFormula['valor'] = $_POST['valor'];
             $arrayFormula['id_formula'] = $_POST['id_formula'];
 
-            $user = new Formula($arrayFormula);
-            $user->update();
+            $Formula = new Formula($arrayFormula);
+            $Formula->update();
 
-            header("Location: ../../Views/Modules/Formula/Show.php?id=".$user->getidFormula()."&respuesta=correcto");
+            header("Location: ../../Views/Modules/Formula/Show.php?id_formula=".$Formula->getIdFormula()."&respuesta=correcto");
         } catch (\Exception $e) {
-            //var_dump($e);
-            header("Location: ../../Views/Modules/Formula/edit.php?respuesta=error&mensaje=".$e->getMessage());
+            GeneralFunctions::console( $e, 'error', 'errorStack');
+            header("Location: ../../Views/Modules/Formula/Edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
-    static public function searchForID ($id_formula)
+
+    static public function activate()
     {
         try {
-            return Formula::searchForid_formula($id_formula);
+            $ObjFormula = Formula::searchForID($_GET['id_formula']);
+            if ($ObjFormula->update()) {
+                header("Location: ../../Views/Modules/Formula/index.php");
+            } else {
+                header("Location: ../../Views/Modules/Formula/index.php?respuesta=error&mensaje=Error al guardar");
+            }
+        } catch (\Exception $e) {
+            //var_dump($e);
+            header("Location: ../../Views/Modules/Formula/index.php?respuesta=error&mensaje=" . $e->getMessage());
+        }
+    }
+    static public function inactivate()
+    {
+        try {
+            $ObjFormula = Formula::searchForId($_GET['id_formula']);
+            if ($ObjFormula->update()) {
+                header("Location: ../../Views/Modules/Formula/index.php");
+            } else {
+                header("Location: ../../Views/modules/Formula/index.php?respuesta=error&mensaje=Error al guardar");
+            }
+        } catch (\Exception $e) {
+            //var_dump($e);
+            header("Location: ../../Views/Modules/Persona/index.php?respuesta=error");
+        }
+    }
+
+    static public function getAll ()
+    {
+        try {
+            return Formula::getAll();
+        } catch (\Exception $e) {
+            GeneralFunctions::console($e, 'log', 'errorStack');
+            header("Location: ../Vista/Modules/Formula/manager.php?respuesta=error");
+        }
+    }
+
+    static public function searchForID($id)
+    {
+        try {
+            return Formula::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../Views/Modules/Formula/manager.php?respuesta=error");
         }
+    }
+    public static function FormulaIsInArray($id_formula, $ArrFormula){
+        if(count($ArrFormula) > 0){
+            foreach ($ArrFormula as $Formula){
+                if($Formula->getIdFormula() == $id_formula){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
