@@ -391,7 +391,7 @@ class Formula extends BasicModel
         return $arrFormula;
     }
 
-    public static function searchForId($id)
+ public static function searchForId($id)
     {
         $Formula = null;
         if ($id> 0){
